@@ -1,2 +1,2 @@
-# EMAD2022_23-12
+# JustPet
 Flutter Application for NexSoft
