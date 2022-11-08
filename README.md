@@ -1,2 +1,2 @@
 # JustPet
-Flutter Application for NexSoft
+Flutter Application with NexSoft
