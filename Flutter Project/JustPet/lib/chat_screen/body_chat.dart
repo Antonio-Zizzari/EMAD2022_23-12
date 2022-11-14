@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test1/chat_screen/message.dart';
-import 'package:test1/common_models/color.dart';
-import 'package:test1/common_class/chat_class.dart';
-import 'package:test1/common_models/padding.dart';
+import 'package:justpet/chat_screen/message_screen.dart';
+import 'package:justpet/global_variables/colors.dart';
+import 'package:justpet/class_objects/chat/chat_class.dart';
+import 'package:justpet/global_variables/paddings.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);

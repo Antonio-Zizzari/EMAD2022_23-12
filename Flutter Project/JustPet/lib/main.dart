@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test1/chat_screen/chat.dart';
-import 'chat_screen/message.dart';
+import 'package:justpet/chat_screen/main_chat.dart';
+import 'chat_screen/message_screen.dart';
+import 'package:justpet/test.dart';
 
 void main() => runApp(MaterialApp(
     initialRoute: '/',
     routes: {
-      '/': (context) => Chat(),
-      //'/user_chat': (context) => MessagesScreen(),
+      //'/': (context) => Chat(),
+      '/': (context) => MainAppBar(),
       //'/location': (context) => ChooseLocation(),
     }
 ));
