@@ -10,10 +10,22 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Container(
-          margin: const EdgeInsets.fromLTRB(25,25,25,5),
+          color: kPrimaryColor,
+          padding: const EdgeInsets.all(10),
+          child: Text("Chat",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 35,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 4.0,
+            ),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(25,15,25,5),
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),

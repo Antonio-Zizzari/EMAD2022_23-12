@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:justpet/chat_screen/body_chat.dart';
 import 'package:justpet/global_variables/colors.dart';
 
+import '../Customer/Cust_Component/SideMenu.dart';
+import '../global_models/appbar.dart';
+
 
 class Chat extends StatefulWidget {
   @override
@@ -11,10 +14,16 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildBar(),
+      key: _scaffoldKey,
+      appBar: MainAppBar(_scaffoldKey)/*AppBarVeterinario(
+        title: 'Prenotazioni',
+        showSearch: false,
+      )*/,
+      drawer: SideMenu(),
       body: Body(),
       floatingActionButton: FloatingActionButton(
           onPressed: () {},

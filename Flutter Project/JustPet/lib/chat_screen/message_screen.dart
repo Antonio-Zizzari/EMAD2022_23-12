@@ -24,7 +24,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
     print(widget.data.name);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Colors.red,
         title: Row(
           children: [
             CircleAvatar(
@@ -83,14 +83,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 BoxShadow(
                   offset: Offset(0, 4),
                   blurRadius: 32,
-                  color: Color(0xFF087949).withOpacity(0.08),
+                  color: Colors.red.withOpacity(0.08),
                 ),
               ],
             ),
             child: SafeArea(
               child: Row(
                 children: [
-                  Icon(Icons.mic, color: kPrimaryColor),
+                  Icon(Icons.mic, color: Colors.red),
                   SizedBox(width: kDefaultPadding),
                   Expanded(
                     child: Container(
@@ -98,7 +98,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                         horizontal: kDefaultPadding * 0.75,
                       ),
                       decoration: BoxDecoration(
-                        color: kPrimaryColor.withOpacity(0.05),
+                        color: Colors.red.withOpacity(0.05),
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Row(
@@ -135,7 +135,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     ),
                   ),
                   SizedBox(width: 18,),
-                  Icon(Icons.send, color: kPrimaryColor),
+                  Icon(Icons.send, color: Colors.red),
                 ],
               ),
             ),

@@ -66,7 +66,7 @@ class MessageStatusDot extends StatelessWidget {
         case MessageStatus.not_view:
           return Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.1);
         case MessageStatus.viewed:
-          return kPrimaryColor;
+          return Colors.green;
         default:
           return Colors.transparent;
       }
