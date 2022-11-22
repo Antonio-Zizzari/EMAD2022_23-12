@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/global_variables/colors.dart';
 import 'Veterinario.dart';
 import 'package:justpet/Customer/Pages/Prenotazione.dart';
 
@@ -12,12 +13,19 @@ class CardVeterinario extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
-        elevation: 8,
+        shadowColor: kPrimaryColor,
+        elevation: 5,
+
+
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0)
+            side: BorderSide(
+              color: kPrimaryColor, //<-- SEE HERE
+            ),
+            borderRadius: BorderRadius.circular(15.0),
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: InkWell(
+
           onTap: () {
             Navigator.push(
                 context,
@@ -79,14 +87,15 @@ class CardVeterinario extends StatelessWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[300],
+                      border: Border.all(color: kPrimaryColor),
+                      color: Colors.red[100],
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            const Text('Primo turno:'),
+                            const Text('Primo turno:',style: TextStyle(fontWeight: FontWeight.bold),),
                             Text(veterinario.turni[0])
                           ],
                         )),

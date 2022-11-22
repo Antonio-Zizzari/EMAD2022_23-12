@@ -96,7 +96,7 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
                                 },
                                 child: CircleAvatar(
                                   radius: 20,
-                                  backgroundColor: selezionato[index] == true ? kPrimaryColor : Colors.transparent,
+                                  backgroundColor: selezionato[index] == true ? Colors.red[200] : Colors.transparent,
 
                                   child: Text(
                                     alphabets[index],
@@ -119,6 +119,8 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
                   itemCount: listaMedicine.length,
                   itemBuilder: (context, index) =>
                       Card(
+                        shadowColor: kPrimaryColor,
+                        elevation: 2,
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: IntrinsicHeight(
@@ -137,16 +139,17 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
                                 VerticalDivider(
                                   thickness: 2,
                                   width: 20,
-                                  color: Colors.black,
+                                  color: kPrimaryColor,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(listaMedicine[index].nome, style: TextStyle(
                                         color: Color(0xff212121),
-                                        fontSize: 17
+                                        fontSize: 22
+                                      ),
                                     ),
-                                    ),
+                                    Text(listaMedicine[index].tipo, style: TextStyle(color: Color(0xff666666),fontSize: 18),),
 
 
                                   ],

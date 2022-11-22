@@ -3,7 +3,9 @@ import 'package:justpet/Customer/Cust_Component/SideMenu.dart';
 
 AppBar MainAppBar (GlobalKey<ScaffoldState> openDrawer) {
   return AppBar(
+    shadowColor: Colors.white,
     backgroundColor: Colors.white,
+    elevation: 0,
     leading: IconButton(
       onPressed: () {
         if(openDrawer.currentState!.isDrawerOpen){

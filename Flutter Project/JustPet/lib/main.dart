@@ -14,7 +14,7 @@ import 'package:justpet/global_models/appbar.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/dizionario',
+    initialRoute: '/lista',
     routes: {
       '/lista': (context) => ListaVeterinari(),
       '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),

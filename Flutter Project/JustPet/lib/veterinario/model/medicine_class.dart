@@ -1,4 +1,4 @@
-enum TipoMedicina { capsule, cream, drops,pills, syringe,syrunp }
+enum TipoMedicina { capsule, cream, drops,pills, syringe,syrup }
 
 class Medicine{
 
@@ -28,9 +28,9 @@ class Medicine{
     }else if(tipoMedicina == TipoMedicina.syringe){
       this.tipo = "Siringa";
       this.image ="assets/dizionario/syringe.png";
-    }else if(tipoMedicina == TipoMedicina.syrunp){
+    }else if(tipoMedicina == TipoMedicina.syrup){
       this.tipo = "Sciroppo";
-      this.image ="assets/dizionario/syrunp.png";
+      this.image ="assets/dizionario/syrup.png";
     }
 
   }
@@ -44,7 +44,11 @@ List listaMedicine = [
   Medicine("Spintox", "La nebbia agli irti colli\r\nPiovigginando sale,\r\nE sotto il maestrale\r\nUrla e biancheggia il mar;\r\nMa per le vie del borgo\r\nDal ribollir de\u2019 tini\r\nVa l\u2019aspro odor de i vini\r\nL\u2019anime a rallegrar.\r\nGira su\u2019 ceppi accesi\r\nLo spiedo scoppiettando:\r\nSta il cacciator fischiando\r\nSu l\u2019uscio a rimirar\r\nTra le rossastre nubi\r\nStormi d\u2019uccelli neri,\r\nCom\u2019 esuli pensieri,\r\nNel vespero migrar",
       TipoMedicina.syringe),
   Medicine("Spintox", "La nebbia agli irti colli\r\nPiovigginando sale,\r\nE sotto il maestrale\r\nUrla e biancheggia il mar;\r\nMa per le vie del borgo\r\nDal ribollir de\u2019 tini\r\nVa l\u2019aspro odor de i vini\r\nL\u2019anime a rallegrar.\r\nGira su\u2019 ceppi accesi\r\nLo spiedo scoppiettando:\r\nSta il cacciator fischiando\r\nSu l\u2019uscio a rimirar\r\nTra le rossastre nubi\r\nStormi d\u2019uccelli neri,\r\nCom\u2019 esuli pensieri,\r\nNel vespero migrar",
-      TipoMedicina.syrunp),
+      TipoMedicina.syrup),
+  Medicine("Spintox", "La nebbia agli irti colli\r\nPiovigginando sale,\r\nE sotto il maestrale\r\nUrla e biancheggia il mar;\r\nMa per le vie del borgo\r\nDal ribollir de\u2019 tini\r\nVa l\u2019aspro odor de i vini\r\nL\u2019anime a rallegrar.\r\nGira su\u2019 ceppi accesi\r\nLo spiedo scoppiettando:\r\nSta il cacciator fischiando\r\nSu l\u2019uscio a rimirar\r\nTra le rossastre nubi\r\nStormi d\u2019uccelli neri,\r\nCom\u2019 esuli pensieri,\r\nNel vespero migrar",
+      TipoMedicina.drops),
+  Medicine("Spintox", "La nebbia agli irti colli\r\nPiovigginando sale,\r\nE sotto il maestrale\r\nUrla e biancheggia il mar;\r\nMa per le vie del borgo\r\nDal ribollir de\u2019 tini\r\nVa l\u2019aspro odor de i vini\r\nL\u2019anime a rallegrar.\r\nGira su\u2019 ceppi accesi\r\nLo spiedo scoppiettando:\r\nSta il cacciator fischiando\r\nSu l\u2019uscio a rimirar\r\nTra le rossastre nubi\r\nStormi d\u2019uccelli neri,\r\nCom\u2019 esuli pensieri,\r\nNel vespero migrar",
+      TipoMedicina.drops),
   Medicine("Spintox", "La nebbia agli irti colli\r\nPiovigginando sale,\r\nE sotto il maestrale\r\nUrla e biancheggia il mar;\r\nMa per le vie del borgo\r\nDal ribollir de\u2019 tini\r\nVa l\u2019aspro odor de i vini\r\nL\u2019anime a rallegrar.\r\nGira su\u2019 ceppi accesi\r\nLo spiedo scoppiettando:\r\nSta il cacciator fischiando\r\nSu l\u2019uscio a rimirar\r\nTra le rossastre nubi\r\nStormi d\u2019uccelli neri,\r\nCom\u2019 esuli pensieri,\r\nNel vespero migrar",
       TipoMedicina.drops),
 ];
