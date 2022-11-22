@@ -76,6 +76,7 @@ flutter:
     - assets/images/pet1.jpg
     - assets/images/pet2.jpg
     - assets/images/pet3.jpg
+    - assets/images/empty_calendar_icon.png
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
