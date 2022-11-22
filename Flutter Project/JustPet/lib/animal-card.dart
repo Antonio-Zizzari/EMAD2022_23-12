@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/theme/color.dart';
+import 'package:justpet/veterinarian_date.dart';
 import 'package:justpet/widget/pet_item.dart';
 import 'package:justpet/pet_class.dart';
 
@@ -89,7 +90,7 @@ class _MyPetsState extends State<MyPets> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                     child: Text(
-                      "Scheda Animali",
+                      "I miei animali",
                       style: TextStyle(
                         color: textColor,
                         fontWeight: FontWeight.w700,
@@ -107,7 +108,6 @@ class _MyPetsState extends State<MyPets> {
                     color: Color.fromRGBO(0,143,57, 1),
                     icon: Icon(Icons.add_circle_sharp),
                     onPressed: () {},
-
                   ),
                 ),
               ),
@@ -129,23 +129,48 @@ class _MyPetsState extends State<MyPets> {
 
   getPets(){
     double width = MediaQuery.of(context).size.width * .8;
-    return
-      CarouselSlider(
-          options: CarouselOptions(
-            height: 535,
-            enlargeCenterPage: true,
-            disableCenter: true,
-            viewportFraction: .8,
-          ),
-          items: List.generate(
-            pets.length, (index) => PetItem(
+    if(pets.isNotEmpty) {
+      return CarouselSlider(
+        options: CarouselOptions(
+          height: 535,
+          enlargeCenterPage: true,
+          disableCenter: true,
+          viewportFraction: .8,
+        ),
+        items: List.generate(
+            pets.length, (index) =>
+            PetItem(
               data: pets[index],
               index: index,
               width: width,
-              onTap: () {},
-              onFavoriteTap: () {},
             )
-          )
+        )
       );
+    } else {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20),
+              height: 80,
+              width: 80,
+              child: Icon(Icons.pets_sharp, size: 80)
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0,0,0,40),
+              child: Text("Non sono presenti animali registrati.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
   }
 }

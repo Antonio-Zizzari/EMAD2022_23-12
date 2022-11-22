@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/pets_visits.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 import '../pet_class.dart';
@@ -24,7 +25,7 @@ class InfoList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 1,
+            flex: 3,
             child: TabBar(
               labelColor: Colors.black,
               unselectedLabelColor: Colors.black26,
@@ -42,11 +43,11 @@ class InfoList extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 8,
+            flex: 18,
             child: TabBarView(
               children: [
                 ListItemPet(data: data),
-                Text("dioporco2"),
+                PetsVisits(data: data)
               ],
             ),
           ),

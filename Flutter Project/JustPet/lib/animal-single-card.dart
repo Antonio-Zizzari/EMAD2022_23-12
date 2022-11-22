@@ -1,16 +1,14 @@
+import 'package:justpet/veterinarian_date.dart';
 import 'package:justpet/widget/info_list.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:justpet/theme/color.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:justpet/widget/custom_image.dart';
 import 'package:justpet/pet_class.dart';
 
 class AnimalCard extends StatelessWidget {
   final Pets data;
-  final int index;
 
-  const AnimalCard({Key? key, required this.data, required this.index}) : super(key: key);
+  const AnimalCard({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class AnimalCard extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(width, height, pets[index]),
+      body: buildBody(width, height, data, context),
     );
   }
 }
@@ -50,7 +48,7 @@ AppBar buildAppBar() {
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 6
-                      ..color = Color(0xFFF03738)!,
+                      ..color = Color(0xFFF03738),
                   ),
                 ),
                 // Solid text as fill.
@@ -77,7 +75,7 @@ AppBar buildAppBar() {
   );
 }
 
-Widget buildBody(double width, double height, Pets data){
+Widget buildBody(double width, double height, Pets data, BuildContext context){
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     mainAxisSize: MainAxisSize.max,
@@ -86,7 +84,6 @@ Widget buildBody(double width, double height, Pets data){
         child: Container(
           width: width,
           height: height * 0.4,
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
           ),
@@ -104,7 +101,14 @@ Widget buildBody(double width, double height, Pets data){
                 top: 10,
                 child: IconButton(
                   icon: Icon(Icons.arrow_back_ios_outlined),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VeterinarianDate(data: data),
+                      ),
+                    );
+                  },
                   color: Color.fromRGBO(0,0,0,1),
                 ),
               ),
@@ -120,7 +124,6 @@ Widget buildBody(double width, double height, Pets data){
                       padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                       decoration: BoxDecoration(
                           color: Colors.transparent,
-
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
                           boxShadow: [
                             BoxShadow(

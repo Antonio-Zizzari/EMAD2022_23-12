@@ -307,17 +307,5 @@ class ListItemPet extends StatelessWidget {
       ),
     );
   }
-
-  List<DropdownMenuItem<String>> _dropDownMenu(List<String> data){
-    return data.map((value) => DropdownMenuItem(value: value,
-      child: Text(
-        value,
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-        ),
-    ))).toList();
-  }
 }
 

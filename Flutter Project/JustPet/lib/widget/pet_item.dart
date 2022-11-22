@@ -97,7 +97,7 @@ class PetItem extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AnimalCard(data: pets[index], index: index),
+                                      builder: (context) => AnimalCard(data: pets[index]),
                                     ),
                                   );
                                 }
