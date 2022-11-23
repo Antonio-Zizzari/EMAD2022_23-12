@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:test1/chat_screen/body_chat.dart';
-import 'package:test1/common_models/color.dart';
+import 'package:justpet/chat_screen/body_chat.dart';
+import 'package:justpet/common_models/color.dart';
 
 
 class Chat extends StatefulWidget {

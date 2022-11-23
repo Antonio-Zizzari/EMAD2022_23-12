@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Veterinario.dart';
-import 'package:test1/Customer/Pages/Prenotazione.dart';
+import 'package:justpet/Customer/Pages/Prenotazione.dart';
 
 class CardVeterinario extends StatelessWidget {
   final Veterinario veterinario;
@@ -32,7 +32,7 @@ class CardVeterinario extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Image.asset(
-                'assets/images/${veterinario.immagine}',
+                'assets/${veterinario.immagine}',
                 fit: BoxFit.fill,
               ),
               Row(

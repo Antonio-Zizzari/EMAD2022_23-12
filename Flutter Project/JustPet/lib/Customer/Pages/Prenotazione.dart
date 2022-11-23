@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test1/Customer/Cust_Component/Veterinario.dart';
-import 'package:test1/Customer/Cust_Component/AppBarVeterinario.dart';
+import 'package:justpet/Customer/Cust_Component/Veterinario.dart';
+import 'package:justpet/Customer/Cust_Component/AppBarVeterinario.dart';
 
 class Prenotazione extends StatefulWidget {
 
@@ -30,7 +30,7 @@ class _PrenotazioneState extends State<Prenotazione> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.asset(
-                  'assets/images/${widget.veterinario.immagine}',
+                  'assets/${widget.veterinario.immagine}',
                   fit: BoxFit.fill,
                 ),
               ),
@@ -47,8 +47,8 @@ class _PrenotazioneState extends State<Prenotazione> {
             ),
             SizedBox(height: 5,),
             Text(
-              'La dottoressa Gialli vanta più di 10 anni di esperienza nel settore, grazie alla sua competenza acquisita negli anni e coltivata con il lavoro. Ha raggiunto la vetta dopo aver operato più di 75 animali, tutti con successo',
-               style: TextStyle(fontSize: 14, color: Colors.grey,),),
+              '${widget.veterinario.descrizione}',
+              style: TextStyle(fontSize: 14, color: Colors.grey,),),
             SizedBox(height: 15,),
             Text('Scegli data'),
             SingleChildScrollView(

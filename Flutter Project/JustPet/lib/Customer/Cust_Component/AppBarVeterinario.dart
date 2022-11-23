@@ -41,10 +41,44 @@ class AppBarVeterinario extends StatelessWidget implements PreferredSizeWidget{
                 ),
               ),
               SizedBox(width: 20,),
-              InkWell(
+              Row(
+                children: [
+                  Stack(
+                    children: <Widget>[
+                      // Stroked text as border.
+                      Text(
+                        'JustPet',
+                        style: TextStyle(
+                          fontSize: 30,
+                          foreground: Paint()
+                            ..style = PaintingStyle.stroke
+                            ..strokeWidth = 6
+                            ..color = Color(0xFFF03738)!,
+                        ),
+                      ),
+                      // Solid text as fill.
+                      Text(
+                        'JustPet',
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.grey[300],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(width: 10,),
+                  CircleAvatar(
+                    backgroundImage: AssetImage("assets/logo/logo.png"),
+                    backgroundColor: Colors.transparent,
+                    radius: 25,
+                  ),
+                ],
+              ),
+              /*InkWell(
                 onTap: () {},
                 child: const Icon(Icons.more_vert),
-              )
+              )*/
             ],
           ),
         ),

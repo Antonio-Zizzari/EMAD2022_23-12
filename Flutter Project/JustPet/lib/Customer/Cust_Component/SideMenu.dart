@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test1/Customer/Pages/ListaVeterinari.dart';
+import 'package:justpet/Customer/Pages/ListaVeterinari.dart';
+import 'package:justpet/class_objects/main_app_bar/mainFunction_class.dart';
 
 class SideMenu extends StatelessWidget {
   @override
@@ -12,7 +13,7 @@ class SideMenu extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(foregroundImage: AssetImage('assets/images/dog.jpg',), radius: 50,),
+                CircleAvatar(foregroundImage: AssetImage('assets/images/user.png',), radius: 50,),
                 Text(
                   'Vittorio',
                   style: TextStyle(color: Colors.white, fontSize: 25),
@@ -20,18 +21,44 @@ class SideMenu extends StatelessWidget {
               ],
             ),
             decoration: BoxDecoration(
-                color: Colors.blue,
-                image: DecorationImage(
-                    fit: BoxFit.fill)),
+                color: Colors.red,
+                ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text('Funzioni', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
-          Padding(
+          Column(
+            children: funzioniPrincipali.map((funzioni) =>
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
+              child: Material(
+                elevation: 5,
+                color: funzioni.colore,
+                child: MaterialButton(
+                  onPressed: (){
+                    Navigator.pushReplacementNamed(context, funzioni.nextRoute);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(funzioni.icona),
+                      SizedBox(width: 5,),
+                      Text(funzioni.titolo),
+                      Spacer(),
+                      Icon(Icons.navigate_next, size: 30,),
+                    ],
+                ),),
+              ),
+            )
+
+            ).toList(),
+          ),
+
+          /*Padding(
             padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
             child: Material(
               elevation: 5,
+              color: Colors.red[100],
               child: MaterialButton(
                 onPressed: (){},
                 child: Row(
@@ -48,6 +75,7 @@ class SideMenu extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
             child: Material(
               elevation: 5,
+              color: Colors.red[100],
               child: MaterialButton(
                 onPressed: (){},
                 child: Row(
@@ -64,6 +92,7 @@ class SideMenu extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
             child: Material(
               elevation: 5,
+              color: Colors.red[100],
               child: MaterialButton(
                 onPressed: (){},
                 child: Row(
@@ -80,6 +109,7 @@ class SideMenu extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
             child: Material(
               elevation: 5,
+              color: Colors.red[100],
               child: MaterialButton(
                 onPressed: (){},
                 child: Row(
@@ -99,6 +129,8 @@ class SideMenu extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
+
+           */
           SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -108,6 +140,7 @@ class SideMenu extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(4.0, 4.0, 20.0, 4.0),
             child: Material(
               elevation: 5,
+              color: Colors.red[100],
               child: MaterialButton(
                 onPressed: (){},
                 child: Row(

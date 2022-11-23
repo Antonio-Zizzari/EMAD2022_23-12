@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test1/common_class/chat_class.dart';
-import 'package:test1/common_models/padding.dart';
+import 'package:justpet/common_class/chat_class.dart';
+import 'package:justpet/common_models/padding.dart';
 
 import '../common_models/color.dart';
 
