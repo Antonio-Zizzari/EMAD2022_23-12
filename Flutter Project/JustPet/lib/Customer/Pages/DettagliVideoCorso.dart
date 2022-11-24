@@ -1,6 +1,4 @@
-import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:justpet/Customer/Cust_Component/AppBarVeterinario.dart';
 import 'package:justpet/Customer/Cust_Component/Corso.dart';
 import 'package:justpet/global_models/appbar.dart';
@@ -134,6 +132,7 @@ class DettagliVideoCorso extends StatelessWidget {
                         text: "${corso.vecchioPrezzo}",
                         style: TextStyle(
                           color: kTextColor.withOpacity(.5),
+                          fontSize: 18,
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),

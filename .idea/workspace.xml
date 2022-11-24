@@ -6,26 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ce66643-c1be-44f0-a651-3c9a46e6835b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/EMAD2022_23-12.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/AppBarVeterinario.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/AppBarVeterinario.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/CardVeterinario.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/CardVeterinario.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/SideMenu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/SideMenu.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/Veterinario.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Cust_Component/Veterinario.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/DettagliVideoCorso.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/DettagliVideoCorso.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/ListaVeterinari.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/ListaVeterinari.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/Prenotazione.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/Prenotazione.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/VideoCorsi.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/Customer/Pages/VideoCorsi.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/chat_screen/chat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/chat_screen/chat.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/chat_screen/message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/chat_screen/message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/global_models/appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/global_models/appbar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/global_variables/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/global_variables/colors.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flutter Project/JustPet/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Flutter Project/JustPet/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="9ce66643-c1be-44f0-a651-3c9a46e6835b" name="Changes" comment="Allineamento al main e aggiunta delle mie schermate" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,18 +39,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "settings.editor.selected.configurable": "preferences.general",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Andrea\IdeaProjects\test1\assets" />
@@ -108,6 +89,21 @@
       <workItem from="1668416708698" duration="451000" />
       <workItem from="1668417926503" duration="1008000" />
     </task>
+    <task id="LOCAL-00001" summary="Allineamento al main e aggiunta delle mie schermate">
+      <created>1669209075765</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669209075765</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Allineamento al main e aggiunta delle mie schermate">
+      <created>1669209171205</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669209171205</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +122,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Allineamento al main e aggiunta delle mie schermate" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allineamento al main e aggiunta delle mie schermate" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
