@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:justpet/add_pet.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/veterinarian_date.dart';
 import 'package:justpet/widget/pet_item.dart';
@@ -101,14 +102,19 @@ class _MyPetsState extends State<MyPets> {
                 ),
               ),
               getPets(),
-              Container(
-                child: Center(
-                  child: IconButton(
-                    iconSize: 50,
-                    color: Color.fromRGBO(0,143,57, 1),
-                    icon: Icon(Icons.add_circle_sharp),
-                    onPressed: () {},
-                  ),
+              Center(
+                child: IconButton(
+                  iconSize: 50,
+                  color: Color.fromRGBO(0,143,57, 1),
+                  icon: Icon(Icons.add_circle_sharp),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddPet(),
+                      ),
+                    );
+                  },
                 ),
               ),
               const Center(

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-import 'package:justpet/animal-single-card.dart';
 import 'package:justpet/pet_class.dart';
 import 'package:justpet/theme/color.dart';
-import 'package:justpet/widget/info_list.dart';
-import 'package:justpet/widget/list_item_pet.dart';
 
 class VeterinarianDate extends StatelessWidget {
   final Pets data;

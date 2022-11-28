@@ -40,7 +40,7 @@ class VisitCard extends StatelessWidget {
                 ),
                 VerticalDivider(
                   thickness: 2,
-                  width: 20,
+                  width: 30,
                   color: Colors.black,
                 ),
                 Column(
