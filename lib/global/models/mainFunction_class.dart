@@ -30,7 +30,7 @@ List<FunzioniMain> funzioniPrincipali = [
   FunzioniMain(titolo: 'Scheda animali', icona: Icons.pets, nextRoute: '/scheda_animali'),
   FunzioniMain(titolo: 'Cerca veterinari', icona: Icons.search_sharp, nextRoute: '/lista'),
   FunzioniMain(titolo: 'Video corsi', icona: Icons.video_collection, nextRoute: '/videocorsi'),
-  FunzioniMain(titolo: 'Acquista prodotti', icona: Icons.shopping_bag, nextRoute: '/lista'),
+  FunzioniMain(titolo: 'Acquista prodotti', icona: Icons.shopping_bag, nextRoute: '/petshop'),
   FunzioniMain(titolo: 'Comunicazioni', icona: Icons.chat, nextRoute: '/chat'),
   FunzioniMain(titolo: 'Turni Lavoro', icona: Icons.work, nextRoute: '/turni_lavoro'),
   FunzioniMain(titolo: 'Dizionario', icona: Icons.medical_information, nextRoute: '/dizionario'),

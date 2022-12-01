@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/customer/screens/animal-card.dart';
 import 'package:justpet/veterinarian/screens/dizionario_screen.dart';
 import 'package:justpet/veterinarian/screens/prenotazioni_screen.dart';
@@ -16,6 +17,7 @@ void main() {
       '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),
       '/videocorsi': (context) => VideoCorsi(),
       '/dettaglivideocorso': (context) => VideoCorsi(),
+      '/petshop': (context) => PetShop(),
       '/chat': (context) => Chat(),
       '/turni_lavoro': (context) => TurniLavoro(),
       '/dizionario' : (context) => DizionarioScreen(),
