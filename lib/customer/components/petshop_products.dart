@@ -86,7 +86,7 @@ class _PetShopProductsPageState extends State<PetShopProductsPage> with TickerPr
                       fontSize: 28.0,
                     )),
               ),
-              background: Image.asset("assets/images/background.jpg", fit: BoxFit.cover)
+              background: Image.asset("assets/images/background.png", fit: BoxFit.cover)
             ),
             bottom: AppBar(
               automaticallyImplyLeading: false,
