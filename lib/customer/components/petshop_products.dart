@@ -103,13 +103,13 @@ class _PetShopProductsPageState extends State<PetShopProductsPage> with TickerPr
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                           fillColor: Colors.white,
-                          prefixIcon: Icon(Icons.search, color: Colors.white),
+                          prefixIcon: Icon(Icons.search, color: Colors.black),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none
                           ),
                           hintText: "Cerca un prodotto",
-                          hintStyle: TextStyle(fontSize: 14, color: Colors.white),
+                          hintStyle: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                       ),
                     ),
@@ -121,7 +121,7 @@ class _PetShopProductsPageState extends State<PetShopProductsPage> with TickerPr
                       onPressed: () {
                         showFilterModal();
                       },
-                      icon: Icon(Icons.filter_list, color: Colors.white, size: 30,),
+                      icon: Icon(Icons.filter_list, color: Colors.black, size: 30,),
                     ),
                   ),
                   SizedBox(width: 10),
