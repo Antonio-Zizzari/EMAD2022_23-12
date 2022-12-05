@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:justpet/customer/components/petshop_products.dart';
 
 import '../../../../theme/color.dart';
 import '../../models/petshop_class.dart';
@@ -92,12 +93,12 @@ class PetShopCard extends StatelessWidget {
                                   icon: const Icon(Icons.arrow_circle_right),
                                   color: Color.fromRGBO(255, 255, 255, 1),
                                   onPressed: () {
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) => AnimalCard(data: pets[index]),
-                                    //   ),
-                                    // );
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PetShopProductsPage(data: data),
+                                      ),
+                                    );
                                   }
                               ),
                             ),

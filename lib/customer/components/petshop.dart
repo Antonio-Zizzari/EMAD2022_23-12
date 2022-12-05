@@ -63,11 +63,11 @@ class _PetShopState extends State<PetShop> {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children:
-                  petshops.map((e) => PetShopCard(data: e)).toList()
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children:
+                petshops.map((petshop) => PetShopCard(data: petshop)).toList()
               ),
             ),
           ),
