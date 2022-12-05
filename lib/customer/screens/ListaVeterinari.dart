@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/components/CardVeterinario.dart';
+import 'package:justpet/customer/components/widget/cardVeterinario.dart';
 import 'package:justpet/global/components/SideMenu.dart';
 import 'package:justpet/global/components/appbar.dart';
 
@@ -99,7 +100,7 @@ class _ListaVeterinariState extends State<ListaVeterinari> {
               padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
               child: Column(
                 children: veterinari
-                    .map((e) => CardVeterinario(veterinario: e))
+                    .map((e) => cardVeterinario(veterinario: e))
                     .toList(),
               ),
             ),
