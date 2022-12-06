@@ -13,17 +13,16 @@ class PetShopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height * 0.33;
-    double width = MediaQuery.of(context).size.width * 0.9;
+    //double height = MediaQuery.of(context).size.height * 0.33;
+    //double width = MediaQuery.of(context).size.width * 0.9;
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.fromLTRB(12,0,12,0),
       child: Material(
         elevation: 10,
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          width: width,
-          height: height,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
           ),
