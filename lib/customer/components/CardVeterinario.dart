@@ -25,7 +25,6 @@ class CardVeterinario extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: InkWell(
-
           onTap: () {
             Navigator.push(
                 context,
