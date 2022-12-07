@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import '../models/product.dart';
 import '../components/product_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../models/petshop_class.dart';
 
 class PetShopProductsPage extends StatefulWidget {

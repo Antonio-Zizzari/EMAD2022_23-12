@@ -1,16 +1,20 @@
 import 'package:justpet/customer/models/product.dart';
+import 'package:justpet/customer/models/review.dart';
 
 class PetShopClass {
   final String petshopDescription, pathImage, name, address;
   final double review;
   final List<Product> products;
+  final List<Review> reviews;
+
   PetShopClass({
     required this.petshopDescription,
     required this.pathImage,
     required this.name,
     required this.address,
     required this.review,
-    required this.products
+    required this.products,
+    required this.reviews
   });
 }
 
@@ -58,6 +62,12 @@ List<PetShopClass> petshops = [
             imagePath: "assets/images/petshop_product.jpg",
             price: 10
         ),
+      ],
+      reviews: [
+        Review(description: "Descrizione 1", vote: 3.5),
+        Review(description: "Descrizione 2", vote: 2.5),
+        Review(description: "Descrizione 3", vote: 4),
+        Review(description: "Descrizione 4", vote: 5),
       ]
   ),
   PetShopClass(
@@ -103,6 +113,10 @@ List<PetShopClass> petshops = [
             imagePath: "assets/images/petshop_product.jpg",
             price: 10
         ),
+      ],
+      reviews: [
+        Review(description: "Descrizione 1", vote: 3.5),
+        Review(description: "Descrizione 2", vote: 5),
       ]
   ),
   PetShopClass(
@@ -148,7 +162,8 @@ List<PetShopClass> petshops = [
             imagePath: "assets/images/petshop_product.jpg",
             price: 10
         ),
-      ]
+      ],
+      reviews: []
   ),
   PetShopClass(
       petshopDescription: "Il petshop,\nalla tua portata.",
@@ -193,6 +208,14 @@ List<PetShopClass> petshops = [
             imagePath: "assets/images/petshop_product.jpg",
             price: 10
         ),
+      ],
+      reviews: [
+        Review(description: "Descrizione 1", vote: 5),
+        Review(description: "Descrizione 2", vote: 4),
+        Review(description: "Descrizione 3", vote: 2),
+        Review(description: "Descrizione 4", vote: 2.5),
+        Review(description: "Descrizione 5", vote: 4),
+        Review(description: "Descrizione 6", vote: 3.5),
       ]
   ),
 ];
