@@ -28,4 +28,10 @@ const orange = Color(0xFFf5ba92);
 const sky = Color(0xFFABDEE6);
 const blue = Color(0xFF509BE4);
 
+const red1 = Color.fromRGBO(255, 186, 186, 1);
+const red2 = Color.fromRGBO(255, 123, 123, 1);
+const red3 = Color.fromRGBO(255, 82, 82, 1);
+const red4 = Color.fromRGBO(255, 0, 0, 1);
+const red5 = Color.fromRGBO(167, 0, 0, 1);
+
 const listColors = [green, purple, yellow, orange, sky, secondary, red, blue, pink, yellow,];

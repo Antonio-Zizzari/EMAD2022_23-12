@@ -165,10 +165,10 @@ class PetShopCard extends StatelessWidget {
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.green, width: 2)
+                                  side: BorderSide(color: red5, width: 2)
                                 )
                               ),
-                              backgroundColor: MaterialStatePropertyAll<Color>(Colors.greenAccent),
+                              backgroundColor: MaterialStatePropertyAll<Color>(red2),
                               elevation: MaterialStatePropertyAll(8),
                               padding: MaterialStatePropertyAll<EdgeInsets>(
                                 EdgeInsets.symmetric(horizontal: 50)
