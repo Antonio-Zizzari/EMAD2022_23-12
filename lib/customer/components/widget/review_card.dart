@@ -139,8 +139,6 @@ class ReviewCard extends StatelessWidget {
   String getDate(DateTime date){
     DateTime dateNow = DateTime.now().toLocal();
 
-    print(dateNow);
-    
     int monthCount = 0;
     int yearCount = 0;
     int daysDifference = -1;

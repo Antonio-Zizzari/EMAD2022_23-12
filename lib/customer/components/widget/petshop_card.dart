@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:justpet/customer/components/petshop_products.dart';
 import 'package:justpet/customer/components/widget/review_card.dart';
-
 import '../../../../theme/color.dart';
 import '../../models/petshop_class.dart';
 
 class PetShopCard extends StatelessWidget {
   final PetShopClass data;
-
 
   const PetShopCard({Key? key, required this.data}) : super(key: key);
 
@@ -162,7 +159,7 @@ class PetShopCard extends StatelessWidget {
                           height: 10,
                         ),
                         Center(
-                          child: ElevatedButton.icon(
+                          child: averageReview != 0 ? ElevatedButton.icon(
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -179,8 +176,26 @@ class PetShopCard extends StatelessWidget {
                             icon: Icon(Icons.preview_sharp, color: Colors.black54),
                             label: Text("Visualizza recensioni", style: TextStyle(color: Colors.black54)),
                             onPressed: () {
-                              averageReview != 0 ? showReviewModal(context, averageReview) : null;
+                              showReviewModal(context, averageReview);
                             }
+                          ) :
+                          ElevatedButton.icon(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: BorderSide(color: Colors.black54, width: 3)
+                                  )
+                              ),
+                              backgroundColor: MaterialStatePropertyAll<Color>(Colors.greenAccent),
+                              elevation: MaterialStatePropertyAll(8),
+                              padding: MaterialStatePropertyAll<EdgeInsets>(
+                                  EdgeInsets.symmetric(horizontal: 20)
+                              )
+                            ),
+                            icon: Icon(Icons.reviews_outlined, color: Colors.black54),
+                            label: Text("Scrivi una nuova recensione", style: TextStyle(color: Colors.black54)),
+                            onPressed: () {}
                           ),
                         ),
                       ],

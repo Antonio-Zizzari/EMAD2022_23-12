@@ -213,6 +213,18 @@ List<PetShopClass> petshops = [
         Review(description: text, vote: 5, date: DateTime.utc(2019, 3, 3)),
         Review(description: text, vote: 5, date: DateTime.utc(2018, 5, 21)),
         Review(description: text, vote: 5, date: DateTime.utc(2018, 1, 18)),
+        Review(description: text, vote: 3.5, date: DateTime.utc(2022, 11, 8)),
+        Review(description: text, vote: 2.5, date: DateTime.utc(2022, 8, 8)),
+        Review(description: text, vote: 4, date: DateTime.utc(2021, 7, 8)),
+        Review(description: text, vote: 5, date: DateTime.utc(2019, 3, 3)),
+        Review(description: text, vote: 5, date: DateTime.utc(2018, 5, 21)),
+        Review(description: text, vote: 5, date: DateTime.utc(2018, 1, 18)),
+        Review(description: text, vote: 4, date: DateTime.utc(2022, 11, 8)),
+        Review(description: text, vote: 5, date: DateTime.utc(2022, 8, 8)),
+        Review(description: text, vote: 4, date: DateTime.utc(2021, 7, 8)),
+        Review(description: text, vote: 5, date: DateTime.utc(2019, 3, 3)),
+        Review(description: text, vote: 5, date: DateTime.utc(2018, 5, 21)),
+        Review(description: text, vote: 5, date: DateTime.utc(2018, 1, 18)),
       ]
   ),
 ];
