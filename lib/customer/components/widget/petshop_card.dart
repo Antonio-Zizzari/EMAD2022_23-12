@@ -10,13 +10,14 @@ import '../../models/petshop_class.dart';
 class PetShopCard extends StatelessWidget {
   final PetShopClass data;
 
+
   const PetShopCard({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //double height = MediaQuery.of(context).size.height * 0.33;
     //double width = MediaQuery.of(context).size.width * 0.9;
-
+    double averageReview = getAverage(data.reviews);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       padding: EdgeInsets.fromLTRB(12,0,12,0),
@@ -132,7 +133,7 @@ class PetShopCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             RatingBar(
-                              initialRating: data.review,
+                              initialRating: averageReview,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
                               ignoreGestures: true,
@@ -143,12 +144,12 @@ class PetShopCard extends StatelessWidget {
                                 half: const Icon(Icons.star_half_outlined, color: Colors.black54),
                                 empty: const Icon(Icons.star_border_outlined, color: Colors.black54),
                               ),
-                              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
                               updateOnDrag: true,
                               onRatingUpdate: (double value) {},
                             ),
+                            SizedBox(width: 5),
                             Text(
-                              '${data.review.toString()} / 5.0',
+                              averageReview != 0 ? '$averageReview / 5.0' : 'Nessuna recensione disponibile',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -178,7 +179,7 @@ class PetShopCard extends StatelessWidget {
                             icon: Icon(Icons.preview_sharp, color: Colors.black54),
                             label: Text("Visualizza recensioni", style: TextStyle(color: Colors.black54)),
                             onPressed: () {
-                              showReviewModal(context);
+                              averageReview != 0 ? showReviewModal(context, averageReview) : null;
                             }
                           ),
                         ),
@@ -193,7 +194,7 @@ class PetShopCard extends StatelessWidget {
       ),
     );
   }
-  showReviewModal(BuildContext context) {
+  showReviewModal(BuildContext context, double averageReview) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
@@ -205,9 +206,9 @@ class PetShopCard extends StatelessWidget {
           builder: (context, setState) {
             return Container(
               padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
-              height: MediaQuery.of(context).size.height * 0.85,
+              height: MediaQuery.of(context).size.height,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -231,14 +232,72 @@ class PetShopCard extends StatelessWidget {
                   ),
                   Divider(
                     color: Colors.black,
-                    thickness: .2,
+                    thickness: .5,
+                    indent: 8,
+                    endIndent: 8,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('MEDIA VOTAZIONI', style: TextStyle(color: Colors.black45, fontSize: 12,)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 3),
+                        child: Text(averageReview.toString(), style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.w500),),
+                      ),
+                      RatingBar(
+                        initialRating: averageReview,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        ignoreGestures: true,
+                        itemCount: 5,
+                        itemSize: 22,
+                        ratingWidget: RatingWidget(
+                          full: const Icon(Icons.star, color: Colors.black54),
+                          half: const Icon(Icons.star_half_outlined, color: Colors.black54),
+                          empty: const Icon(Icons.star_border_outlined, color: Colors.black54),
+                        ),
+                        updateOnDrag: true,
+                        onRatingUpdate: (double value) {},
+                      ),
+                      Text(
+                        data.reviews.length != 1 ? 'basata su ${data.reviews.length} recensioni' : 'basata su 1 recensione',
+                        style: TextStyle(
+                          color: Colors.black45,
+                          fontSize: 12
+                        )
+                      ),
+                    ],
+                  ),
+                  Center(
+                    child: ElevatedButton.icon(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: BorderSide(color: red5, width: 2)
+                          )
+                        ),
+                        backgroundColor: MaterialStatePropertyAll<Color>(red2),
+                        elevation: MaterialStatePropertyAll(8),
+                        padding: MaterialStatePropertyAll<EdgeInsets>(
+                            EdgeInsets.symmetric(horizontal: 20)
+                        )
+                      ),
+                      icon: Icon(Icons.reviews_outlined, color: Colors.black54),
+                      label: Text("Scrivi una nuova recensione", style: TextStyle(color: Colors.black54)),
+                      onPressed: () {}
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.black,
+                    thickness: .5,
                     indent: 8,
                     endIndent: 8,
                   ),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
-                        children: data.reviews.map((review) => ReviewCard(review: review)).toList(),
+                        children: data.reviews.map((review) => ReviewCard(review: review, )).toList(),
                       ),
                     ),
                   )

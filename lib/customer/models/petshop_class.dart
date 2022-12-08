@@ -1,22 +1,23 @@
 import 'package:justpet/customer/models/product.dart';
 import 'package:justpet/customer/models/review.dart';
+import 'package:collection/collection.dart';
 
 class PetShopClass {
   final String petshopDescription, pathImage, name, address;
-  final double review;
-  final List<Product> products;
   final List<Review> reviews;
+  final List<Product> products;
 
   PetShopClass({
     required this.petshopDescription,
     required this.pathImage,
     required this.name,
     required this.address,
-    required this.review,
     required this.products,
     required this.reviews
   });
 }
+
+String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
 List<PetShopClass> petshops = [
   PetShopClass(
@@ -24,7 +25,6 @@ List<PetShopClass> petshops = [
       pathImage: 'assets/images/petshop.png',
       name: 'Pet Shop',
       address: 'Via Pet Shop',
-      review: 4.5,
       products: [
         Product(
           name: "Prodotto 1",
@@ -64,10 +64,10 @@ List<PetShopClass> petshops = [
         ),
       ],
       reviews: [
-        Review(description: "Descrizione 1", vote: 3.5),
-        Review(description: "Descrizione 2", vote: 2.5),
-        Review(description: "Descrizione 3", vote: 4),
-        Review(description: "Descrizione 4", vote: 5),
+        Review(description: text, vote: 3.5, date: DateTime.utc(2022, 11, 8)),
+        Review(description: text, vote: 2.5, date: DateTime.utc(2022, 8, 8)),
+        Review(description: text, vote: 4, date: DateTime.utc(2021, 7, 8)),
+        Review(description: text, vote: 5, date: DateTime.utc(2019, 3, 3)),
       ]
   ),
   PetShopClass(
@@ -75,7 +75,6 @@ List<PetShopClass> petshops = [
       pathImage: 'assets/images/petshop.png',
       name: 'Pet Shop',
       address: 'Via Pet Shop',
-      review: 2.5,
       products: [
         Product(
             name: "Prodotto 1",
@@ -115,8 +114,8 @@ List<PetShopClass> petshops = [
         ),
       ],
       reviews: [
-        Review(description: "Descrizione 1", vote: 3.5),
-        Review(description: "Descrizione 2", vote: 5),
+        Review(description: text, vote: 3.5, date: DateTime.utc(2022, 11, 8)),
+        Review(description: text, vote: 5, date: DateTime.utc(2022, 3,5)),
       ]
   ),
   PetShopClass(
@@ -124,7 +123,6 @@ List<PetShopClass> petshops = [
       pathImage: 'assets/images/petshop.png',
       name: 'Pet Shop',
       address: 'Via Pet Shop',
-      review: 3,
       products: [
         Product(
             name: "Prodotto 1",
@@ -170,7 +168,6 @@ List<PetShopClass> petshops = [
       pathImage: 'assets/images/petshop.png',
       name: 'Pet Shop',
       address: 'Via Pet Shop',
-      review: 3,
       products: [
         Product(
             name: "Prodotto 1",
@@ -210,12 +207,20 @@ List<PetShopClass> petshops = [
         ),
       ],
       reviews: [
-        Review(description: "Descrizione 1", vote: 5),
-        Review(description: "Descrizione 2", vote: 4),
-        Review(description: "Descrizione 3", vote: 2),
-        Review(description: "Descrizione 4", vote: 2.5),
-        Review(description: "Descrizione 5", vote: 4),
-        Review(description: "Descrizione 6", vote: 3.5),
+        Review(description: text, vote: 3.5, date: DateTime.utc(2022, 11, 8)),
+        Review(description: text, vote: 2.5, date: DateTime.utc(2022, 8, 8)),
+        Review(description: text, vote: 4, date: DateTime.utc(2021, 7, 8)),
+        Review(description: text, vote: 5, date: DateTime.utc(2019, 3, 3)),
+        Review(description: text, vote: 5, date: DateTime.utc(2018, 5, 21)),
+        Review(description: text, vote: 5, date: DateTime.utc(2018, 1, 18)),
       ]
   ),
 ];
+
+double getAverage(List<Review> reviews){
+  double review = 0;
+  for(int i=0; i < reviews.length; i++){
+    review += reviews[i].vote;
+  }
+  return review == 0 ? 0 : double.parse((review / reviews.length).toStringAsFixed(1));
+}
