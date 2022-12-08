@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/add_pet.dart';
+import 'package:justpet/global/models/color.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/customer/components/widget/pet_item.dart';
 import 'package:justpet/customer/models/pet_class.dart';
@@ -59,7 +60,7 @@ class _MyPetsState extends State<MyPets> {
                 child: IconButton(
                   iconSize: 50,
                   color: Color.fromRGBO(0,143,57, 1),
-                  icon: Icon(Icons.add_circle_sharp),
+                  icon: Icon(Icons.add_circle_sharp, color: kPrimaryColor),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -74,10 +75,10 @@ class _MyPetsState extends State<MyPets> {
                 child: Text(
                   "Aggiungi un nuovo animale",
                   style: TextStyle(
-                    color: Color.fromRGBO(0,143,57, 1),
+                    color: kPrimaryColor,
                     fontWeight: FontWeight.w700,
-                    fontSize: 10,
-                    letterSpacing: 2.2
+                    fontSize: 15,
+                    letterSpacing: 1
                   ),
                 ),
               ),

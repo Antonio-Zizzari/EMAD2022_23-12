@@ -206,7 +206,6 @@ class PetShopCard extends StatelessWidget {
           builder: (context, setState) {
             return Container(
               padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
-              height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
