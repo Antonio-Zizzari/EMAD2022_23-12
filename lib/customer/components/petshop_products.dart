@@ -30,7 +30,7 @@ class PetShopProductsPage extends StatelessWidget {
           children: [
             PetShopSearch(),
             PetShopHome(data: data),
-            PetShopCart(),
+            PetShopCart(data: data),
           ],
         ),
         bottomNavigationBar: TabBar(
