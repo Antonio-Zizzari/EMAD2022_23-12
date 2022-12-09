@@ -22,11 +22,17 @@ class _PetShopCartState extends State<PetShopCart> {
   double shipment = 5.99;
 
   @override
-  Widget build(BuildContext context) {
-    for(int i = 0; i < customer.cart.productsInCart.length; i++){
-      totalPrice += (customer.cart.productsInCart[i].price) * customer.cart.amountProductsInCart[i];
-    }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
 
+    for(int i = 0; i < customer.cart.productsInCart.length; i++){
+      totalPrice += double.parse(customer.cart.productsInCart[i].price) * customer.cart.amountProductsInCart[i];
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
@@ -61,13 +67,13 @@ class _PetShopCartState extends State<PetShopCart> {
               ),
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 15),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Shipping', style: TextStyle(fontSize: 20)),
+                Text('Spedizione', style: TextStyle(fontSize: 20)),
                 Text('€ $shipment', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
               ],
             ),
@@ -86,12 +92,12 @@ class _PetShopCartState extends State<PetShopCart> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Total', style: TextStyle(fontSize: 20)),
+                Text('Totale', style: TextStyle(fontSize: 20)),
                 Text('€ ${totalPrice + shipment}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Padding(
             padding: EdgeInsets.all(20.0),
             child: MaterialButton(
@@ -106,7 +112,7 @@ class _PetShopCartState extends State<PetShopCart> {
               ),
               color: Colors.yellow[800],
               child: Center(
-                child: Text("Checkout", style: TextStyle(color: Colors.white, fontSize: 18),),
+                child: Text("Procedi al checkout", style: TextStyle(color: Colors.white, fontSize: 18),),
               ),
             ),
           ),
@@ -204,7 +210,7 @@ class _PetShopCartState extends State<PetShopCart> {
                         if (customer.cart.amountProductsInCart[index] > 1) {
                           setState(() {
                             customer.cart.amountProductsInCart[index]--;
-                            totalPrice = 0;
+                            totalPrice -= double.parse(customer.cart.productsInCart[index].price);
                           });
                         };
                       },
@@ -220,12 +226,12 @@ class _PetShopCartState extends State<PetShopCart> {
                         if (customer.cart.amountProductsInCart[index] < customer.cart.productsInCart[index].availability) {
                           setState(() {
                             customer.cart.amountProductsInCart[index]++;
-                            totalPrice = 0;
+                            totalPrice += double.parse(customer.cart.productsInCart[index].price);
                           });
                         };
                       },
                       shape: CircleBorder(),
-                      child: Icon(Icons.add_circle, size: 30,),
+                      child: Icon(Icons.add_circle, size: 30),
                     ),
                   ],
                 ),

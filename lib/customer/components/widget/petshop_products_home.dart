@@ -282,7 +282,7 @@ class _PetShopHomeState extends State<PetShopHome> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(product.description, style: TextStyle(color: Colors.orange.shade400, fontSize: 14,),),
-                  Text("\$ " +product.price.toString() + '.00',
+                  Text("€ ${product.price}",
                     style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),
                   ),
                 ],
@@ -330,7 +330,7 @@ class _PetShopHomeState extends State<PetShopHome> {
                     SizedBox(height: 5,),
                     Text(product.description, style: TextStyle(color: Colors.orange.shade400, fontSize: 13,),),
                     SizedBox(height: 10,),
-                    Text("\$ " +product.price.toString() + '.00',
+                    Text("€ ${product.price}",
                       style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                   ]

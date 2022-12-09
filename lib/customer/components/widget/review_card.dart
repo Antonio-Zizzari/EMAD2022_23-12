@@ -123,7 +123,7 @@ class ReviewCard extends StatelessWidget {
                       review.description,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ),

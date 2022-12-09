@@ -1,6 +1,5 @@
 import 'package:justpet/customer/models/product.dart';
 import 'package:justpet/customer/models/review.dart';
-import 'package:collection/collection.dart';
 
 class PetShopClass {
   final String petshopDescription, pathImage, name, address;
@@ -30,42 +29,42 @@ List<PetShopClass> petshops = [
             name: "Prodotto 1",
             description: "Descrizione 1",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 2",
             description: "Descrizione 2",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 3",
             description: "Descrizione 3",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 12
         ),
         Product(
             name: "Prodotto 4",
             description: "Descrizione 4",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 5
         ),
         Product(
             name: "Prodotto 5",
             description: "Descrizione 5",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 10
         ),
         Product(
             name: "Prodotto 6",
             description: "Descrizione 6",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 3
         ),
       ],
@@ -86,42 +85,42 @@ List<PetShopClass> petshops = [
             name: "Prodotto 1",
             description: "Descrizione 1",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 2",
             description: "Descrizione 2",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 3",
             description: "Descrizione 3",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 12
         ),
         Product(
             name: "Prodotto 4",
             description: "Descrizione 4",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 5
         ),
         Product(
             name: "Prodotto 5",
             description: "Descrizione 5",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 10
         ),
         Product(
             name: "Prodotto 6",
             description: "Descrizione 6",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 3
         ),
       ],
@@ -140,42 +139,42 @@ List<PetShopClass> petshops = [
             name: "Prodotto 1",
             description: "Descrizione 1",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 2",
             description: "Descrizione 2",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 3",
             description: "Descrizione 3",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 12
         ),
         Product(
             name: "Prodotto 4",
             description: "Descrizione 4",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 5
         ),
         Product(
             name: "Prodotto 5",
             description: "Descrizione 5",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 10
         ),
         Product(
             name: "Prodotto 6",
             description: "Descrizione 6",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 3
         ),
       ],
@@ -191,42 +190,42 @@ List<PetShopClass> petshops = [
             name: "Prodotto 1",
             description: "Descrizione 1",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 2",
             description: "Descrizione 2",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 8
         ),
         Product(
             name: "Prodotto 3",
             description: "Descrizione 3",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 12
         ),
         Product(
             name: "Prodotto 4",
             description: "Descrizione 4",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 5
         ),
         Product(
             name: "Prodotto 5",
             description: "Descrizione 5",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 10
         ),
         Product(
             name: "Prodotto 6",
             description: "Descrizione 6",
             imagePath: "assets/images/petshop_product.jpg",
-            price: 10,
+            price: 10.toStringAsFixed(2),
             availability: 3
         ),
       ],

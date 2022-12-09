@@ -211,6 +211,7 @@ class PetShopCard extends StatelessWidget {
   }
   showReviewModal(BuildContext context, double averageReview) {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
@@ -220,6 +221,7 @@ class PetShopCard extends StatelessWidget {
         return StatefulBuilder(
           builder: (context, setState) {
             return Container(
+              height: MediaQuery.of(context).size.height * 0.87,
               padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

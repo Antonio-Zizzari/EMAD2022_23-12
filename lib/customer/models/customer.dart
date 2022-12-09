@@ -27,28 +27,28 @@ CustomerClass customer =
               name: "Prodotto 1",
               description: "Descrizione 1",
               imagePath: "assets/images/petshop_product.jpg",
-              price: 10,
+              price: 10.toStringAsFixed(2),
               availability: 8
           ),
           Product(
               name: "Prodotto 2",
               description: "Descrizione 2",
               imagePath: "assets/images/petshop_product.jpg",
-              price: 10,
+              price: 10.toStringAsFixed(2),
               availability: 8
           ),
           Product(
               name: "Prodotto 3",
               description: "Descrizione 3",
               imagePath: "assets/images/petshop_product.jpg",
-              price: 10,
+              price: 10.toStringAsFixed(2),
               availability: 12
           ),
           Product(
               name: "Prodotto 4",
               description: "Descrizione 4",
               imagePath: "assets/images/petshop_product.jpg",
-              price: 10,
+              price: 10.toStringAsFixed(2),
               availability: 5
           ),
         ],
