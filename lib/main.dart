@@ -8,10 +8,13 @@ import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/customer/screens/Prenotazione.dart';
 import 'package:justpet/customer/screens/VideoCorsi.dart';
 import 'package:justpet/global/screens/main_chat.dart';
+import 'package:justpet/global/screens/welcome_page.dart';
+import 'package:justpet/global/screens/login_page.dart';
+import 'package:justpet/global/screens/register_page.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/lista',
+    initialRoute: '/welcome',
     routes: {
       '/lista': (context) => ListaVeterinari(),
       '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),
@@ -22,6 +25,9 @@ void main() {
       '/turni_lavoro': (context) => TurniLavoro(),
       '/dizionario' : (context) => DizionarioScreen(),
       '/scheda_animali' : (context) => MyPets(),
+      '/welcome' : (context) => Welcome(),
+      '/login' : (context) => Login(),
+      '/register' : (context) => Register(),
     },
   ));
 }
