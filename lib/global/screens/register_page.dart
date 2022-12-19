@@ -29,7 +29,7 @@ class Register extends StatelessWidget{
               SizedBox(height: 20,),
               inputField('Password', kTertiaryColor),
               SizedBox(height: 20,),
-              actionButton(context, 'REGISTRATI', Login(), kPrimaryColor),
+              actionButton(context, 'REGISTRATI', Login(), kPrimaryColor, true),
             ],
           ),
         ),

@@ -123,7 +123,7 @@ class _AddPetState extends State<AddPet> {
               child: TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.pets_rounded),
+                  prefixIcon: Icon(Icons.pets_rounded),
                   hintText: 'Bobby',
                   labelText: 'Inserisci il nome dell\'animale: ',
                   border: OutlineInputBorder(

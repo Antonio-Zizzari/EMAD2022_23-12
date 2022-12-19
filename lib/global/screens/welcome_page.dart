@@ -24,9 +24,9 @@ class Welcome extends StatelessWidget{
             children: [
               Text('Benvenuto su JustPet', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
               Image.asset('assets/logo/logo.png', ),
-              actionButton(context, 'ACCEDI', Login(), kPrimaryColor),
+              actionButton(context, 'ACCEDI', Login(), kPrimaryColor, false),
               SizedBox(height: 20,),
-              actionButton(context, 'REGISTRATI', Register(), kTertiaryColor),
+              actionButton(context, 'REGISTRATI', Register(), kTertiaryColor, false),
             ],
           ),
         ),

@@ -18,6 +18,10 @@ class VideoCorsi extends StatelessWidget {
         title: 'Prenotazioni',
         showSearch: false,
       )*/,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){},
+      ),
       drawer: SideMenu(),
       body: Padding(
         padding: EdgeInsets.only(left: 20, top: 20, right: 20),
