@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/petshop_class.dart';
 
+import '../petshop.dart';
 import '../petshop_products.dart';
 
 class PaymentSuccess extends StatefulWidget {
@@ -32,7 +33,11 @@ class _PaymentSuccessState extends State<PaymentSuccess> {
             SizedBox(height: 140.0,),
             MaterialButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PetShopProductsPage(data: widget.data)));
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
+                    return PetShop();
+                  }), (r){
+                    return false;
+                  });
                 },
                 height: 50,
                 elevation: 0,

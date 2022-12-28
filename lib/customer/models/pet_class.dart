@@ -32,6 +32,8 @@ class Pets{
   }
 }
 
+String descrizione = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
 List<Pets> pets = [
   Pets(
     nome: "Teddy",
@@ -49,25 +51,25 @@ List<Pets> pets = [
         3: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2021, 3, 03, 9, 00)),
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2021, 3, 03, 17)
           ),
         ],
         6: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2021, 6, 12, 16)
           ),
         ],
         9: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2021, 9, 24, 10)
           ),
         ],
@@ -76,28 +78,28 @@ List<Pets> pets = [
         2: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 2, 13)
           ),
         ],
         5: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 5, 01, 12)
           ),
         ],
         7: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 7, 02, 10)
           ),
         ],
         11: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 11, 08, 12)
           ),
         ],
@@ -120,28 +122,28 @@ List<Pets> pets = [
         1: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 1, 11, 9, 30)
           ),
         ],
         2: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 2, 26, 11, 30)
           ),
         ],
         8: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 8, 02, 12)
           ),
         ],
         10: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 10, 28, 14, 30)
           ),
         ],
@@ -164,28 +166,28 @@ List<Pets> pets = [
         1: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 1, 12, 11)
           ),
         ],
         2: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 2, 13, 12, 30)
           ),
         ],
         5: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 5, 14, 14, 45)
           ),
         ],
         10: [
           VisitClass(
             nomeVeterinario: 'Dott. Mario Rossi',
-            descrizione: "Descrizione Prova",
+            descrizione: descrizione,
             data: DateTime.utc(2022, 10, 07, 13)
           ),
         ],

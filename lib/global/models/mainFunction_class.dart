@@ -34,7 +34,7 @@ List<FunzioniMain> funzioniPrincipali = [
   FunzioniMain(titolo: 'Comunicazioni', icona: Icons.chat, nextRoute: '/chat'),
   FunzioniMain(titolo: 'Turni Lavoro', icona: Icons.work, nextRoute: '/turni_lavoro'),
   FunzioniMain(titolo: 'Dizionario', icona: Icons.medical_information, nextRoute: '/dizionario'),
-
+  FunzioniMain(titolo: 'Trova il tuo cane ideale', icona: Icons.search_outlined, nextRoute: '/trova-animale'),
 ];
 
 /*List<FunzioniSecondarie> funzioniSecondarie = [

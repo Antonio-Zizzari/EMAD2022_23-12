@@ -65,7 +65,7 @@ class PetsVisits extends StatelessWidget {
                           ),
                           children:
                             mese.value.map((singleVisit) =>
-                              VisitCard(visita: singleVisit)
+                              VisitCard(data: data, visita: singleVisit)
                             ).toList()
                         ),
                       ),

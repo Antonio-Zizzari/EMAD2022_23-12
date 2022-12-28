@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/customer/screens/animal-card.dart';
+import 'package:justpet/customer/screens/search_ideal_dog.dart';
 import 'package:justpet/veterinarian/screens/dizionario_screen.dart';
 import 'package:justpet/veterinarian/screens/prenotazioni_screen.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
@@ -19,13 +20,13 @@ void main() {
       '/lista': (context) => ListaVeterinari(),
       '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),
       '/videocorsi': (context) => VideoCorsi(),
-      '/dettaglivideocorso': (context) => VideoCorsi(),
       '/petshop': (context) => PetShop(),
       '/chat': (context) => Chat(),
       '/turni_lavoro': (context) => TurniLavoro(),
       '/dizionario' : (context) => DizionarioScreen(),
       '/scheda_animali' : (context) => MyPets(),
       '/welcome' : (context) => Welcome(),
+      '/trova-animale' : (context) => SearchIdealDog(),
       '/login' : (context) => Login(),
       '/register' : (context) => Register(),
     },

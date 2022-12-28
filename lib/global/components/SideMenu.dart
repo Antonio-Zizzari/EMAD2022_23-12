@@ -53,7 +53,6 @@ class SideMenu extends StatelessWidget {
 
             ).toList(),
           ),
-
           /*Padding(
             padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
             child: Material(

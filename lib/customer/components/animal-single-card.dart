@@ -22,10 +22,9 @@ class AnimalCard extends StatelessWidget {
         title: Text("Il tuo pet",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 35,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-
+            letterSpacing: 1.5,
           ),
         ),
       ),
@@ -53,22 +52,6 @@ Widget buildBody(double width, double height, Pets data, BuildContext context){
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
                   child: Image.asset(fit: BoxFit.fitWidth, data.pathImage),
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                top: 10,
-                child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios_outlined),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => VeterinarianDate(data: data),
-                      ),
-                    );
-                  },
-                  color: Color.fromRGBO(0,0,0,1),
                 ),
               ),
               Positioned(

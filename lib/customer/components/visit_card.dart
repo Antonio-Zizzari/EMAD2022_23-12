@@ -1,68 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:justpet/customer/components/veterinarian_date.dart';
 import 'package:justpet/customer/models/visit_class.dart';
+
+import '../models/pet_class.dart';
 
 class VisitCard extends StatelessWidget {
   final VisitClass visita;
+  final Pets data;
 
-  const VisitCard({Key? key, required this.visita}) : super(key: key);
+  const VisitCard({Key? key, required this.data, required this.visita}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "${returnItalianDay(DateFormat('EEEE').format(visita.data))} ${visita.data.day}",
-                      style: TextStyle(
-                        color: Color(0xff212121),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => VeterinarianDate(data: data, visita: visita),
+          ),
+        );
+      },
+      child: Center(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "${returnItalianDay(DateFormat('EEEE').format(visita.data))} ${visita.data.day}",
+                        style: TextStyle(
+                          color: Color(0xff212121),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500
+                        ),
                       ),
-                    ),
-                    Text(
-                      "alle ore ${DateFormat("HH:mm").format(visita.data)}",
-                      style: TextStyle(
-                        color: Color(0xff212121),
-                        fontSize: 14,
+                      Text(
+                        "alle ore ${DateFormat("HH:mm").format(visita.data)}",
+                        style: TextStyle(
+                          color: Color(0xff212121),
+                          fontSize: 14,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                VerticalDivider(
-                  thickness: 2,
-                  width: 30,
-                  color: Colors.black,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(visita.nomeVeterinario, style: TextStyle(
-                        color: Color(0xff212121),
-                        fontSize: 17
-                    ),
-                    ),
-                    SizedBox(height: 3,),
-                    Row(
-                      children: [
-                        Icon(Icons.description_outlined,size: 18,),
-                        SizedBox(width: 3,),
-                        Text(visita.descrizione,style: TextStyle(color: Color(0xff666666)))
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 8),
-              ],
+                    ],
+                  ),
+                  VerticalDivider(
+                    thickness: 2,
+                    width: 30,
+                    color: Colors.black,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(visita.nomeVeterinario, style: TextStyle(
+                          color: Color(0xff212121),
+                          fontSize: 17
+                      ),
+                      ),
+                      SizedBox(height: 3,),
+                      Row(
+                        children: [
+                          Icon(Icons.description_outlined,size: 18,),
+                          SizedBox(width: 3,),
+                          Container(
+                            width: 150,
+                            child: Text(
+                              visita.descrizione,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Color(0xff666666)
+                              )
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 8),
+                ],
+              ),
             ),
           ),
         ),
