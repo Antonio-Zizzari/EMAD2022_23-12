@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/petshop_class.dart';
-
-import '../petshop.dart';
-import '../petshop_products.dart';
+import '../../petshop.dart';
 
 class PaymentSuccess extends StatefulWidget {
   final PetShopClass data;

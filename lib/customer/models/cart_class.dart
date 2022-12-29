@@ -1,4 +1,4 @@
-import 'package:justpet/customer/models/product.dart';
+import 'package:justpet/customer/models/product_class.dart';
 
 class CartClass{
   //Lista di prodotti con le quantità da acquistare

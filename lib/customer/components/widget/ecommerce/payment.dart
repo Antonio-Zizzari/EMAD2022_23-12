@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:justpet/customer/components/widget/payment_success.dart';
+import 'package:justpet/customer/components/widget/ecommerce/payment_success.dart';
 import 'package:justpet/customer/models/petshop_class.dart';
 import 'package:justpet/customer/models/customer.dart';
 

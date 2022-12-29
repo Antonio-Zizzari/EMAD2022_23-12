@@ -1,11 +1,9 @@
-import 'package:justpet/customer/components/widget/petshop_products_cart.dart';
-import 'package:justpet/customer/components/widget/petshop_products_home.dart';
-import 'package:justpet/customer/components/widget/petshop_products_search.dart';
+import 'package:justpet/customer/components/widget/ecommerce/petshop_products_cart.dart';
+import 'package:justpet/customer/components/widget/ecommerce/petshop_products_home.dart';
+import 'package:justpet/customer/components/widget/ecommerce/petshop_products_search.dart';
 
-import '../models/product.dart';
-import '../components/product_view.dart';
 import 'package:flutter/material.dart';
-import '../models/petshop_class.dart';
+import '../../../models/petshop_class.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 class PetShopProductsPage extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/customer/screens/animal-card.dart';
-import 'package:justpet/customer/screens/search_ideal_dog.dart';
+import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
 import 'package:justpet/veterinarian/screens/dizionario_screen.dart';
 import 'package:justpet/veterinarian/screens/prenotazioni_screen.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
@@ -26,7 +26,7 @@ void main() {
       '/dizionario' : (context) => DizionarioScreen(),
       '/scheda_animali' : (context) => MyPets(),
       '/welcome' : (context) => Welcome(),
-      '/trova-animale' : (context) => SearchIdealDog(),
+      '/trova-animale' : (context) => FavoriteDogsRace(),
       '/login' : (context) => Login(),
       '/register' : (context) => Register(),
     },

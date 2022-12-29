@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:justpet/customer/components/widget/payment.dart';
+import 'package:justpet/customer/components/widget/ecommerce/payment.dart';
+import 'package:justpet/customer/components/widget/ecommerce/product_view.dart';
 import 'package:justpet/customer/models/customer.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:justpet/customer/models/petshop_class.dart';
 
-import '../../models/product.dart';
-import '../product_view.dart';
+import '../../../models/product_class.dart';
 
 class PetShopCart extends StatefulWidget {
   final PetShopClass data;

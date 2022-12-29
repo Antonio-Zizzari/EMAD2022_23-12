@@ -1,4 +1,4 @@
-import 'package:justpet/customer/models/product.dart';
+import 'package:justpet/customer/models/product_class.dart';
 
 import 'cart_class.dart';
 

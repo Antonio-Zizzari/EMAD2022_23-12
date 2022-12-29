@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/components/widget/ideal_dog_result.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
+import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
 import 'package:justpet/global/components/appbar.dart';
 import 'package:survey_kit/survey_kit.dart';
 import '../../global/components/SideMenu.dart';
@@ -12,6 +14,7 @@ class SearchIdealDog extends StatelessWidget {
       title: 'Benvenuto al test\nper capire quale\nanimale fa per te!',
       text: 'Rispondi al nostro breve test per scegliere il cane ideale più compatibile',
       buttonText: 'Procediamo!',
+      showAppBar: false,
     ),
     QuestionStep(
       buttonText: "Successivo",
@@ -149,10 +152,21 @@ class SearchIdealDog extends StatelessWidget {
         themeData: data,
         showProgress: true,
         surveyController: SurveyController(
-          onCloseSurvey: (context, resultFunction) => {}
+          onCloseSurvey: (context, resultFunction) => {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+              builder: (BuildContext context){
+                return const FavoriteDogsRace();
+              }
+              ),(r){
+                return false;
+              }
+            )
+          }
         ),
         localizations: {
-          "cancel": "",
+          "cancel": "CHIUDI",
           "NEXT": "successivo"
         },
         onResult: (SurveyResult result) {
@@ -163,15 +177,11 @@ class SearchIdealDog extends StatelessWidget {
             }
           }
           //Evaluate the results
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context){
-                return const ListaVeterinari();
-              }
-            ),(r){
-              return false;
-            }
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => IdealDogResult()
+              )
           );
         },
         task: OrderedTask(steps: steps, id: TaskIdentifier()),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:justpet/customer/components/widget/petshop_card.dart';
+import 'package:justpet/customer/components/widget/ecommerce/petshop_card.dart';
 
 import '../../global/components/SideMenu.dart';
 import '../../global/components/appbar.dart';

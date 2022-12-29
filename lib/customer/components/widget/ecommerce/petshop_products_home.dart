@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/components/widget/ecommerce/product_view.dart';
 import 'package:justpet/customer/models/petshop_class.dart';
 
-import '../../models/product.dart';
-import '../product_view.dart';
+import '../../../models/product_class.dart';
 
 class PetShopHome extends StatefulWidget {
   final PetShopClass data;

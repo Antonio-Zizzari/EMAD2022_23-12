@@ -26,9 +26,9 @@ class _ChatState extends State<Chat> {
       drawer: SideMenu(),
       body: Body(),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.person_add),
-          backgroundColor: kPrimaryColor,
+        onPressed: () {},
+        child: Icon(Icons.person_add),
+        backgroundColor: kPrimaryColor,
       ),
 
     );

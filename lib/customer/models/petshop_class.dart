@@ -1,5 +1,5 @@
-import 'package:justpet/customer/models/product.dart';
-import 'package:justpet/customer/models/review.dart';
+import 'package:justpet/customer/models/product_class.dart';
+import 'package:justpet/customer/models/review_class.dart';
 
 class PetShopClass {
   final String petshopDescription, pathImage, name, address;

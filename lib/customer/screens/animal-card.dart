@@ -111,12 +111,7 @@ class _MyPetsState extends State<MyPets> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20),
-              height: 80,
-              width: 80,
-              child: Icon(Icons.pets_sharp, size: 80)
-            ),
+            Icon(Icons.pets_sharp, size: 80),
             Padding(
               padding: const EdgeInsets.fromLTRB(0,0,0,40),
               child: Text("Non sono presenti animali registrati.",

@@ -1,5 +1,6 @@
-import '../models/product.dart';
 import 'package:flutter/material.dart';
+
+import '../../../models/product_class.dart';
 
 class ProductViewPage extends StatefulWidget {
   final Product product;

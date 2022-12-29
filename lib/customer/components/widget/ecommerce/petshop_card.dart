@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:justpet/customer/components/petshop_products.dart';
-import 'package:justpet/customer/components/widget/review_card.dart';
+import 'package:justpet/customer/components/widget/ecommerce/petshop_products.dart';
+import 'package:justpet/customer/components/widget/ecommerce/review_card.dart';
 import '../../../../theme/color.dart';
-import '../../models/petshop_class.dart';
+import '../../../models/petshop_class.dart';
 
 class PetShopCard extends StatelessWidget {
   final PetShopClass data;
