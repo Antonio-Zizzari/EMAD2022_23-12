@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/utils/search_bar_widget.dart';
 
 class PetShopSearch extends StatefulWidget {
   const PetShopSearch({Key? key}) : super(key: key);
@@ -8,6 +9,8 @@ class PetShopSearch extends StatefulWidget {
 }
 
 class _PetShopSearchState extends State<PetShopSearch> {
+  final Function(String query) queryFunction = ecommerceSearchBarQuery;
+
   List<String> size = [
     "S",
     "M",
@@ -29,40 +32,7 @@ class _PetShopSearchState extends State<PetShopSearch> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 50,
-            child: TextField(
-              cursorColor: Colors.grey,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                fillColor: Colors.white,
-                prefixIcon: Icon(Icons.search, color: Colors.black),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none
-                ),
-                hintText: "Cerca un prodotto",
-                hintStyle: TextStyle(fontSize: 14, color: Colors.black),
-              ),
-            ),
-          ),
-        ),
-        Container(
-          height: 50,
-          width: 50,
-          child: IconButton(
-            onPressed: () {
-              showFilterModal();
-            },
-            icon: Icon(Icons.filter_list, color: Colors.black, size: 30,),
-          ),
-        ),
-        SizedBox(width: 10),
-      ],
-    );
+    return SearchBarWidget(queryFunction: queryFunction, hintText: "Cerca un prodotto");
   }
 
 
@@ -220,4 +190,8 @@ class _PetShopSearchState extends State<PetShopSearch> {
       ),
     );
   }
+}
+
+void ecommerceSearchBarQuery(String query){
+  return;
 }

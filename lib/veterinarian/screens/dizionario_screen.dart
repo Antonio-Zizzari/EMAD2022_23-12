@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/utils/search_bar_widget.dart';
 import 'package:justpet/veterinarian/models/medicine_class.dart';
 
 import '../../global/components/SideMenu.dart';
@@ -14,6 +15,7 @@ class DizionarioScreen extends StatefulWidget {
 }
 
 class _DizionarioScreenState extends State<DizionarioScreen> {
+  final Function(String query) queryFunction = dizionarioSearchBarQuery;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   var selezionato=List.generate(alphabets.length, (index) => false);
   int precedente=0;
@@ -41,27 +43,9 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
               ),
               )
           ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(25,15,25,5),
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(
-                color: ksecondaryColor.withOpacity(0.32),
-              ),
-            ),
-            child: const TextField(
-              //onChanged: onChanged,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                icon: Icon(
-                  Icons.search,
-                  color: kPrimaryColor,
-                ),
-                hintText: "Cerca un farmaco",
-                hintStyle: TextStyle(color: ksecondaryColor),
-              ),
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SearchBarWidget(queryFunction: dizionarioSearchBarQuery, hintText: "Cerca un farmaco"),
           ),
           Container(
             child: Text("Alfabeto", style: TextStyle(color: Color(0xff666666),fontSize: 22),),
@@ -173,7 +157,9 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
 
         ],
       ) ,
-
     );
   }
+}
+void dizionarioSearchBarQuery(String query){
+  return;
 }

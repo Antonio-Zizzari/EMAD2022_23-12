@@ -4,10 +4,18 @@ import 'package:justpet/customer/models/Categoria.dart';
 import 'package:justpet/global/components/SideMenu.dart';
 import 'package:justpet/global/components/appbar.dart';
 import 'package:justpet/customer/screens/Corsi.dart';
+import 'package:justpet/utils/search_bar_widget.dart';
 
-class VideoCorsi extends StatelessWidget {
+class VideoCorsi extends StatefulWidget {
+  @override
+  State<VideoCorsi> createState() => _VideoCorsiState();
+}
+
+class _VideoCorsiState extends State<VideoCorsi> {
+  final Function(String query) queryFunction = videocorsiSearchBarQuery;
 
   List<Color?> colors = [Colors.cyan[50], Colors.amber[50], Colors.red[50], Colors.green[50]];
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -43,27 +51,14 @@ class VideoCorsi extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 30),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              margin: EdgeInsets.symmetric(vertical: 20),
               height: 50,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xFFF5F5F7),
                 borderRadius: BorderRadius.circular(40),
               ),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.search),
-                  SizedBox(width: 16, height: 1,),
-                  Text(
-                    "Cerca corso",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFFA0A5BD),
-                    ),
-                  )
-                ],
-              ),
+              child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca videocorso per categoria',)
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,4 +137,8 @@ class VideoCorsi extends StatelessWidget {
       ),
     );
   }
+}
+
+void videocorsiSearchBarQuery(String query){
+  return;
 }

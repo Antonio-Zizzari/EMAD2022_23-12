@@ -3,6 +3,7 @@ import 'package:justpet/customer/components/widget/ecommerce/petshop_card.dart';
 
 import '../../global/components/SideMenu.dart';
 import '../../global/components/appbar.dart';
+import '../../utils/search_bar_widget.dart';
 import '../models/petshop_class.dart';
 
 class PetShop extends StatefulWidget {
@@ -13,6 +14,7 @@ class PetShop extends StatefulWidget {
 }
 
 class _PetShopState extends State<PetShop> {
+  final Function(String query) queryFunction = petshopSearchBarQuery;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -35,22 +37,7 @@ class _PetShopState extends State<PetShop> {
             ),
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.search),
-                  SizedBox(
-                    width: 16,
-                    height: 1,
-                  ),
-                  Text(
-                    "Cerca PetShops nelle tue vicinanze",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFFA0A5BD),
-                    ),
-                  )
-                ],
-              ),
+              child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca un petshop')
             ),
           ),
           Padding(
@@ -75,4 +62,7 @@ class _PetShopState extends State<PetShop> {
       ),
     );
   }
+}
+void petshopSearchBarQuery(String query){
+  return;
 }

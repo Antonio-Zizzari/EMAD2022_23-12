@@ -4,9 +4,17 @@ import 'package:justpet/global/models/color.dart';
 import 'package:justpet/global/models/chat/chat_class.dart';
 import 'package:justpet/global/models/padding.dart';
 
-class Body extends StatelessWidget {
+import '../../utils/search_bar_widget.dart';
+
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  final Function(String query) queryFunction = chatSearchBarQuery;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,27 +32,9 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(25,15,25,5),
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            border: Border.all(
-              color: ksecondaryColor.withOpacity(0.32),
-            ),
-          ),
-          child: const TextField(
-            //onChanged: onChanged,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              icon: Icon(
-                Icons.search,
-                color: kPrimaryColor,
-              ),
-              hintText: "Trova contatto",
-              hintStyle: TextStyle(color: ksecondaryColor),
-            ),
-          ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20,10,0,0),
+          child: SearchBarWidget(queryFunction: chatSearchBarQuery, hintText: "Cerca un contatto"),
         ),
         Expanded(
             child: ListView.builder(
@@ -128,4 +118,8 @@ class ChatCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void chatSearchBarQuery(String query){
+  return;
 }

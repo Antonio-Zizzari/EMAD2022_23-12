@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/AppBarVeterinario.dart';
 import 'package:justpet/customer/screens/DettagliVideoCorso.dart';
-import 'package:justpet/global/components/appbar.dart';
 import 'package:justpet/customer/models/Corso.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class Corsi extends StatelessWidget {
+import '../../utils/search_bar_widget.dart';
+
+class Corsi extends StatefulWidget {
+  @override
+  State<Corsi> createState() => _CorsiState();
+}
+
+class _CorsiState extends State<Corsi> {
+  final Function(String query) queryFunction = corsiSearchBarQuery;
 
   @override
   Widget build(BuildContext context) {
@@ -28,27 +35,14 @@ class Corsi extends StatelessWidget {
                 items: corsi.map((e) => ContainerCorsoSlider(corso: e)).toList(),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 30),
-                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                margin: EdgeInsets.symmetric(vertical: 20),
                 height: 50,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
                   border: Border.all(color: Colors.grey, style: BorderStyle.solid)
                 ),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.search),
-                    SizedBox(width: 16, height: 1,),
-                    Text(
-                      "Cerca corso",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFFA0A5BD),
-                      ),
-                    )
-                  ],
-                ),
+                child: SearchBarWidget(queryFunction: queryFunction, hintText: "Cerca videocorso"),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +68,7 @@ class Corsi extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 350,
+                    width: 370,
                     height: 200,
                     child: ListView.builder(
                     shrinkWrap: false,
@@ -112,7 +106,7 @@ class Corsi extends StatelessWidget {
               Row(
                   children: [
                     Container(
-                      width: 350,
+                      width: 370,
                       height: 200,
                       child: ListView.builder(
                         shrinkWrap: true,
@@ -267,4 +261,8 @@ class ContainerCorsoSlider extends StatelessWidget{
       ),
     );
   }
+}
+
+void corsiSearchBarQuery(String query){
+  return;
 }

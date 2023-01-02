@@ -29,33 +29,39 @@ class _ListaVeterinariState extends State<ListaVeterinari> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-              //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xFFF5F5F7),
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.search),
-                    SizedBox(
-                      width: 16,
-                      height: 1,
-                    ),
-                    Text(
-                      "Cerca veterinari",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFFA0A5BD),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 50,
+                      child: TextField(
+                        cursorColor: Colors.grey,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                          fillColor: Colors.white,
+                          prefixIcon: Icon(Icons.search, color: Colors.black),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none
+                          ),
+                          hintText: "Cerca un veterinario",
+                          hintStyle: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.filter_list, color: Colors.black, size: 30,),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                ],
               ),
             ),
             Padding(
