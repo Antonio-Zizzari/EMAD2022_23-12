@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/customer/screens/animal-card.dart';
@@ -12,10 +13,23 @@ import 'package:justpet/global/screens/main_chat.dart';
 import 'package:justpet/global/screens/welcome_page.dart';
 import 'package:justpet/global/screens/login_page.dart';
 import 'package:justpet/global/screens/register_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+final navigatorKey = GlobalKey<NavigatorState>();
+
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  String initialRoute = "/welcome";
+
+  if(FirebaseAuth.instance.currentUser != null){
+    initialRoute = '/lista';
+  }
+
   runApp(MaterialApp(
-    initialRoute: '/welcome',
+    navigatorKey: navigatorKey,
+    initialRoute: initialRoute,
     routes: {
       '/lista': (context) => ListaVeterinari(),
       '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),

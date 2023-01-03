@@ -1,15 +1,23 @@
 import 'dart:io';
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/utils/cupertino_picker_view_date.dart';
 import 'package:justpet/utils/cupertino_picker_view_weight.dart';
 
 import 'package:justpet/global/models/color.dart';
+
+final List<CustomTextField> vaccini = [
+  CustomTextField(labelHint: 'Inserisci i vaccini dell\'animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: 1),
+];
+final List<CustomTextField> intolleranze = [
+  CustomTextField(labelHint: 'Inserisci intolleranze animale: ', hint: "Intolleranze", controllers: TextEditingController(), counter: 1),
+];
+final List<CustomTextField> allergie = [
+  CustomTextField(labelHint: 'Inserisci allergie dell\'animale: ', hint: "Allergie", controllers: TextEditingController(), counter: 1)
+];
 
 class AddPet extends StatefulWidget {
   @override
@@ -19,9 +27,6 @@ class AddPet extends StatefulWidget {
 class _AddPetState extends State<AddPet> {
   final formKey = GlobalKey<FormState>();
   final ImagePicker _picker = ImagePicker();
-  List<String> vaccini = [];
-  List<String> allergie = [];
-  List<String> intolleranze = [];
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _vaccineController = TextEditingController();
@@ -38,13 +43,12 @@ class _AddPetState extends State<AddPet> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: Text("Aggiungi Animale",
+        title: const Text("Aggiungi Animale",
           style: TextStyle(
             color: Colors.white,
             fontSize: 35,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
-
           ),
         ),
       ),
@@ -84,22 +88,22 @@ class _AddPetState extends State<AddPet> {
                     setState( () { } );
                   },
                   style: ButtonStyle(
-                    side: MaterialStatePropertyAll(BorderSide(width: 3.5, color: Colors.orangeAccent)),
-                    shape: MaterialStateProperty.all(CircleBorder()),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    side: const MaterialStatePropertyAll(BorderSide(width: 3.5, color: Colors.orangeAccent)),
+                    shape: MaterialStateProperty.all(const CircleBorder()),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
                     backgroundColor: MaterialStateProperty.all(Colors.redAccent), // <-- Button color
                     overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
                       if (states.contains(MaterialState.pressed)) return Colors.orangeAccent; // <-- Splash color
                     }),
                   ),
-                  child: Icon(Icons.photo_camera_outlined, size: 50),
+                  child: const Icon(Icons.photo_camera_outlined, size: 50),
                 )
               :
                 CircleAvatar(radius: 70, backgroundImage: Image.file(fit: BoxFit.cover, File(photo!.path)).image),
             ),
-            Center(
+            const Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20,5,20,5),
+                padding: EdgeInsets.fromLTRB(20,5,20,5),
                 child: Text(
                   "Inserisci la foto dell\'animale:",
                   style: TextStyle(
@@ -110,25 +114,25 @@ class _AddPetState extends State<AddPet> {
               ),
 
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: const Divider(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
                 thickness: 1,
                 height: 20,
                 color: Colors.black,
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(30,10,30,15),
+              padding: const EdgeInsets.fromLTRB(30,10,30,15),
               child: TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.pets_rounded),
+                  prefixIcon: const Icon(Icons.pets_rounded),
                   hintText: 'Bobby',
                   labelText: 'Inserisci il nome dell\'animale: ',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       style: BorderStyle.solid,
                       color: Colors.black54
                     ),
@@ -136,12 +140,12 @@ class _AddPetState extends State<AddPet> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: const CupertinoPickerViewDate(),
+            const SizedBox(height: 5),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32),
+              child: CupertinoPickerViewDate(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,9 +159,9 @@ class _AddPetState extends State<AddPet> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Padding(padding: const EdgeInsets.fromLTRB(0,8,8,8), child: Center(child: Icon(Icons.merge_type))),
+                      const Padding(padding: EdgeInsets.fromLTRB(0,8,8,8), child: Center(child: Icon(Icons.merge_type))),
                       DropdownButton<String>(
-                        hint: Text("Tipo animale:"),
+                        hint: const Text("Tipo animale:"),
                         value: _tipoAnimale,
                         items: dropdownTypePets,
                         onChanged: (String? value) => setState(() {
@@ -176,9 +180,9 @@ class _AddPetState extends State<AddPet> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Padding(padding: const EdgeInsets.fromLTRB(0,8,8,8), child: Center(child: Icon(Icons.transgender_outlined, size: 20,))),
+                      const Padding(padding: EdgeInsets.fromLTRB(0,8,8,8), child: Center(child: Icon(Icons.transgender_outlined, size: 20,))),
                       DropdownButton<String>(
-                        hint: Text("Sesso:"),
+                        hint: const Text("Sesso:"),
                         value: _sesso,
                         items: dropdownTypeSexs,
                         onChanged: (String? value) => setState(() {
@@ -190,12 +194,12 @@ class _AddPetState extends State<AddPet> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CupertinoPickerViewWeight(),
+                const CupertinoPickerViewWeight(),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
@@ -205,9 +209,9 @@ class _AddPetState extends State<AddPet> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Padding(padding: const EdgeInsets.fromLTRB(0,8,8,8), child: Center(child: Icon(Icons.color_lens_outlined, size: 20,))),
+                      const Padding(padding: EdgeInsets.fromLTRB(0,8,8,8), child: Center(child: Icon(Icons.color_lens_outlined, size: 20,))),
                       DropdownButton<String>(
-                        hint: Text("Colore:"),
+                        hint: const Text("Colore:"),
                         value: _colore,
                         items: dropdownTypeColor,
                         onChanged: (String? value) => setState(() {
@@ -219,18 +223,18 @@ class _AddPetState extends State<AddPet> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: const Divider(
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
                 thickness: 1,
                 height: 20,
                 color: Colors.black,
               ),
             ),
-            Center(
+            const Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20,5,20,5),
+                padding: EdgeInsets.fromLTRB(20,5,20,5),
                 child: Text(
                   "Inserisci lo storico medico dell\'animale:",
                   style: TextStyle(
@@ -241,96 +245,75 @@ class _AddPetState extends State<AddPet> {
               ),
 
             ),
+            //VACCINI
             Container(
-              padding: EdgeInsets.fromLTRB(20,5,20,15),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.fromLTRB(20,10,20,10),
-                  icon: IconButton(
-                    iconSize: 30,
-                    color: Color.fromRGBO(0,143,57, 1),
-                    icon: Icon(Icons.add_circle_sharp),
-                    onPressed: () {
-                      setState(() {
-
-                      });
-                    },
-                  ),
-                  labelText: 'Inserisci i vaccini dell\'animale: ',
-                  hintText: 'Vaccino ${vaccini.length + 1}',
-                  border: OutlineInputBorder(
+              margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 3),
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Material(
+                elevation: 8,
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                        style: BorderStyle.solid,
-                        color: Colors.black54
-                    ),
                   ),
-                ),
+                  child: Column(
+                    children: vaccini
+                  ),
+                )
               ),
             ),
+            //INTOLLERANZE
             Container(
-              padding: EdgeInsets.fromLTRB(20,5,20,15),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.fromLTRB(20,10,20,10),
-                  icon: IconButton(
-                    iconSize: 30,
-                    color: Color.fromRGBO(0,143,57, 1),
-                    icon: Icon(Icons.add_circle_sharp),
-                    onPressed: () {
-                      setState(() {
-
-                      });
-                    },
-                  ),
-                  labelText: 'Inserisci Le intolleranxe dell\'animale: ',
-                  hintText: 'Intolleranza ${intolleranze.length + 1}',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                        style: BorderStyle.solid,
-                        color: Colors.black54
+              margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 3),
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Material(
+                  elevation: 8,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                ),
+                    child: Column(
+                        children: intolleranze
+                    ),
+                  )
               ),
             ),
+            //ALLERGIE
             Container(
-              padding: EdgeInsets.fromLTRB(20,5,20,15),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.fromLTRB(20,10,20,10),
-                  icon: IconButton(
-                    iconSize: 30,
-                    color: Color.fromRGBO(0,143,57, 1),
-                    icon: Icon(Icons.add_circle_sharp),
-                    onPressed: () {
-                      setState(() {
-
-                      });
-                    },
-                  ),
-                  labelText: 'Inserisci le allergie dell\'animale: ',
-                  hintText: 'Allergia ${allergie.length + 1}',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                        style: BorderStyle.solid,
-                        color: Colors.black54
+              margin: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 3),
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Material(
+                  elevation: 8,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                ),
+                    child: Column(
+                        children: allergie
+                    ),
+                  )
               ),
             ),
             ElevatedButton.icon(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 elevation: MaterialStatePropertyAll(5),
               ),
-              icon: Icon(Icons.fact_check_outlined),
-              label: Text("AGGIUNGI ANIMALE"),
+              icon: const Icon(Icons.fact_check_outlined),
+              label: const Text("AGGIUNGI ANIMALE"),
               onPressed: () {},
             )
           ],
@@ -365,49 +348,47 @@ class _AddPetState extends State<AddPet> {
     ];
     return menuItems;
   }
+}
 
-  Widget _buildBottomPicker(Widget picker) {
+class CustomTextField extends StatefulWidget {
+  final String hint, labelHint;
+  final TextEditingController controllers;
+  final int counter;
+  const CustomTextField({Key? key, required this.hint, required this.controllers, required this.counter, required this.labelHint}) : super(key: key);
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      height: 500,
-      padding: const EdgeInsets.only(top: 6.0),
-      color: CupertinoColors.white,
-      child: DefaultTextStyle(
-        style: const TextStyle(
-          color: CupertinoColors.black,
-          fontSize: 22.0,
-        ),
-        child: GestureDetector(
-          // Blocks taps from propagating to the modal sheet and popping.
-          onTap: () {},
-          child: SafeArea(
-            top: false,
-            child: picker,
+      padding: const EdgeInsets.fromLTRB(20,10,20,10),
+      child: TextField(
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: const EdgeInsets.fromLTRB(20,10,20,10),
+          icon: IconButton(
+            iconSize: 30,
+            color: const Color.fromRGBO(0,143,57, 1),
+            icon: const Icon(Icons.add_circle_sharp),
+            onPressed: () {
+              setState(() {
+                vaccini.add(CustomTextField(labelHint: 'Inserisci i vaccini dell\'animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: vaccini.length + 1));              });
+            },
+          ),
+          labelText: widget.labelHint,
+          hintText: '${widget.hint} ${widget.counter}',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: const BorderSide(
+                style: BorderStyle.solid,
+                color: Colors.black54
+            ),
           ),
         ),
       ),
     );
-  }
-  List<String> _buildCupertinoPicker(){
-    return <String>[
-      '2kg',
-      '3kg',
-      '4kg',
-      '5kg',
-      '6kg',
-      '7kg',
-      '8kg',
-      '9kg',
-      '10kg',
-      '11kg',
-      '12kg',
-      '13kg',
-      '14kg',
-      '15kg',
-      '16kg',
-      '17kg',
-      '18kg',
-      '19kg',
-      '20kg'
-    ];
   }
 }

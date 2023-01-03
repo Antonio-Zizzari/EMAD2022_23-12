@@ -23,6 +23,7 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       appBar: MainAppBar(_scaffoldKey),
       drawer: SideMenu(),

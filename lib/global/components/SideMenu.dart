@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/global/models/mainFunction_class.dart';
+import 'package:justpet/global/screens/login_page.dart';
 
 class SideMenu extends StatelessWidget {
+  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,7 +19,7 @@ class SideMenu extends StatelessWidget {
               children: [
                 CircleAvatar(foregroundImage: AssetImage('assets/images/user.png',), radius: 50,),
                 Text(
-                  'Vittorio',
+                  user.email!,
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ],
@@ -141,7 +145,12 @@ class SideMenu extends StatelessWidget {
               elevation: 5,
               color: Colors.red[100],
               child: MaterialButton(
-                onPressed: (){},
+                onPressed: (){
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                      builder: (context) => Login()
+                  ));
+                },
                 child: Row(
                   children: [
                     Icon(Icons.exit_to_app),
