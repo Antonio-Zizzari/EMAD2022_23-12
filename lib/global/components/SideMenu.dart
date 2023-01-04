@@ -1,12 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/global/models/mainFunction_class.dart';
 import 'package:justpet/global/screens/login_page.dart';
+import 'dart:convert';
+
+import '../../customer/models/cliente.dart';
+
 
 class SideMenu extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser!;
+  // final user = FirebaseAuth.instance.currentUser!;
+  dynamic readUsers() => FirebaseFirestore.instance
+      .collection('Cliente')
+      .snapshots()
+      .map((snapshot) =>
+        snapshot.docs.map((doc) => Cliente.fromJson(doc.data())).toList());
 
+  Future<String> utente() async{
+    final user = FirebaseFirestore.instance.collection("Cliente").doc("scarano@gmail.com");
+    final result = await user.get();
+    print(result.data()?['nome']);
+    return result.data()!['nome'];
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -19,7 +36,7 @@ class SideMenu extends StatelessWidget {
               children: [
                 CircleAvatar(foregroundImage: AssetImage('assets/images/user.png',), radius: 50,),
                 Text(
-                  user.email!,
+                  'Ciao',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ],
@@ -161,7 +178,27 @@ class SideMenu extends StatelessWidget {
                 ),),
             ),
           ),
-
+          Padding(
+            padding: const EdgeInsets.fromLTRB(4.0, 4.0, 20.0, 4.0),
+            child: Material(
+              elevation: 5,
+              color: Colors.red[100],
+              child: MaterialButton(
+                onPressed: () async {
+                  final user = FirebaseFirestore.instance.collection("Cliente").doc("scarano@gmail.com");
+                  final result = await user.get();
+                  print(result.data()?["nome"]);
+                },
+                child: Row(
+                  children: [
+                    Icon(Icons.exit_to_app),
+                    Text('bottone a caso'),
+                    Spacer(),
+                    Icon(Icons.navigate_next, size: 30,),
+                  ],
+                ),),
+            ),
+          ),
         ],
       ),
     );

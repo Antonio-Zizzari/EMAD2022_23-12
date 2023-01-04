@@ -6,6 +6,9 @@ import 'package:justpet/main.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/global/screens/welcome_page.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
+import 'dart:convert';
+import 'dart:io';
+
 
 class Login extends StatefulWidget{
   @override
@@ -27,82 +30,150 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/welcome_background.png'),
-            fit: BoxFit.cover
-          )
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Benvenuto su JustPet', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-              Image.asset('assets/logo/logo.png', scale: 2.5,),
-              Text('Accedi', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-              SizedBox(height: 20,),
-              inputField('Email', kTertiaryColor, emailController, false),
-              SizedBox(height: 20,),
-              inputField('Password', kTertiaryColor, passwordController, true),
-              SizedBox(height: 20,),
-              SizedBox(
-                width: 300,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: (){
-                    signIn(context, ListaVeterinari(), true, emailController, passwordController);
-                  },
-                  child: Text("ACCEDI"),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          // Change your radius here
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      )
-                  ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Divider(
-                  thickness: 1,
-                  height: 30,
-                  color: Colors.black,
-                ),
-              ),
-              Text("Oppure"),
-              SizedBox(height: 15,),
-              SizedBox(
-                width: 200,
-                height: 35,
-                child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Register()
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/welcome_background.png'),
+              fit: BoxFit.cover
+            )
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Benvenuto su JustPet', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                Image.asset('assets/logo/logo.png', scale: 2.5,),
+                Text('Accedi', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                inputField('Email', kTertiaryColor, emailController, false),
+                SizedBox(height: 20,),
+                inputField('Password', kTertiaryColor, passwordController, true),
+                SizedBox(height: 20,),
+                SizedBox(
+                  width: 300,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: (){
+                      if(emailController.text.trim().isEmpty || !isEmail(emailController.text.trim())){
+                        showDialog(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: Text('L\'email inserita non è corretta.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, true), // passing true
+                                    child: Text('Ok, ho capito'),
+                                  ),
+                                ],
+                              );
+                            }).then((exit) {
+                          if (exit == null) {
+                            return;
+                          }
+                          if (exit) {
+                            return;
+                          }
+                        });
+                      } else if(passwordController.text.trim().isEmpty) {
+                        showDialog(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: Text('La password non può essere vuota'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, true), // passing true
+                                    child: Text('Ok, ho capito'),
+                                  ),
+                                ],
+                              );
+                            }).then((exit) {
+                          if (exit == null) {
+                            return;
+                          }
+                          if (exit) {
+                            return;
+                          }
+                        });
+                      } else if(passwordController.text.trim().length < 6){
+                        showDialog(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: Text('La password deve avere almeno 6 caratteri.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context, true), // passing true
+                                    child: Text('Ok, ho capito'),
+                                  ),
+                                ],
+                              );
+                            }).then((exit) {
+                          if (exit == null) {
+                            return;
+                          }
+                          if (exit) {
+                            return;
+                          }
+                        });
+                      } else {
+                        signIn(context, emailController, passwordController);
+                      }
+                    },
+                    child: Text("ACCEDI"),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            // Change your radius here
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                         )
-                    );
-                  },
-                  child: Text("REGISTRATI"),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(kTertiaryColor),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          // Change your radius here
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      )
+                    ),
                   ),
                 ),
-              )
-            ],
+                SizedBox(height: 15,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Divider(
+                    thickness: 1,
+                    height: 30,
+                    color: Colors.black,
+                  ),
+                ),
+                Text("Oppure"),
+                SizedBox(height: 15,),
+                SizedBox(
+                  width: 200,
+                  height: 35,
+                  child: ElevatedButton(
+                    onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Register()
+                          )
+                      );
+                    },
+                    child: Text("REGISTRATI"),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(kTertiaryColor),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            // Change your radius here
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        )
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -132,7 +203,7 @@ Widget inputField (String hintText, Color color, TextEditingController controlle
   );
 }
 
-Future signIn(BuildContext context, Widget redirect, bool replace_route, TextEditingController email, TextEditingController password) async{
+Future signIn(BuildContext context, TextEditingController email, TextEditingController password) async{
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -144,8 +215,96 @@ Future signIn(BuildContext context, Widget redirect, bool replace_route, TextEdi
       email: email.text.trim(),
       password: password.text.trim()
     );
+
+    //cose
+    saveDataToFile("dati_user.json",
+      {'nome':"prova",
+      'cognome':"prova"}
+    );
+
     Navigator.popAndPushNamed(context, '/lista');
   } on FirebaseAuthException catch (e){
-    print(e);
+    print(e.code);
+
+    Navigator.pop(context);
+
+    if(e.code.compareTo("wrong-password") == 0){
+      showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              title: Text('La password inserita non è corretta.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, true), // passing true
+                  child: Text('Riprova'),
+                ),
+              ],
+            );
+          }).then((exit) {
+        if (exit == null) {
+          return;
+        }
+        if (exit) {
+          return;
+        }
+      });
+    } else if(e.code.compareTo("user-not-found") == 0) {
+      showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              title: Text(
+                  'L\'utente associato alla email inserita non esiste.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, true), // passing true
+                  child: Text('Riprova'),
+                ),
+              ],
+            );
+          }).then((exit) {
+        if (exit == null) {
+          return;
+        }
+        if (exit) {
+          return;
+        }
+      });
+    }
+    // else {
+    //   showDialog(
+    //       context: context,
+    //       builder: (_) {
+    //         return AlertDialog(
+    //           title: Text('Oops...qualcosa è andato storto.'),
+    //           actions: [
+    //             TextButton(
+    //               onPressed: () => Navigator.pop(context, true), // passing true
+    //               child: Text('Riprova'),
+    //             ),
+    //           ],
+    //         );
+    //       }).then((exit) {
+    //     if (exit == null) {
+    //       return;
+    //     }
+    //     if (exit) {
+    //       // user pressed Yes button
+    //     }
+    //   });
+    // }
   }
+}
+bool isEmail(String email) {
+  RegExp regex = RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+
+  return regex.hasMatch(email);
+}
+
+Future<dynamic> saveDataToFile(String filename,Map<String,dynamic> data) async{
+  final directory =await getApplicationDo
+  final file = File(filename);
+  final datiSalvati=json.encode(data);
+  return file.writeAsString(datiSalvati);
 }

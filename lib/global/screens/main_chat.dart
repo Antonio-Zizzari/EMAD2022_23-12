@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/global/components/body_chat.dart';
 import 'package:justpet/global/models/color.dart';
@@ -26,7 +27,17 @@ class _ChatState extends State<Chat> {
       drawer: SideMenu(),
       body: Body(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          final docUser = FirebaseFirestore.instance.collection('Cliente').doc("email.text.trim()");
+
+          final json = {
+            'email': 'email.text.trim()',
+            'nome': "Gianluca",
+            'cognome': "Rossi"
+          };
+
+          await docUser.set(json);
+        },
         child: Icon(Icons.person_add),
         backgroundColor: kPrimaryColor,
       ),
