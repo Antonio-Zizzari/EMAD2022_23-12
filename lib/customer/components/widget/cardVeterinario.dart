@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/global/models/color.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
-import 'package:justpet/customer/screens/Prenotazione.dart';
+//import 'package:justpet/customer/screens/Prenotazione.dart';
+import 'package:justpet/customer/screens/veterinarian_info.dart';
 
 class cardVeterinario extends StatelessWidget {
   final Veterinario veterinario;
@@ -24,7 +25,7 @@ class cardVeterinario extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Prenotazione(
+                    builder: (context) => VeterinarianInfo(
                         veterinario: veterinario
                     )
                 )
@@ -37,7 +38,7 @@ class cardVeterinario extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(foregroundImage: AssetImage('assets/images/user.png',), radius: 50,),
+                    CircleAvatar(foregroundImage: AssetImage('assets/images/'+veterinario.immagine_profilo,), radius: 50,),
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Column(

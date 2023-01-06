@@ -32,7 +32,7 @@ Future main() async{
     initialRoute: initialRoute,
     routes: {
       '/lista': (context) => ListaVeterinari(),
-      '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),
+      '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', immagine_profilo: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),
       '/videocorsi': (context) => VideoCorsi(),
       '/petshop': (context) => PetShop(),
       '/chat': (context) => Chat(),

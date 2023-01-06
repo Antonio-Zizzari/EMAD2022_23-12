@@ -447,12 +447,12 @@ class VeterinarianDate extends StatelessWidget {
                                               ListView.builder(
                                                 shrinkWrap: true,
                                                 itemCount: data
-                                                        .tipiVaccino.isEmpty
+                                                        .tipiVaccino!.isEmpty
                                                     ? 1
-                                                    : data.tipiVaccino.length,
+                                                    : data.tipiVaccino!.length,
                                                 //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
                                                 itemBuilder: (context, index) {
-                                                  if (data.tipiVaccino.isEmpty)
+                                                  if (data.tipiVaccino!.isEmpty)
                                                     return Padding(
                                                       padding:
                                                           EdgeInsets.fromLTRB(
@@ -475,7 +475,7 @@ class VeterinarianDate extends StatelessWidget {
                                                           EdgeInsets.fromLTRB(
                                                               0, 0, 20, 0),
                                                       child: Text(
-                                                        data.tipiVaccino[index],
+                                                        data.tipiVaccino![index],
                                                         textAlign:
                                                             TextAlign.right,
                                                         style: const TextStyle(
@@ -563,12 +563,12 @@ class VeterinarianDate extends StatelessWidget {
                                             children: [
                                               ListView.builder(
                                                 shrinkWrap: true,
-                                                itemCount: data.allergie.isEmpty
+                                                itemCount: data.allergie!.isEmpty
                                                     ? 1
-                                                    : data.allergie.length,
+                                                    : data.allergie!.length,
                                                 //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
                                                 itemBuilder: (context, index) {
-                                                  if (data.allergie.isEmpty)
+                                                  if (data.allergie!.isEmpty)
                                                     return Padding(
                                                       padding:
                                                           EdgeInsets.fromLTRB(
@@ -591,7 +591,7 @@ class VeterinarianDate extends StatelessWidget {
                                                           EdgeInsets.fromLTRB(
                                                               0, 0, 20, 0),
                                                       child: Text(
-                                                        data.allergie[index],
+                                                        data.allergie![index],
                                                         textAlign:
                                                             TextAlign.right,
                                                         style: const TextStyle(
@@ -681,12 +681,12 @@ class VeterinarianDate extends StatelessWidget {
                                               ListView.builder(
                                                 shrinkWrap: true,
                                                 itemCount: data
-                                                        .intolleranze.isEmpty
+                                                        .intolleranze!.isEmpty
                                                     ? 1
-                                                    : data.intolleranze.length,
+                                                    : data.intolleranze!.length,
                                                 //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
                                                 itemBuilder: (context, index) {
-                                                  if (data.intolleranze.isEmpty)
+                                                  if (data.intolleranze!.isEmpty)
                                                     return Padding(
                                                       padding:
                                                           EdgeInsets.fromLTRB(
@@ -709,7 +709,7 @@ class VeterinarianDate extends StatelessWidget {
                                                           EdgeInsets.fromLTRB(
                                                               0, 0, 20, 0),
                                                       child: Text(
-                                                        data.intolleranze[
+                                                        data.intolleranze![
                                                             index],
                                                         textAlign:
                                                             TextAlign.right,

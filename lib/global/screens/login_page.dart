@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/global/models/color.dart';
@@ -216,11 +217,6 @@ Future signIn(BuildContext context, TextEditingController email, TextEditingCont
       password: password.text.trim()
     );
 
-    //cose
-    saveDataToFile("dati_user.json",
-      {'nome':"prova",
-      'cognome':"prova"}
-    );
 
     Navigator.popAndPushNamed(context, '/lista');
   } on FirebaseAuthException catch (e){
@@ -302,9 +298,10 @@ bool isEmail(String email) {
   return regex.hasMatch(email);
 }
 
+/*
 Future<dynamic> saveDataToFile(String filename,Map<String,dynamic> data) async{
   final directory =await getApplicationDo
   final file = File(filename);
   final datiSalvati=json.encode(data);
   return file.writeAsString(datiSalvati);
-}
+}*/

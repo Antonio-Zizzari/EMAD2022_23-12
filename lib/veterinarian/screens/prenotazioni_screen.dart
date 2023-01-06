@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/models/pet_class.dart';
 import 'package:justpet/veterinarian/components/flutter_event_calendar.dart';
 import 'package:justpet/veterinarian/models/event_class.dart';
 
+import 'package:justpet/veterinarian/screens/veterinarian_date.dart';
 import '../../global/components/SideMenu.dart';
 import '../../global/components/appbar.dart';
 
@@ -87,7 +89,14 @@ class TurniLavoro extends StatelessWidget {
                                 child: Container(
                                   alignment: Alignment.bottomRight,
                                   child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => VeterinarianDate(data: pets[0], visita: evento),
+                                        ),
+                                      );
+                                    },
                                     icon: Icon(Icons.arrow_circle_right_rounded),
                                     color: Colors.redAccent,),
                                 )),

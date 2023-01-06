@@ -54,7 +54,7 @@ class PetsVisits extends StatelessWidget {
                           title: Padding(
                             padding: EdgeInsets.fromLTRB(10,0,0,0),
                             child: Text(
-                              returnMonthByNumber(mese.key),
+                              returnMonthByNumber(int.parse(mese.key)),
                               textAlign: TextAlign.left,
                               style: const TextStyle(
                                 color: Colors.black,

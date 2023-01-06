@@ -1,17 +1,19 @@
 class Veterinario {
   String immagine;
+  String immagine_profilo;
   String nome;
   String indirizzo;
   String votazione;
   String descrizione;
   List<String> turni;
 
-  Veterinario ({required this.immagine, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni});
+  Veterinario ({required this.immagine, required this.immagine_profilo, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni});
 }
 
 final List<Veterinario> veterinari = [
   Veterinario(
       immagine: "veterinario1.jpg",
+      immagine_profilo: "user_2.png",
       nome: "Dottor Mario Rossi",
       indirizzo: "Via Unità Italiana, 12",
       votazione: "4,5",
@@ -28,6 +30,7 @@ final List<Veterinario> veterinari = [
       ]),
   Veterinario(
       immagine: "veterinario2.jpg",
+      immagine_profilo: "user_5.png",
       nome: "Dottoressa Alice Gialli",
       indirizzo: "Via Mazzini, 5",
       votazione: "4,8",
@@ -35,6 +38,7 @@ final List<Veterinario> veterinari = [
       turni: ['12:30', '12:45', '13:00', '15:00', '13:30', '13:45']),
   Veterinario(
       immagine: "veterinario3.jpg",
+      immagine_profilo: "user_3.png",
       nome: "Dottor Giovanni Verdi",
       indirizzo: "Via Colombo, 27",
       votazione: "4,2",

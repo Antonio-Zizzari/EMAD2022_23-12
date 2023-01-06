@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/add_pet.dart';
+import 'package:justpet/customer/models/cliente.dart';
 import 'package:justpet/global/models/color.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/customer/components/widget/pet_item.dart';
@@ -18,23 +20,30 @@ class MyPets extends StatefulWidget {
 
 class _MyPetsState extends State<MyPets> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: MainAppBar(_scaffoldKey),
-      drawer: SideMenu(),
-      body: Column(
-        children: [
-          buildBody(),
-        ],
-      ),
+    return FutureBuilder(
+      future: getClienteFromFirestore(user.email!),
+      initialData: Cliente(email:"Caricamento...", nome:"Caricamento...", cognome:"Caricamento..."),
+      builder: (BuildContext context, AsyncSnapshot<Cliente> cliente) {
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: MainAppBar(_scaffoldKey),
+          drawer: SideMenu(),
+          body: Column(
+            children: [
+              buildBody(cliente.data!),
+            ],
+          ),
+        );
+      }
     );
   }
 
 
 
-  buildBody(){
+  buildBody(Cliente cliente){
     return
       SingleChildScrollView(
         child: Column(
@@ -55,7 +64,7 @@ class _MyPetsState extends State<MyPets> {
                   ),
                 ),
               ),
-              getPets(),
+              getPets(cliente),
               Center(
                 child: IconButton(
                   iconSize: 50,
@@ -87,7 +96,7 @@ class _MyPetsState extends State<MyPets> {
       );
   }
 
-  getPets(){
+  getPets(Cliente cliente){
     double width = MediaQuery.of(context).size.width * .8;
     if(pets.isNotEmpty) {
       return CarouselSlider(

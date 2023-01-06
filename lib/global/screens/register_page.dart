@@ -5,6 +5,8 @@ import 'package:justpet/global/models/color.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/global/screens/login_page.dart';
 
+import '../../customer/models/cliente.dart';
+
 class Register extends StatefulWidget{
   @override
   State<Register> createState() => _RegisterState();
@@ -170,8 +172,17 @@ Future signUp(BuildContext context, TextEditingController email, TextEditingCont
         email: email.text.trim(),
         password: password.text.trim(),
     );
-    
-    final docUser = FirebaseFirestore.instance.collection('Cliente').doc(email.text.trim());
+
+    final cliente = Cliente(
+      email: email.text.trim(),
+      nome: name.text.trim(),
+      cognome: surname.text.trim(),
+    );
+
+    setClienteToFirestore(cliente);
+
+
+    /*final docUser = FirebaseFirestore.instance.collection('Cliente').doc(email.text.trim());
 
     final json = {
       'email': email.text.trim(),
@@ -179,7 +190,7 @@ Future signUp(BuildContext context, TextEditingController email, TextEditingCont
       'cognome': surname.text.trim()
     };
 
-    await docUser.set(json);
+    await docUser.set(json);*/
 
     Navigator.popAndPushNamed(context, '/login');
   } on FirebaseAuthException catch (e){

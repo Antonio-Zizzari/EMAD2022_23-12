@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,6 +9,8 @@ import 'package:justpet/utils/cupertino_picker_view_date.dart';
 import 'package:justpet/utils/cupertino_picker_view_weight.dart';
 
 import 'package:justpet/global/models/color.dart';
+
+import '../models/pet_class.dart';
 
 final List<CustomTextField> vaccini = [
   CustomTextField(labelHint: 'Inserisci i vaccini dell\'animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: 1),
@@ -32,9 +35,36 @@ class _AddPetState extends State<AddPet> {
   TextEditingController _vaccineController = TextEditingController();
   TextEditingController _intolleranceController = TextEditingController();
   TextEditingController _allergyController = TextEditingController();
+  final items = [
+    '2 kg',
+    '3 kg',
+    '4 kg',
+    '5 kg',
+    '6 kg',
+    '7 kg',
+    '8 kg',
+    '9 kg',
+    '10 kg',
+    '11 kg',
+    '12 kg',
+    '13 kg',
+    '14 kg',
+    '15 kg',
+    '16 kg',
+    '17 kg',
+    '18 kg',
+    '19 kg',
+    '20 kg',
+    '21 kg',
+    '22 kg',
+    '23 kg',
+    '24 kg',
+    '25 kg'
+  ];
 
   XFile? photo;
-  String? _sesso, _tipoAnimale, _colore;
+  String? _sesso, _tipoAnimale, _colore, peso;
+  DateTime? date;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +94,6 @@ class _AddPetState extends State<AddPet> {
   Widget buildBody(double width, double height){
     return SingleChildScrollView(
       child: SizedBox(
-        height: height,
         child: Column(
           children: [
             const Center(
@@ -141,9 +170,18 @@ class _AddPetState extends State<AddPet> {
               ),
             ),
             const SizedBox(height: 5),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 32),
-              child: CupertinoPickerViewDate(),
+              child: SizedBox(
+                width: 400,
+                height: 30,
+                child: CupertinoDatePicker(
+                  mode: CupertinoDatePickerMode.date,
+                  onDateTimeChanged: (DateTime t){
+                    date=t;
+                  },
+                ),
+              )
             ),
             const SizedBox(height: 20),
             Row(
@@ -199,7 +237,19 @@ class _AddPetState extends State<AddPet> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CupertinoPickerViewWeight(),
+                SizedBox(
+                  height: 50,
+                  width: 100,
+                  child: CupertinoPicker(
+                    itemExtent: 35,
+                    onSelectedItemChanged: (int value) {peso = value.toString();},
+                    children: items.map((item) =>
+                        Center(
+                          child: Text(item,
+                            style: TextStyle(fontSize: 24),),
+                        )).toList(),
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
@@ -309,12 +359,48 @@ class _AddPetState extends State<AddPet> {
               ),
             ),
             ElevatedButton.icon(
-              style: const ButtonStyle(
-                elevation: MaterialStatePropertyAll(5),
+              style: ElevatedButton.styleFrom(
+                elevation: 5,
+                backgroundColor: kPrimaryColor
               ),
               icon: const Icon(Icons.fact_check_outlined),
               label: const Text("AGGIUNGI ANIMALE"),
-              onPressed: () {},
+              onPressed: () {
+                final nome = _nameController.text.trim();
+                final data_di_nascita = date;
+                final tipo = _tipoAnimale;
+                final sesso = _sesso;
+                final colore = _colore;
+                final List<String> vaxs = List.filled(0, "", growable: true);
+                for(CustomTextField vaccino in vaccini){
+                  vaxs.add(vaccino.controllers.text.trim());
+                }
+                final List<String> intoll = List.filled(0, "", growable: true);
+                for(CustomTextField intolleranza in intolleranze){
+                  intoll.add(intolleranza.controllers.text.trim());
+                }
+                final List<String> aller = List.filled(0, "", growable: true);
+                for(CustomTextField allergia in allergie){
+                  aller.add(allergia.controllers.text.trim());
+                }
+                final user = FirebaseAuth.instance.currentUser!;
+
+                Pets pet= Pets (
+                  nome: nome,
+                  eta: data_di_nascita.toString(),
+                  tipoAnimale: tipo!,
+                  sesso: sesso!,
+                  peso: peso!,
+                  colore: colore!,
+                    tipiVaccino: vaxs,
+                  intolleranze: intoll,
+                  allergie: aller,
+                  pathImage: "assets/images/dog.jpg",
+                  visiteAnnuali: pets[0].visiteAnnuali
+                );
+
+                setAnimaleToFirestore(user.email!, pet);
+              },
             )
           ],
         ),
