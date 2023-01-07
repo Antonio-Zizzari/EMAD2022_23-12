@@ -1,14 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/widget/ideal_dog_result.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
 import 'package:justpet/global/components/appbar.dart';
+import 'package:justpet/customer/models/utils_functions.dart';
 import 'package:survey_kit/survey_kit.dart';
 import '../../global/components/SideMenu.dart';
+import '../../customer/models/dog_race_class.dart';
 
 
 class SearchIdealDog extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final user = FirebaseAuth.instance.currentUser!;
   var steps = [
     InstructionStep(
       title: 'Benvenuto al test\nper capire quale\nanimale fa per te!',
@@ -169,18 +173,23 @@ class SearchIdealDog extends StatelessWidget {
           "cancel": "CHIUDI",
           "NEXT": "successivo"
         },
-        onResult: (SurveyResult result) {
+        onResult: (SurveyResult result) async{
+          String query="", res="";
           //Prendiamo le risposte
           for(int i = 1; i < result.results.length - 1; i++){
             for(int j = 0; j < result.results[i].results.length; j++){
               print(result.results[i].results[j].valueIdentifier);
+              query+=result.results[i].results[j].valueIdentifier!+". ";
             }
           }
+          final response = LuisQuery(query);
+          await response.then((value) => {print(value),print(value['prediction']['topIntent']), res=value['prediction']['topIntent']});
+          List<DogRace> razza = [allRaces[""+res]!];
           //Evaluate the results
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => IdealDogResult()
+                  builder: (context) => IdealDogResult(razza: razza),
               )
           );
         },
@@ -189,3 +198,5 @@ class SearchIdealDog extends StatelessWidget {
     );
   }
 }
+
+

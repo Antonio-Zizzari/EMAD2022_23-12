@@ -21,19 +21,22 @@ class MyPets extends StatefulWidget {
 class _MyPetsState extends State<MyPets> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getClienteFromFirestore(user.email!),
-      initialData: Cliente(email:"Caricamento...", nome:"Caricamento...", cognome:"Caricamento..."),
-      builder: (BuildContext context, AsyncSnapshot<Cliente> cliente) {
+    Pets initialPet = Pets(nome: 'errore', tipoAnimale: 'errore', colore: 'errore', sesso: 'errore', eta: 'errore', peso: 'errore', pathImage: 'errore', tipiVaccino: [], intolleranze: [], allergie: [], visiteAnnuali: {});
+    List<Pets> initialData = List.filled(0, initialPet, growable: true);
+    return FutureBuilder( //SI PUO RIMUOVERE
+      future: getAllAnimaliFromFirestore(user.email!),
+      initialData: initialData,
+      builder: (BuildContext context, AsyncSnapshot<List<Pets>> animali) {
         return Scaffold(
           key: _scaffoldKey,
           appBar: MainAppBar(_scaffoldKey),
           drawer: SideMenu(),
           body: Column(
             children: [
-              buildBody(cliente.data!),
+              buildBody(animali.data!),
             ],
           ),
         );
@@ -43,7 +46,7 @@ class _MyPetsState extends State<MyPets> {
 
 
 
-  buildBody(Cliente cliente){
+  buildBody(List<Pets> animali){
     return
       SingleChildScrollView(
         child: Column(
@@ -64,7 +67,7 @@ class _MyPetsState extends State<MyPets> {
                   ),
                 ),
               ),
-              getPets(cliente),
+              getPets(animali),
               Center(
                 child: IconButton(
                   iconSize: 50,
@@ -96,9 +99,9 @@ class _MyPetsState extends State<MyPets> {
       );
   }
 
-  getPets(Cliente cliente){
+  getPets(List<Pets> animali){
     double width = MediaQuery.of(context).size.width * .8;
-    if(pets.isNotEmpty) {
+    if(animali.isNotEmpty) {
       return CarouselSlider(
         options: CarouselOptions(
           height: 535,
@@ -107,9 +110,9 @@ class _MyPetsState extends State<MyPets> {
           viewportFraction: .8,
         ),
         items: List.generate(
-            pets.length, (index) =>
+            animali.length, (index) =>
             PetItem(
-              data: pets[index],
+              data: animali[index],
               index: index,
               width: width,
             )

@@ -13,13 +13,13 @@ import 'package:justpet/global/models/color.dart';
 import '../models/pet_class.dart';
 
 final List<CustomTextField> vaccini = [
-  CustomTextField(labelHint: 'Inserisci i vaccini dell\'animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: 1),
+  CustomTextField(labelHint: 'Inserisci i vaccini dell\'animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: 1, lista: 1,),
 ];
 final List<CustomTextField> intolleranze = [
-  CustomTextField(labelHint: 'Inserisci intolleranze animale: ', hint: "Intolleranze", controllers: TextEditingController(), counter: 1),
+  CustomTextField(labelHint: 'Inserisci intolleranze animale: ', hint: "Intolleranze", controllers: TextEditingController(), counter: 1, lista: 2,),
 ];
 final List<CustomTextField> allergie = [
-  CustomTextField(labelHint: 'Inserisci allergie dell\'animale: ', hint: "Allergie", controllers: TextEditingController(), counter: 1)
+  CustomTextField(labelHint: 'Inserisci allergie dell\'animale: ', hint: "Allergie", controllers: TextEditingController(), counter: 1, lista: 3,)
 ];
 
 class AddPet extends StatefulWidget {
@@ -63,7 +63,8 @@ class _AddPetState extends State<AddPet> {
   ];
 
   XFile? photo;
-  String? _sesso, _tipoAnimale, _colore, peso;
+  String? _sesso, _tipoAnimale, _colore;
+  String peso = '2Kg';
   DateTime? date;
 
   @override
@@ -367,7 +368,7 @@ class _AddPetState extends State<AddPet> {
               label: const Text("AGGIUNGI ANIMALE"),
               onPressed: () {
                 final nome = _nameController.text.trim();
-                final data_di_nascita = date;
+                final data_di_nascita = date!.day.toString()+'/'+date!.month.toString()+'/'+date!.year.toString();
                 final tipo = _tipoAnimale;
                 final sesso = _sesso;
                 final colore = _colore;
@@ -387,15 +388,15 @@ class _AddPetState extends State<AddPet> {
 
                 Pets pet= Pets (
                   nome: nome,
-                  eta: data_di_nascita.toString(),
+                  eta: data_di_nascita,
                   tipoAnimale: tipo!,
                   sesso: sesso!,
-                  peso: peso!,
+                  peso: peso,
                   colore: colore!,
                     tipiVaccino: vaxs,
                   intolleranze: intoll,
                   allergie: aller,
-                  pathImage: "assets/images/dog.jpg",
+                  pathImage: "assets/images/pet1.jpg",
                   visiteAnnuali: pets[0].visiteAnnuali
                 );
 
@@ -440,18 +441,21 @@ class CustomTextField extends StatefulWidget {
   final String hint, labelHint;
   final TextEditingController controllers;
   final int counter;
-  const CustomTextField({Key? key, required this.hint, required this.controllers, required this.counter, required this.labelHint}) : super(key: key);
+  final int lista;
+  const CustomTextField({Key? key, required this.hint, required this.controllers, required this.counter, required this.labelHint, required this.lista}) : super(key: key);
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(20,10,20,10),
       child: TextField(
+        controller: widget.controllers,
         decoration: InputDecoration(
           isDense: true,
           contentPadding: const EdgeInsets.fromLTRB(20,10,20,10),
@@ -461,7 +465,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
             icon: const Icon(Icons.add_circle_sharp),
             onPressed: () {
               setState(() {
-                vaccini.add(CustomTextField(labelHint: 'Inserisci i vaccini dell\'animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: vaccini.length + 1));              });
+                List<CustomTextField> l;
+                if(widget.lista == 1) l = vaccini;
+                else if (widget.lista == 2) l =intolleranze;
+                else l=allergie;
+                l.add(CustomTextField(labelHint: l[0].labelHint, hint: "Vaccini", controllers: TextEditingController(), counter: l.length + 1, lista: widget.lista,));});
             },
           ),
           labelText: widget.labelHint,

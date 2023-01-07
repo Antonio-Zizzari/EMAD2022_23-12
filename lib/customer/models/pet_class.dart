@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:justpet/customer/models/cliente.dart';
 import 'package:justpet/customer/models/visit_class.dart';
@@ -29,22 +31,31 @@ class Pets{
       SnapshotOptions? options,
       ) {
     final data = snapshot.data();
+
+    /*
+      PROBLEMI ATTUALI:
+        - ogni nuovo animale inserito sostituisc il precedente, in quanto il nome del doc è lo stesso
+        - bisogna calcolare le visite annuali all'inverso nel metodo fromFirestore
+    */
+    Map<String, List<dynamic>> mapp = new Map();
+    Map<String, Map<String, List<dynamic>>> mappp=new Map();
+    //(data?['visiteAnnuali'] as Map<String, dynamic>).forEach((key, value) { (value as Map<String, dynamic>).forEach((key, value) {print(value); print(value.runtimeType); mapp[key] = value;}); mappp[key]=mapp;});
     print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
     return Pets(
-      nome: data?['email'],
-      tipoAnimale: data?['nome'],
+      nome: data?['nome'],
+      tipoAnimale: data?['tipoAnimale'],
       colore: data?['colore'],
       sesso: data?['sesso'],
       eta: data?['eta'],
       peso: data?['peso'],
       pathImage: data?['pathImage'],
       tipiVaccino:
-        data?['tipiVaccino'] is Iterable ? List.from(data?['Animale']) : null,
+        data?['tipiVaccino'] is Iterable ? List.from(data?['tipiVaccino']) : null,
       allergie:
-        data?['allergie'] is Iterable ? List.from(data?['Animale']) : null,
+        data?['allergie'] is Iterable ? List.from(data?['allergie']) : null,
       intolleranze:
-        data?['intolleranze'] is Iterable ? List.from(data?['Animale']) : null,
-      visiteAnnuali: data?['visiteAnnuali'],
+        data?['intolleranze'] is Iterable ? List.from(data?['intolleranze']) : null,
+      visiteAnnuali: mappp,
       //Map<int, Map<int, List<VisitClass>>> visiteAnnuali;
     );
   }
@@ -91,12 +102,40 @@ class Pets{
 void setAnimaleToFirestore(String email, Pets pet) async{
   final docRef = FirebaseFirestore.instance
       .collection("Animale")
+      .doc(email)
+      .collection("Animali")
       .withConverter(
     fromFirestore: Pets.fromFirestore,
     toFirestore: (Pets animali, options) => animali.toFirestore(),
   )
-      .doc(email);
+      .doc(pet.nome);
   await docRef.set(pet);
+}
+
+Future<List<Pets>> getAllAnimaliFromFirestore(String email) async{
+  final List<Pets> lista = [];
+  final ref = FirebaseFirestore.instance.collection("Animale").doc(email).collection("Animali").withConverter(
+    fromFirestore: Pets.fromFirestore,
+    toFirestore: (Pets animale, _) => animale.toFirestore(),
+  );
+  final docSnap = await ref.get();
+  docSnap.docs.forEach((element) {lista.add(element.data());});
+  return lista;
+}
+
+Future<Pets> getAnimaleFromFirestore(String email, String nome) async{
+  final ref = FirebaseFirestore.instance.collection("Animale").doc(email).collection("Animali").doc(nome).withConverter(
+    fromFirestore: Pets.fromFirestore,
+    toFirestore: (Pets animale, _) => animale.toFirestore(),
+  );
+  final docSnap = await ref.get();
+  final animale = docSnap.data(); // Convert to Animale object
+  if (animale != null) {
+    return animale;
+  } else {
+    return Pets(nome: 'errore', tipoAnimale: 'errore', colore: 'errore', sesso: 'errore', eta: 'errore', peso: 'errore', pathImage: 'errore', tipiVaccino: [], intolleranze: [], allergie: [], visiteAnnuali: {}
+    );
+  }
 }
 
 
