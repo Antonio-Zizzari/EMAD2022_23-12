@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/widget/ideal_dog_result.dart';
+import 'package:justpet/customer/models/luiss_class.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
 import 'package:justpet/global/components/appbar.dart';
@@ -86,6 +87,7 @@ class SearchIdealDog extends StatelessWidget {
       ),
     ),
     QuestionStep(
+      stepIdentifier: StepIdentifier(id: 'scelta'),
       content: Container(
         height: 300,
       ),
@@ -179,12 +181,36 @@ class SearchIdealDog extends StatelessWidget {
           for(int i = 1; i < result.results.length - 1; i++){
             for(int j = 0; j < result.results[i].results.length; j++){
               print(result.results[i].results[j].valueIdentifier);
-              query+=result.results[i].results[j].valueIdentifier!+". ";
+              if(result.results[i].results[j].id!.id=='scelta') {
+                ;
+              }
+              else{
+                query += result.results[i].results[j].valueIdentifier! + ". ";
+              }
             }
           }
-          final response = LuisQuery(query);
-          await response.then((value) => {print(value),print(value['prediction']['topIntent']), res=value['prediction']['topIntent']});
-          List<DogRace> razza = [allRaces[""+res]!];
+          int i=result.results.length - 2;
+          int j=result.results[result.results.length - 2].results.length-1;
+
+          /*print("Il risultato è "+result.results[i].results[j].id!.id);
+          print("Il risultato del risultato è "+result.results[0].results[0].id.toString());
+          print(result.results[result.results.length - 2].results[result.results[result.results.length - 2].results.length-1].valueIdentifier!+"aaaaa");
+          print(query + " è la query");*/
+          String last_question=result.results[result.results.length - 2].results[result.results[result.results.length - 2].results.length-1].valueIdentifier!;
+          LuissClass response;
+          if(last_question.isNotEmpty) {
+            response = GetChainSumSort(
+                Return_Sorted_LUIS_List(await LuisQuery(query)),
+                Return_Sorted_LUIS_List(await LuisQuery(last_question)));
+          } else {
+            response=Return_Sorted_LUIS_List(await LuisQuery(query));
+          }
+          List<DogRace> razza = [];
+          for (int i=0; i<response.razza.length && i<=5; i++){
+            if(response.score[i]>0.1){
+              razza.add(allRaces[response.razza[i]]!);
+            }
+          }
           //Evaluate the results
           Navigator.push(
               context,

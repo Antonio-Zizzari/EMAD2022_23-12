@@ -69,8 +69,12 @@ dependencies:
   collection: ^1.15.0
   equatable: ^2.0.3
   survey_kit: ^0.1.1
+  card_loading: ^0.2.2
+  favorite_button: ^0.0.4
+  flutter_calendar_week: ^3.0.0
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.4
+  table_calendar: ^3.0.8
 
 
 dev_dependencies:

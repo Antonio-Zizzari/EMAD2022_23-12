@@ -1,20 +1,21 @@
 enum TipoOperazione { operazione, visita }
 
-class Evento{
+class Evento extends Object{
 
-  String orario_inizio = '',nome_cliente = '', razza_animale = '';
-  int mese= 1,giorno= 1,anno =2022;
+  String nome_cliente = '', razza_animale = '';
+  String mese= "1",giorno= "1",anno ="2022", ora="00", minuto="00";
   TipoOperazione tipoOperazione =TipoOperazione.visita;
   String durata  = '15m';
 
-  Evento(String orario_inizio,String nome_cliente, String razza_animale, int anno, int mese, int giorno, TipoOperazione tipoOperazione)
+  Evento(String nome_cliente, String razza_animale, String anno, String mese, String giorno, String ora, String minuto, TipoOperazione tipoOperazione)
   {
-    this.orario_inizio = orario_inizio;
     this.nome_cliente = nome_cliente;
     this.razza_animale = razza_animale;
     this.anno= anno;
     this.mese = mese;
     this.giorno = giorno;
+    this.ora = ora;
+    this.minuto = minuto;
     this.tipoOperazione = tipoOperazione;
     if (tipoOperazione == TipoOperazione.visita){
       this.durata = "15m";
@@ -23,34 +24,44 @@ class Evento{
     }
 
   }
+
+  @override
+  String toString() {
+    return "${this.nome_cliente} | ore $ora:$minuto -> $razza_animale";
+  }
 }
+
+
 
 List listaEventi = [
   Evento(
-    "09:00",
     "Mario Rossi",
     "Gatto",
-    2022,
-    11,
-    22,
+    "2022",
+    "11",
+    "22",
+    "17",
+    "30",
     TipoOperazione.operazione,
   ),
   Evento(
-    "10:00",
-    "Mario Rossi",
+    "Serena Gialli",
     "Pappagallo",
-    2022,
-    11,
-    22,
+    "2022",
+    "11",
+    "22",
+    "11",
+    "00",
     TipoOperazione.visita,
   ),
   Evento(
-    "11:00",
-    "Mario Rossi",
+    "Giovanni Verdi",
     "Gatto",
-    2022,
-    11,
-    22,
+    "2022",
+    "11",
+    "22",
+    "18",
+    "15",
     TipoOperazione.operazione,
   ),
 

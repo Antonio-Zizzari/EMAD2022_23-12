@@ -2,6 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/models/luiss_class.dart';
+import 'package:justpet/customer/models/utils_functions.dart';
 import 'package:justpet/global/components/body_chat.dart';
 import 'package:justpet/global/models/color.dart';
 
@@ -28,15 +30,10 @@ class _ChatState extends State<Chat> {
       body: Body(),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final docUser = FirebaseFirestore.instance.collection('Cliente').doc("email.text.trim()");
-
-          final json = {
-            'email': 'email.text.trim()',
-            'nome': "Gianluca",
-            'cognome': "Rossi"
-          };
-
-          await docUser.set(json);
+          print("the response is:\n");
+          LuissClass response=Return_Sorted_LUIS_List(await LuisQuery("Vorrei un cane molto socievole, adatto per la famiglia e per i bambini che non sbavi tanto e che abbia il pelo lucido."));
+          print(response.razza);
+          print(response.score);
         },
         child: Icon(Icons.person_add),
         backgroundColor: kPrimaryColor,

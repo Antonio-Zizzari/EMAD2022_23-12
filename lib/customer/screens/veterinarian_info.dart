@@ -59,7 +59,7 @@ class VeterinarianInfo extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => VeterinarianAppointment(),
+                    builder: (context) => VeterinarianAppointment(veterinario: veterinario),
                   ),
                 );
               }, icon: Icon(Icons.calendar_month), label: Text('Prenota'), style: ElevatedButton.styleFrom(backgroundColor: kPrimaryColor, fixedSize: Size(500, 45), textStyle: TextStyle(fontSize: 16)),),

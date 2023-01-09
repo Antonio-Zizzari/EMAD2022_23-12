@@ -85,14 +85,14 @@ class VeterinarianDate extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "${returnItalianDay(DateFormat('EEEE').format(DateTime.utc(visita.anno,visita.mese,visita.giorno)))} ${visita.giorno}",
+                                    "${visita.ora}:${visita.minuto} ${visita.giorno}",
                                     style: TextStyle(
                                         color: Color(0xff212121),
                                         fontSize: 17,
                                         fontWeight: FontWeight.w500),
                                   ),
                                   Text(
-                                    "alle ore ${visita.orario_inizio}",
+                                    "alle ore ${visita.ora}: ${visita.minuto}",
                                     style: TextStyle(
                                       color: Color(0xff212121),
                                       fontSize: 14,

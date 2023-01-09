@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/customer/screens/animal-card.dart';
 import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
+import 'package:justpet/global/screens/body_medicines.dart';
 import 'package:justpet/veterinarian/screens/dizionario_screen.dart';
 import 'package:justpet/veterinarian/screens/prenotazioni_screen.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
@@ -32,12 +33,13 @@ Future main() async{
     initialRoute: initialRoute,
     routes: {
       '/lista': (context) => ListaVeterinari(),
-      '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(immagine: '', immagine_profilo: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''])),
+      '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(email: '',immagine: '', immagine_profilo: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''], prenotazioni: ["5:00"])),
       '/videocorsi': (context) => VideoCorsi(),
       '/petshop': (context) => PetShop(),
       '/chat': (context) => Chat(),
       '/turni_lavoro': (context) => TurniLavoro(),
       '/dizionario' : (context) => DizionarioScreen(),
+      '/body_medicines' : (context) => BodyMedicine(),
       '/scheda_animali' : (context) => MyPets(),
       '/welcome' : (context) => Welcome(),
       '/trova-animale' : (context) => FavoriteDogsRace(),

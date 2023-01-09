@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justpet/global/components/categoryItem.dart';
 import 'package:justpet/global/models/color.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:justpet/global/components/appbar.dart';
@@ -203,8 +204,15 @@ Widget containerWithoutAnimation(bool animation, BuildContext context){
 
 Widget backgroundScreen ({required VoidCallback function}){
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: lista
+          ),
+      ),
       Stack(
         alignment: Alignment.center,
         clipBehavior: Clip.none,
@@ -436,3 +444,19 @@ Widget productCard(MedicineHelp medicine, BuildContext context) {
   ,
   );
 }
+
+List<CategoryItem> lista = [
+  CategoryItem(
+    title: "Cane",
+    isActive: false,
+    press: () {
+
+    },
+  ),
+  CategoryItem(
+    title: "Gatto",
+    isActive: true,
+    press: () {
+    },
+  ),
+];

@@ -61,7 +61,7 @@ Future<DogRace> getRazzaFromFirestore(String email, String race) async{
     toFirestore: (DogRace razza, _) => razza.toFirestore(),
   );
   final docSnap = await ref.get();
-  final razza = docSnap.data(); // Convert to Animale object
+  final razza = docSnap.data(); // Convert to DogRace object
   if (razza != null) {
     return razza;
   } else {
@@ -125,4 +125,5 @@ Map<String, DogRace> allRaces = {
   "BOLOGNESE": DogRace(race: "Bolognese", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
   "BOSTON TERRIER": DogRace(race: "Boston Terrier", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
   "BOVARO DEL BERNESE": DogRace(race: "Bovaro del Bernese", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
+  "None": DogRace(race: "n", description: "n", pathImage: "n"),
 };
