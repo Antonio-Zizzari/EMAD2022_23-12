@@ -115,6 +115,7 @@ flutter:
     - assets/parrot.jpg
     - assets/user.png
     - assets/dizionario/
+    - assets/JustPet-races.json
 
 
 

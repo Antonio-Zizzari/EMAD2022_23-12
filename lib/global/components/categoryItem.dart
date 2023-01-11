@@ -4,14 +4,15 @@ import 'package:justpet/global/models/color.dart';
 
 class CategoryItem extends StatelessWidget {
   final String title;
-  final bool isActive;
+  bool isActive;
   final VoidCallback press;
-  const CategoryItem({
+  CategoryItem({
     Key? key,
     required this.title,
     this.isActive = false,
     required this.press,
   }) : super(key: key);
+
 
 @override
 Widget build(BuildContext context) {

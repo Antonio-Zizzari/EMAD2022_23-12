@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 
 class DogRace{
   final String race, description, pathImage;
@@ -79,6 +82,28 @@ Future<bool> removeRazzaFromFirestore(String email, String race) async{
   return t;
 }
 
+Future<Map<String,dynamic>> getAllRaces () async{
+  List<String> races_ids = List.filled(0, "", growable: true);
+  List<DogRace> races = List.filled(0, DogRace(
+      race: "Rottweiler",
+      description: descrizioneTest,
+      pathImage: "assets/images/dogRace1.jpg"
+  ), growable: true);
+    final String response = await rootBundle.loadString('assets/JustPet-races.json');
+    final data = await jsonDecode(response);
+    //print(data.runtimeType);
+    //print(data);
+    for (dynamic entry in data['intents']) {
+      races_ids.add(entry['name']);
+      races.add(DogRace(race: entry['name'],
+          description: descrizioneTest,
+          pathImage: "assets/images/dogRace1.jpg"));
+    }
+    print(races_ids);
+    print(races);
+    return Map.fromIterables(races_ids,races);
+}
+
 
 
 String descrizioneTest = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
@@ -106,6 +131,7 @@ List<DogRace> dogRaces = [
   ),
 ];
 
+/*
 Map<String, DogRace> allRaces = {
   "AKITA AMERICANO": DogRace(race: "Akita Americano", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
   "AKITA INU": DogRace(race: "Akita Inu", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
@@ -126,4 +152,4 @@ Map<String, DogRace> allRaces = {
   "BOSTON TERRIER": DogRace(race: "Boston Terrier", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
   "BOVARO DEL BERNESE": DogRace(race: "Bovaro del Bernese", description: "descrizioneTest", pathImage: "assets/images/dogRace1.jpg"),
   "None": DogRace(race: "n", description: "n", pathImage: "n"),
-};
+};*/

@@ -75,7 +75,14 @@ class _SelectAnimalState extends State<SelectAnimal> {
                   color: Color.fromRGBO(0,143,57, 1),
                   icon: Icon(Icons.add_circle_sharp, color: kPrimaryColor),
                   onPressed: () {
-                    Navigator.pop(context, animali[animaleScelto-1]);
+                    if(animali.length>0) {
+                      Navigator.pop(context, animali[animaleScelto - 1]);
+                    }
+                    else{
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Devi scegliere un animale", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                      ));
+                    }
                   },
                 ),
               ),

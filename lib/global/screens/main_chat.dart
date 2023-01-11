@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/models/luiss_class.dart';
 import 'package:justpet/customer/models/utils_functions.dart';
 import 'package:justpet/global/components/body_chat.dart';

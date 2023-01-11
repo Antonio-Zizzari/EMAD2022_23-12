@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/global/models/color.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/global/screens/login_page.dart';
@@ -177,6 +178,7 @@ Future signUp(BuildContext context, TextEditingController email, TextEditingCont
       email: email.text.trim(),
       nome: name.text.trim(),
       cognome: surname.text.trim(),
+      eventi: List.filled(0, evento)
     );
 
     setClienteToFirestore(cliente);

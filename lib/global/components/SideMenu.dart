@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/global/models/mainFunction_class.dart';
 import 'package:justpet/global/screens/login_page.dart';
@@ -11,24 +12,24 @@ import '../../customer/models/cliente.dart';
 
 class SideMenu extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser!;
-  dynamic readUsers() => FirebaseFirestore.instance
+  /*dynamic readUsers() => FirebaseFirestore.instance
       .collection('Cliente')
       .snapshots()
       .map((snapshot) =>
         snapshot.docs.map((doc) => Cliente.fromJson(doc.data())).toList());
 
   Future<String> utente() async{
-    final user = FirebaseFirestore.instance.collection("Cliente").doc("scarano@gmail.com");
+    final user = FirebaseFirestore.instance.collection("Cliente").doc("giovanniverdi@gmail.com");
     final result = await user.get();
     print(result.data()?['nome']);
     return result.data()!['nome'];
-  }
+  }*/
   
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: getClienteFromFirestore(user.email!),
-      initialData: Cliente(email:"Caricamento...", nome:"Caricamento...", cognome:"Caricamento..."),
+      initialData: Cliente(email:"Caricamento...", nome:"Caricamento...", cognome:"Caricamento...", eventi: List.filled(0, evento)),
       builder: (BuildContext context, AsyncSnapshot<Cliente> cliente){
         return Drawer(
           child: ListView(
@@ -54,7 +55,7 @@ class SideMenu extends StatelessWidget {
                 child: Text('Funzioni', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
               Column(
-                children: funzioniPrincipali.map((funzioni) =>
+                children: funzioniCliente.map((funzioni) =>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
                       child: Material(

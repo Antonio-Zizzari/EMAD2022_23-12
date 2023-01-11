@@ -28,8 +28,8 @@ class SearchIdealDog extends StatelessWidget {
       isOptional: false,
       answerFormat: const SingleChoiceAnswerFormat(
         textChoices: [
-          TextChoice(text: 'Casa con giardino', value: 'Casa con giardino'),
           TextChoice(text: 'Casa spaziosa', value: 'Casa spaziosa'),
+          TextChoice(text: 'Casa media', value: 'Casa media'),
           TextChoice(text: 'Casa piccola', value: 'Casa piccola'),
         ],
       ),
@@ -37,13 +37,13 @@ class SearchIdealDog extends StatelessWidget {
     QuestionStep(
       buttonText: "Successivo",
       title: 'Domanda #2',
-      text: 'Ok, ci siamo....ora, cosa vuoi che il tuo cane faccia con te?',
+      text: 'Ok, ci siamo....ora, quanto esercizio dovrà fare il tuo cane?',
       isOptional: false,
       answerFormat: SingleChoiceAnswerFormat(
         textChoices: [
-          TextChoice(text: 'Passegiate e giochi', value: 'Passegiate e giochi'),
-          TextChoice(text: 'Guardia alla casa', value: 'Guardia alla casa'),
           TextChoice(text: 'Frequenti sport con me', value: 'Frequenti sport con me'),
+          TextChoice(text: 'Cane che ama il gioco', value: 'Cane che ama il gioco'),
+          TextChoice(text: 'Poco bisogno di esercizio', value: 'Poco bisogno di esercizio'),
         ],
       ),
     ),
@@ -63,12 +63,12 @@ class SearchIdealDog extends StatelessWidget {
     QuestionStep(
       buttonText: "Successivo",
       title: 'Domanda #4',
-      text: 'Mhh...okay...ora mi interessa sapere, quanto tempo passerai con lui?',
+      text: 'Mhh...okay...ora mi interessa sapere, quanto tempo passerai a curarlo?',
       isOptional: false,
       answerFormat: SingleChoiceAnswerFormat(
         textChoices: [
           TextChoice(text: 'Sarà curato in tutto', value: 'Sarà curato in tutto'),
-          TextChoice(text: 'Ho tempo di stare con lui, ma non per le toelettature', value: 'Ho tempo di stare con lui, ma non per le toelettature'),
+          TextChoice(text: 'Facile da pulire', value: 'Facile da pulire'),
           TextChoice(text: 'Poche ore al giorno', value: 'Poche ore al giorno'),
         ],
       ),
@@ -76,13 +76,12 @@ class SearchIdealDog extends StatelessWidget {
     QuestionStep(
       buttonText: "Successivo",
       title: 'Domanda #5',
-      text: 'Altra domanda...hai già esperienza con i cani?',
+      text: 'Altra domanda...quanto frequentemente deve abbaiare il tuo cane?',
       isOptional: false,
       answerFormat: SingleChoiceAnswerFormat(
         textChoices: [
-          TextChoice(text: 'Si, ho già avuto cani ma non ne ho più nessuno', value: 'Si, ho già avuto cani ma non ne ho più nessuno'),
-          TextChoice(text: 'Si, ne ho già in casa e ne voglio un altro', value: 'Si, ne ho già in casa e ne voglio un altro'),
-          TextChoice(text: 'No, è la mia prima esperienza con un cane', value: 'No, è la mia prima esperienza con un cane'),
+          TextChoice(text: 'Abbaia poco e solo quando serve', value: 'Abbaia poco e solo quando serve'),
+          TextChoice(text: 'Abbaia per fare da guardia', value: 'Abbaia per fare da guardia'),
         ],
       ),
     ),
@@ -205,10 +204,13 @@ class SearchIdealDog extends StatelessWidget {
           } else {
             response=Return_Sorted_LUIS_List(await LuisQuery(query));
           }
+          print(response.razza);
+          print(response.score);
           List<DogRace> razza = [];
-          for (int i=0; i<response.razza.length && i<=5; i++){
+          for (int i=0; i<response.razza.length && i<5; i++){
             if(response.score[i]>0.1){
-              razza.add(allRaces[response.razza[i]]!);
+              await getAllRaces().then((value) => razza.add(value[response.razza[i]]));
+              //razza.add(getAllRaces()[response.razza[i]]!);
             }
           }
           //Evaluate the results

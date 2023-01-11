@@ -450,13 +450,16 @@ List<CategoryItem> lista = [
     title: "Cane",
     isActive: false,
     press: () {
-
+      lista[0].isActive=true;
+      lista[1].isActive=false;
     },
   ),
   CategoryItem(
     title: "Gatto",
     isActive: true,
     press: () {
+      lista[0].isActive=false;
+      lista[1].isActive=true;
     },
   ),
 ];

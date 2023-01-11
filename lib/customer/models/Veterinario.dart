@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/veterinarian/screens/veterinarian_appointment.dart';
+import 'package:justpet/veterinarian/models/event_class.dart';
 
-class Veterinario {
+class Veterinario{
   String email;
   String immagine;
   String immagine_profilo;
@@ -11,8 +13,9 @@ class Veterinario {
   String descrizione;
   List<String> turni;
   List<String> prenotazioni;
+  List<dynamic> eventi;
 
-  Veterinario ({required this.email, required this.immagine, required this.immagine_profilo, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni, required this.prenotazioni});
+  Veterinario ({required this.email, required this.immagine, required this.immagine_profilo, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni, required this.prenotazioni, required this.eventi});
 
   factory Veterinario.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -29,6 +32,7 @@ class Veterinario {
       descrizione: data?['descrizione'],
       turni: List.from(data?['turni']),
       prenotazioni: List.from(data?['prenotazioni']),
+      eventi: data?['eventi'].map((e) => e.toFirestore()).toList(),  //eventi.map((e) => e.toFirestore()).toList()
     );
   }
 
@@ -43,17 +47,18 @@ class Veterinario {
       "descrizione": descrizione,
       "turni": turni,
       "prenotazioni": prenotazioni,
+      "eventi": eventi.map((e) => e.toFirestore()).toList(),
     };
   }
 }
 
 void setVeterinarioToFirestore(Veterinario veterinario) async{
-  print("Imposto veterinario");
+  print("Imposto veterinario "+veterinario.email);
   final docRef = FirebaseFirestore.instance
       .collection("Veterinario")
       .withConverter(
     fromFirestore: Veterinario.fromFirestore,
-    toFirestore: (Veterinario veterinario, options) => veterinario.toFirestore(),
+    toFirestore: (Veterinario vet, options) => vet.toFirestore(),
   )
       .doc(veterinario.email);
   await docRef.set(veterinario);
@@ -76,12 +81,12 @@ washingtonRef.update({"capital": true}).then(
       .doc(veterinario.email);
   await docRef.update({"prenotazioni": prenotazioni}).then(
           (value) => print("Prenotazione aggiunta con successo"),
-      onError: (e) => print("Errore nell'aggiornamento del documento $e"));;
+      onError: (e) => print("Errore nell'aggiornamento del documento $e"));
 }
 
 Future<List<Veterinario>> getAllVeterinariFromFirestore() async{
   print("Eseguo");
-  List<Veterinario> lista = List.filled(0, Veterinario(email: 'c',immagine: 'c', immagine_profilo: 'c', nome: 'c', indirizzo: 'c', votazione: 'c', descrizione: 'c', turni: [''], prenotazioni: ["5:00"]), growable: true);
+  List<Veterinario> lista = List.filled(0, Veterinario(email: 'c',immagine: 'c', immagine_profilo: 'c', nome: 'c', indirizzo: 'c', votazione: 'c', descrizione: 'c', turni: [''], prenotazioni: ["5:00"], eventi: [evento]), growable: true);
   await FirebaseFirestore.instance.collection("Veterinario").withConverter(
     fromFirestore: Veterinario.fromFirestore,
     toFirestore: (Veterinario veterinario, _) => veterinario.toFirestore(),
@@ -94,7 +99,8 @@ Future<List<Veterinario>> getAllVeterinariFromFirestore() async{
   return lista;
 }
 
-Future<Veterinario> getVetrinarioFromFirestore(String email) async{
+Future<Veterinario> getVeterinarioFromFirestore(String email) async{
+  print("cerco vet "+email);
   final ref = FirebaseFirestore.instance.collection("Veterinario").doc(email).withConverter(
     fromFirestore: Veterinario.fromFirestore,
     toFirestore: (Veterinario veterinario, _) => veterinario.toFirestore(),
@@ -114,23 +120,39 @@ Future<Veterinario> getVetrinarioFromFirestore(String email) async{
       descrizione: "errore",
       turni:List.filled(0, "errore"),
       prenotazioni: List.filled(0, "errore"),
+      eventi: List.filled(0, evento),
     );
   }
 }
 
+Evento evento = Evento(
+    nome_cliente: "Errore",
+    nome_dottore: "Errore",
+    email_cliente: "Errore",
+    email_dottore: "Errore",
+    razza_animale: "Errore",
+    anno: "Errore",
+    mese: "Errore",
+    giorno: "Errore",
+    ora: "Errore",
+    minuto: "Errore",
+    tipoOperazione: "visita",);
+
 final List<Veterinario> veterinari = [
   Veterinario(
-    email:"mariorossi@gmail.com",
-      immagine: "veterinario1.jpg",
-      immagine_profilo: "user_2.png",
-      nome: "Dottor Mario Rossi",
-      indirizzo: "Via Unità Italiana, 12",
-      votazione: "4,5",
-      descrizione: 'Il dottor Rossi vanta più di 10 anni di esperienza nel settore, grazie alla sua competenza acquisita negli anni e coltivata con il lavoro. Ha raggiunto la vetta dopo aver operato più di 75 animali, tutti con successo',
-      turni: turni,
-      prenotazioni: ["05:00"]),
+    email:"dottmariorossi@gmail.com",
+    immagine: "veterinario1.jpg",
+    immagine_profilo: "user_2.png",
+    nome: "Dottor Mario Rossi",
+    indirizzo: "Via Unità Italiana, 12",
+    votazione: "4,5",
+    descrizione: 'Il dottor Rossi vanta più di 10 anni di esperienza nel settore, grazie alla sua competenza acquisita negli anni e coltivata con il lavoro. Ha raggiunto la vetta dopo aver operato più di 75 animali, tutti con successo',
+    turni: turni,
+    prenotazioni: ["05:00"],
+    eventi: List.filled(0, evento),
+  ),
   Veterinario(
-      email:"alicegialli@gmail.com",
+      email:"dottalicegialli@gmail.com",
       immagine: "veterinario2.jpg",
       immagine_profilo: "user_5.png",
       nome: "Dottoressa Alice Gialli",
@@ -138,9 +160,10 @@ final List<Veterinario> veterinari = [
       votazione: "4,8",
       descrizione: 'La dottoressa Gialli vanta più di 10 anni di esperienza nel settore, grazie alla sua competenza acquisita negli anni e coltivata con il lavoro. Ha raggiunto la vetta dopo aver operato più di 75 animali, tutti con successo',
       turni: turni,
-      prenotazioni: ["05:00"]),
+      prenotazioni: ["05:00"],
+    eventi: List.filled(0, evento)),
   Veterinario(
-      email:"giovanniverdi@gmail.com",
+      email:"dottgiovanniverdi@gmail.com",
       immagine: "veterinario3.jpg",
       immagine_profilo: "user_3.png",
       nome: "Dottor Giovanni Verdi",
@@ -148,5 +171,6 @@ final List<Veterinario> veterinari = [
       votazione: "4,2",
       descrizione: 'Il dottor Verdi vanta più di 10 anni di esperienza nel settore, grazie alla sua competenza acquisita negli anni e coltivata con il lavoro. Ha raggiunto la vetta dopo aver operato più di 75 animali, tutti con successo',
       turni: turni,
-      prenotazioni: ["05:00"]),
+      prenotazioni: ["05:00"],
+    eventi: List.filled(0, evento)),
 ];

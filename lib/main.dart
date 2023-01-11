@@ -25,7 +25,7 @@ Future main() async{
   String initialRoute = "/welcome";
 
   if(FirebaseAuth.instance.currentUser != null){
-    initialRoute = '/lista';
+    initialRoute = '/chat';
   }
 
   runApp(MaterialApp(
@@ -33,7 +33,6 @@ Future main() async{
     initialRoute: initialRoute,
     routes: {
       '/lista': (context) => ListaVeterinari(),
-      '/prenotazioni': (context) => Prenotazione(veterinario: Veterinario(email: '',immagine: '', immagine_profilo: '', nome: '', indirizzo: '', votazione: '', descrizione: '', turni: [''], prenotazioni: ["5:00"])),
       '/videocorsi': (context) => VideoCorsi(),
       '/petshop': (context) => PetShop(),
       '/chat': (context) => Chat(),

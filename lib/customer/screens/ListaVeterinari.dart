@@ -20,7 +20,7 @@ class _ListaVeterinariState extends State<ListaVeterinari> {
   @override
   Widget build(BuildContext context) {
 
-    Veterinario initialVet = Veterinario(email: 'c',immagine: 'c', immagine_profilo: 'c', nome: 'c', indirizzo: 'c', votazione: 'c', descrizione: 'c', turni: [''], prenotazioni: ["5:00"]);
+    Veterinario initialVet = Veterinario(email: 'c',immagine: 'c', immagine_profilo: 'c', nome: 'c', indirizzo: 'c', votazione: 'c', descrizione: 'c', turni: [''], prenotazioni: ["5:00"], eventi: [evento]);
     List<Veterinario> initialData = List.filled(0, initialVet, growable: true);
 
     return FutureBuilder(

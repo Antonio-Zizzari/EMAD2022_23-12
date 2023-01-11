@@ -26,16 +26,25 @@ class FunzioniSecondarie {
   });
 }
 
-List<FunzioniMain> funzioniPrincipali = [
+List<FunzioniMain> funzioniCliente = [
   FunzioniMain(titolo: 'Scheda animali', icona: Icons.pets, nextRoute: '/scheda_animali'),
   FunzioniMain(titolo: 'Cerca veterinari', icona: Icons.search_sharp, nextRoute: '/lista'),
   FunzioniMain(titolo: 'Video corsi', icona: Icons.video_collection, nextRoute: '/videocorsi'),
   FunzioniMain(titolo: 'Acquista prodotti', icona: Icons.shopping_bag, nextRoute: '/petshop'),
   FunzioniMain(titolo: 'Comunicazioni', icona: Icons.chat, nextRoute: '/chat'),
-  FunzioniMain(titolo: 'Turni Lavoro', icona: Icons.work, nextRoute: '/turni_lavoro'),
-  FunzioniMain(titolo: 'Dizionario', icona: Icons.medical_information, nextRoute: '/dizionario'),
   FunzioniMain(titolo: 'Trova il tuo cane ideale', icona: Icons.search_outlined, nextRoute: '/trova-animale'),
   FunzioniMain(titolo: 'Trova medicine', icona: Icons.content_paste_search, nextRoute: '/body_medicines')
+];
+
+List<FunzioniMain> funzioniVeterinario = [
+  FunzioniMain(titolo: 'Comunicazioni', icona: Icons.chat, nextRoute: '/chat'),
+  FunzioniMain(titolo: 'Turni Lavoro', icona: Icons.work, nextRoute: '/turni_lavoro'),
+  FunzioniMain(titolo: 'Dizionario', icona: Icons.medical_information, nextRoute: '/dizionario'),
+];
+
+List<FunzioniMain> funzioniPetShop = [
+  FunzioniMain(titolo: 'Acquista prodotti', icona: Icons.shopping_bag, nextRoute: '/petshop'),
+  FunzioniMain(titolo: 'Le mie prenotazioni', icona: Icons.work, nextRoute: '/petshop'),
 ];
 
 /*List<FunzioniSecondarie> funzioniSecondarie = [

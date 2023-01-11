@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
+import 'package:justpet/customer/models/cliente.dart';
+import 'package:justpet/veterinarian/models/event_class.dart';
 import 'package:justpet/customer/screens/select_animal.dart';
 import 'package:justpet/global/models/color.dart';
 import 'package:justpet/global/components/appbar.dart';
@@ -19,10 +22,13 @@ class VeterinarianAppointment extends StatefulWidget {
 
 class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final user = FirebaseAuth.instance.currentUser!;
+  late Cliente cliente;
   final CalendarWeekController _controller = CalendarWeekController();
   final Veterinario veterinario;
   Pets? pet = null;
   String turnoSelezionato="";
+  DateTime giornoSelezionato=DateTime.now();
   var selezionato=List.generate(turni.length, (index) => false);
   var date = DateTime.now().year.toString()+DateTime.now().month.toString()+DateTime.now().day.toString()+"05:00";
   int precedente=0;
@@ -33,6 +39,7 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
   @override
   Widget build(BuildContext context) {
     var prenotato=veterinario.prenotazioni;
+    getClienteFromFirestore(user.email!).then((value) => cliente=value);
     initializeDateFormatting("it_IT", null).then((_) {});
     return Scaffold(
       key: _scaffoldKey,
@@ -62,6 +69,7 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                     // Do something
                     setState(() {
                       date=datetime.year.toString()+datetime.month.toString()+datetime.day.toString()+"05:00";
+                      giornoSelezionato = datetime;
                       selezionato=List.filled(turni.length, false);
                       if (datetime.day==DateTime.now().day){
                         oggi_selezionato=true;
@@ -128,15 +136,16 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                           funzione1(){
                             setState(() {
                               date=date.substring(0, date.length-5) + veterinario.turni[i];
-                              print(date.substring(date.length-5));
-                              print(veterinario.prenotazioni);
+                              giornoSelezionato=DateTime.utc(giornoSelezionato.year, giornoSelezionato.month, giornoSelezionato.day, int.parse(veterinario.turni[i].substring(0,2)), int.parse(veterinario.turni[i].substring(3,5)));
+                              // print(date.substring(date.length-5));
+                              // print(veterinario.prenotazioni);
                               turnoSelezionato=veterinario.turni[i];
                               if (precedente!=i) selezionato[precedente]=false;
                               if(selezionato[i] == false){
-                                print(selezionato[i].toString()+ " è diventato true e la i è "+i.toString());
+                                // print(selezionato[i].toString()+ " è diventato true e la i è "+i.toString());
                                 selezionato[i]=true;
                               }else{
-                                print(selezionato[i].toString()+ " è diventato false e la i è "+i.toString());
+                                // print(selezionato[i].toString()+ " è diventato false e la i è "+i.toString());
                                 selezionato[i]=false;
                               }
                               precedente=i;
@@ -239,7 +248,21 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                   ElevatedButton(
                     onPressed: (){
                       if (pet!= null) {
+                        Evento evento = Evento(
+                          nome_cliente: cliente.nome+" "+cliente.cognome,
+                          nome_dottore: veterinario.nome,
+                          email_cliente: cliente.email,
+                          email_dottore: veterinario.email,
+                          razza_animale: pet!.tipoAnimale,
+                          anno: giornoSelezionato.year.toString(),
+                          mese: giornoSelezionato.month.toString(),
+                          giorno: giornoSelezionato.day.toString(),
+                          ora: giornoSelezionato.hour.toString(),
+                          minuto: giornoSelezionato.minute.toString().length==1 ? "0"+giornoSelezionato.minute.toString() : giornoSelezionato.minute.toString(),
+                          tipoOperazione: "visita",
+                        );
                         updateVeterinario(veterinario, date);
+                        setEventoToFirestore(evento);
                         Navigator.pop(context);
                       }
                       else{

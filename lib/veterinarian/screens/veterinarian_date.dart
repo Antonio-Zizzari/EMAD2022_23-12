@@ -149,7 +149,7 @@ class VeterinarianDate extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                               child: Text(
-                                visita.tipoOperazione.name,
+                                visita.tipoOperazione,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   fontSize: 17
