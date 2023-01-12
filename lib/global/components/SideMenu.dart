@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/global/models/mainFunction_class.dart';
+import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/global/screens/login_page.dart';
 import 'dart:convert';
 
 import '../../customer/models/cliente.dart';
 
 
-class SideMenu extends StatelessWidget {
+class SideMenu extends StatefulWidget {
+  @override
+  State<SideMenu> createState() => _SideMenuState();
+}
+
+class _SideMenuState extends State<SideMenu> {
   final user = FirebaseAuth.instance.currentUser!;
+
   /*dynamic readUsers() => FirebaseFirestore.instance
       .collection('Cliente')
       .snapshots()
@@ -24,13 +31,12 @@ class SideMenu extends StatelessWidget {
     print(result.data()?['nome']);
     return result.data()!['nome'];
   }*/
-  
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getClienteFromFirestore(user.email!),
+      future: getUtenteFromFirestore(user.email!),
       initialData: Cliente(email:"Caricamento...", nome:"Caricamento...", cognome:"Caricamento...", eventi: List.filled(0, evento)),
-      builder: (BuildContext context, AsyncSnapshot<Cliente> cliente){
+      builder: (BuildContext context, AsyncSnapshot<dynamic> utente){
         return Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -41,7 +47,7 @@ class SideMenu extends StatelessWidget {
                   children: [
                     CircleAvatar(foregroundImage: AssetImage('assets/images/user.png',), radius: 50,),
                     Text(
-                      cliente.data!.nome,
+                      utente.data==null ? "Caricamento..." : utente.data!.nome,
                       style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
                   ],
@@ -55,7 +61,7 @@ class SideMenu extends StatelessWidget {
                 child: Text('Funzioni', style: TextStyle(fontWeight: FontWeight.bold),),
               ),
               Column(
-                children: funzioniCliente.map((funzioni) =>
+                children: utente.data.runtimeType.toString().contains('Cliente') ? funzioniCliente.map((funzioni) =>
                     Padding(
                       padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
                       child: Material(
@@ -77,7 +83,30 @@ class SideMenu extends StatelessWidget {
                       ),
                     )
 
-                ).toList(),
+                ).toList() :
+                funzioniVeterinario.map((funzioni) =>
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
+                      child: Material(
+                        elevation: 5,
+                        color: funzioni.colore,
+                        child: MaterialButton(
+                          onPressed: (){
+                            Navigator.pushReplacementNamed(context, funzioni.nextRoute);
+                          },
+                          child: Row(
+                            children: [
+                              Icon(funzioni.icona),
+                              SizedBox(width: 5,),
+                              Text(funzioni.titolo),
+                              Spacer(),
+                              Icon(Icons.navigate_next, size: 30,),
+                            ],
+                          ),),
+                      ),
+                    )
+
+                ).toList()
               ),
               /*Padding(
               padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),

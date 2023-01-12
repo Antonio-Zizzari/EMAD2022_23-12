@@ -7,6 +7,7 @@ import 'package:justpet/global/components/SideMenu.dart';
 import 'package:card_loading/card_loading.dart';
 import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/global/models/medicine_help_class.dart';
+import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 
 class BodyMedicine extends StatefulWidget{
@@ -203,46 +204,79 @@ Widget containerWithoutAnimation(bool animation, BuildContext context){
 }
 
 Widget backgroundScreen ({required VoidCallback function}){
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: lista
-          ),
-      ),
-      Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Image.asset(
-              "assets/images/dog_body.png",
-              fit: BoxFit.cover,
-              scale: 0.5,
+  return DefaultTabController(
+    length: 2,
+    child: Column(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 1,
+          child: TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.black26,
+            indicator: MaterialIndicator(
+              horizontalPadding: 30,
+              topLeftRadius: 20,
+              topRightRadius: 20,
+              color: Colors.orangeAccent,
+              paintingStyle: PaintingStyle.fill,
             ),
+            tabs: [
+              Tab(text: "Cani"),
+              Tab(text: "Gatti"),
+            ],
           ),
-          bodyPartButton(icon: Icons.headphones, text: 'Comportamento', top: 10, left: 60, color: Colors.red[700], function: function),
-          bodyPartButton(icon: Icons.remove_red_eye, text: 'Oculistica', top: 50, left: 60, color: Colors.blue[800], function: function),
-          bodyPartButton(icon: Icons.settings_bluetooth_outlined, text: 'Odontostomatologia', top: 90, left: 20, color: Colors.pink[700], function: function),
-          bodyPartButton(icon: Icons.account_tree, text: 'Algologia', top: 120, right: 100, color: Colors.orange[700], function: function),
-          bodyPartButton(icon: Icons.water_drop, text: 'Dermatologia', top: 150, left: 40, color: Colors.blueAccent[700], function: function),
-          bodyPartButton(icon: Icons.balance, text: 'Nefrologia', bottom: 120, right: 60, color: Colors.yellow, function: function),
-          bodyPartButton(icon: Icons.confirmation_num, text: 'Gastroenterologia', color: Colors.red[700], function: function),
-          bodyPartButton(icon: Icons.label_important, text: 'Ortopedia', bottom: 30, right: 30, color: Colors.green[700], function: function),
-          bodyPartButton(icon: Icons.access_alarms_rounded, text: 'Urologia', bottom: 60, right: 80, color: Colors.black54, function: function),
-          /*Positioned(
-                  top: 10,
-                  right: 10,
-                  child: TextButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.headphones),
-                    label: Text("Comportamento"),
+        ),
+        Expanded(
+          flex: 14,
+          child: TabBarView(
+            children: [
+              stack(function),
+              stack(function)
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 8,
+          child:SizedBox()
+        ),
+      ],
+    ),
+  );
+}
+
+Widget stack(VoidCallback function){
+  return Stack(
+    alignment: Alignment.center,
+    clipBehavior: Clip.none,
+    children: [
+      Container(
+        alignment: Alignment.center,
+        child: Image.asset(
+          "assets/images/dog_body.png",
+          fit: BoxFit.cover,
+          scale: 0.5,
+        ),
+      ),
+      bodyPartButton(icon: Icons.headphones, text: 'Comportamento', top: 10, left: 60, color: Colors.red[700], function: function),
+      bodyPartButton(icon: Icons.remove_red_eye, text: 'Oculistica', top: 50, left: 60, color: Colors.blue[800], function: function),
+      bodyPartButton(icon: Icons.settings_bluetooth_outlined, text: 'Odontostomatologia', top: 90, left: 20, color: Colors.pink[700], function: function),
+      bodyPartButton(icon: Icons.account_tree, text: 'Algologia', top: 120, right: 100, color: Colors.orange[700], function: function),
+      bodyPartButton(icon: Icons.water_drop, text: 'Dermatologia', top: 150, left: 40, color: Colors.blueAccent[700], function: function),
+      bodyPartButton(icon: Icons.balance, text: 'Nefrologia', bottom: 120, right: 60, color: Colors.yellow, function: function),
+      bodyPartButton(icon: Icons.confirmation_num, text: 'Gastroenterologia', color: Colors.red[700], function: function),
+      bodyPartButton(icon: Icons.label_important, text: 'Ortopedia', bottom: 30, right: 30, color: Colors.green[700], function: function),
+      bodyPartButton(icon: Icons.access_alarms_rounded, text: 'Urologia', bottom: 60, right: 80, color: Colors.black54, function: function),
+      /*Positioned(
+                 top: 10,
+                 right: 10,
+                 child: TextButton.icon(
+                   onPressed: () {},
+                   icon: Icon(Icons.headphones),
+                   label: Text("Comportamento"),
                     style: TextButton.styleFrom(
-                      foregroundColor: Colors.red[200]
+                     foregroundColor: Colors.red[200]
                     ),
                   )),
               Positioned(
@@ -252,11 +286,12 @@ Widget backgroundScreen ({required VoidCallback function}){
                     child: Text("Button 2"),
                   ))*/
         ],
-      ),
-    ],
-  );
+      );
 }
 
+/*
+
+* */
 
 
 Widget bodyPartButton({required IconData icon,required String text, double? top, double? right, double? bottom, double? left, Color? color, required VoidCallback function}){

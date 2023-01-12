@@ -85,7 +85,7 @@ washingtonRef.update({"capital": true}).then(
 }
 
 Future<List<Veterinario>> getAllVeterinariFromFirestore() async{
-  print("Eseguo");
+
   List<Veterinario> lista = List.filled(0, Veterinario(email: 'c',immagine: 'c', immagine_profilo: 'c', nome: 'c', indirizzo: 'c', votazione: 'c', descrizione: 'c', turni: [''], prenotazioni: ["5:00"], eventi: [evento]), growable: true);
   await FirebaseFirestore.instance.collection("Veterinario").withConverter(
     fromFirestore: Veterinario.fromFirestore,
@@ -95,20 +95,18 @@ Future<List<Veterinario>> getAllVeterinariFromFirestore() async{
           res.docs.forEach((element) {lista.add(element.data() as Veterinario);})
         },
         onError: (e) => print("Impossibile ottenere i veterinari: $e"),);
-  print(lista);
   return lista;
 }
 
 Future<Veterinario> getVeterinarioFromFirestore(String email) async{
-  print("cerco vet "+email);
-  final ref = FirebaseFirestore.instance.collection("Veterinario").doc(email).withConverter(
+
+  late Veterinario vet;
+  FirebaseFirestore.instance.collection("Veterinario").doc(email).withConverter(
     fromFirestore: Veterinario.fromFirestore,
     toFirestore: (Veterinario veterinario, _) => veterinario.toFirestore(),
-  );
-  final docSnap = await ref.get();
-  final veterinario = docSnap.data(); // Convert to Veterinario object
-  if (veterinario != null) {
-    return veterinario;
+  ).get().then((value) => vet = value.data()!);
+  if (vet != null) {
+    return vet;
   } else {
     return Veterinario(
       email: "errore",

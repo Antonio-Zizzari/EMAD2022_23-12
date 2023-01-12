@@ -53,6 +53,50 @@ class Cliente{
   );
 }
 
+
+Veterinario veterinario_filler = Veterinario(
+  email: "errore",
+  immagine: "errore",
+  immagine_profilo: "errore",
+  nome: "errore",
+  indirizzo: "errore",
+  votazione: "errore",
+  descrizione: "errore",
+  turni:List.filled(0, "errore"),
+  prenotazioni: List.filled(0, "errore"),
+  eventi: List.filled(0, evento),
+);
+
+
+Future<dynamic> getUtenteFromFirestore(String email) async{
+
+  late Cliente cliente;
+  late Veterinario vet;
+
+  cliente = await getClienteFromFirestore(email);
+
+  if(cliente!=null){
+    print("Ritorno cliente");
+    return cliente;
+  }
+  else{
+    print("Provo con veterinario...");
+    vet = await getVeterinarioFromFirestore(email);
+    if(vet!=null){
+      print("Ritorno veterinario");
+      return vet;
+    }
+    else{
+      print("Ritorno filler");
+      return veterinario_filler;
+    }
+  }
+}
+
+
+
+
+
 Future<Cliente> getClienteFromFirestore(String email) async{
   late Cliente cliente;
   final ref = FirebaseFirestore.instance.collection("Cliente").doc(email).withConverter(

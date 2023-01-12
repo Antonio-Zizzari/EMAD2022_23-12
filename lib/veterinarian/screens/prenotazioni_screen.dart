@@ -40,10 +40,6 @@ class _TurniLavoroState extends State<TurniLavoro> {
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> eventi){
         _selectedDay = _focusedDay;
         ValueNotifier<List<dynamic>> _selectedEvents = ValueNotifier(eventi.data!.where((element) => element.anno+element.mese+element.giorno == _selectedDay.year.toString()+_selectedDay.month.toString()+_selectedDay.day.toString()).toList());
-        print("++++++++++++");
-        print(kEvents[DateTime.now()]);
-        print(kEvents[DateTime.utc(2022, 1, 13)]);
-        print("++++++++++++");
       return Scaffold(
         key: _scaffoldKey,
         appBar: MainAppBar(_scaffoldKey),
