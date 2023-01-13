@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:justpet/global/models/utenteClass.dart';
+// import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/veterinarian/screens/veterinarian_appointment.dart';
 import 'package:justpet/veterinarian/models/event_class.dart';
 

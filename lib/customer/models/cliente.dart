@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/models/pet_class.dart';
-import 'package:justpet/global/models/utenteClass.dart';
+// import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/veterinarian/models/event_class.dart';
 
 

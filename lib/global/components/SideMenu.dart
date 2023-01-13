@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/global/models/mainFunction_class.dart';
-import 'package:justpet/global/models/utenteClass.dart';
+// import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/global/screens/login_page.dart';
 import 'dart:convert';
 
