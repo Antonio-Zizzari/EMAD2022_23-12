@@ -232,8 +232,8 @@ Widget backgroundScreen ({required VoidCallback function}){
           flex: 14,
           child: TabBarView(
             children: [
-              stack(function),
-              stack(function)
+              dogStack(function),
+              catStack(function)
             ],
           ),
         ),
@@ -246,10 +246,10 @@ Widget backgroundScreen ({required VoidCallback function}){
   );
 }
 
-Widget stack(VoidCallback function){
-  return Stack(
-    alignment: Alignment.center,
-    clipBehavior: Clip.none,
+Widget dogStack(VoidCallback function){
+    return Stack(
+      alignment: Alignment.center,
+      clipBehavior: Clip.none,
     children: [
       Container(
         alignment: Alignment.center,
@@ -287,6 +287,49 @@ Widget stack(VoidCallback function){
                   ))*/
         ],
       );
+}
+
+Widget catStack(VoidCallback function){
+  return Stack(
+    alignment: Alignment.center,
+    clipBehavior: Clip.none,
+    children: [
+      Container(
+        alignment: Alignment.center,
+        child: Image.asset(
+          "assets/images/cat_body.png",
+          fit: BoxFit.cover,
+          scale: 0.5,
+        ),
+      ),
+      bodyPartButton(icon: Icons.headphones, text: 'Comportamento', top: 40, right: 100, color: Colors.red[700], function: function),
+      bodyPartButton(icon: Icons.remove_red_eye, text: 'Oculistica', top: 50, left: 60, color: Colors.blue[800], function: function),
+      bodyPartButton(icon: Icons.settings_bluetooth_outlined, text: 'Odontostomatologia', top: 90, left: 20, color: Colors.pink[700], function: function),
+      bodyPartButton(icon: Icons.account_tree, text: 'Algologia', top: 120, right: 100, color: Colors.orange[700], function: function),
+      bodyPartButton(icon: Icons.water_drop, text: 'Dermatologia', top: 150, left: 40, color: Colors.blueAccent[700], function: function),
+      bodyPartButton(icon: Icons.balance, text: 'Nefrologia', bottom: 120, right: 60, color: Colors.yellow, function: function),
+      bodyPartButton(icon: Icons.confirmation_num, text: 'Gastroenterologia', color: Colors.red[700], function: function),
+      bodyPartButton(icon: Icons.label_important, text: 'Ortopedia', bottom: 30, right: 30, color: Colors.green[700], function: function),
+      bodyPartButton(icon: Icons.access_alarms_rounded, text: 'Urologia', bottom: 60, right: 80, color: Colors.black54, function: function),
+      /*Positioned(
+                 top: 10,
+                 right: 10,
+                 child: TextButton.icon(
+                   onPressed: () {},
+                   icon: Icon(Icons.headphones),
+                   label: Text("Comportamento"),
+                    style: TextButton.styleFrom(
+                     foregroundColor: Colors.red[200]
+                    ),
+                  )),
+              Positioned(
+                  bottom: 10,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Button 2"),
+                  ))*/
+    ],
+  );
 }
 
 /*

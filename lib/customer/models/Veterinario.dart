@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:justpet/customer/models/cliente.dart';
+import 'package:justpet/global/models/utenteClass.dart';
 // import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/veterinarian/screens/veterinarian_appointment.dart';
 import 'package:justpet/veterinarian/models/event_class.dart';
 
-class Veterinario{
+class Veterinario extends Utente{
   String email;
   String immagine;
   String immagine_profilo;
@@ -15,7 +17,7 @@ class Veterinario{
   List<String> prenotazioni;
   List<dynamic> eventi;
 
-  Veterinario ({required this.email, required this.immagine, required this.immagine_profilo, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni, required this.prenotazioni, required this.eventi});
+  Veterinario ({required this.email, required this.immagine, required this.immagine_profilo, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni, required this.prenotazioni, required this.eventi}) : super(email: email);
 
   factory Veterinario.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -100,26 +102,17 @@ Future<List<Veterinario>> getAllVeterinariFromFirestore() async{
 
 Future<Veterinario> getVeterinarioFromFirestore(String email) async{
 
-  late Veterinario vet;
-  FirebaseFirestore.instance.collection("Veterinario").doc(email).withConverter(
+  late Veterinario? vet;
+  final ref = FirebaseFirestore.instance.collection("Veterinario").doc(email).withConverter(
     fromFirestore: Veterinario.fromFirestore,
     toFirestore: (Veterinario veterinario, _) => veterinario.toFirestore(),
-  ).get().then((value) => vet = value.data()!);
+  );
+  await ref.get().then((value) => {vet=value.data()});
+  //final cliente = docSnap.data(); // Convert to Cliente object
   if (vet != null) {
-    return vet;
+    return vet!;
   } else {
-    return Veterinario(
-      email: "errore",
-      immagine: "errore",
-      immagine_profilo: "errore",
-      nome: "errore",
-      indirizzo: "errore",
-      votazione: "errore",
-      descrizione: "errore",
-      turni:List.filled(0, "errore"),
-      prenotazioni: List.filled(0, "errore"),
-      eventi: List.filled(0, evento),
-    );
+    return veterinario_filler;
   }
 }
 

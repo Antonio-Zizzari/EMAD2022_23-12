@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/global/models/mainFunction_class.dart';
+import 'package:justpet/global/models/utenteClass.dart';
 // import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/global/screens/login_page.dart';
 import 'dart:convert';
@@ -34,8 +35,8 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getUtenteFromFirestore(user.email!),
-      initialData: Cliente(email:"Caricamento...", nome:"Caricamento...", cognome:"Caricamento...", eventi: List.filled(0, evento)),
+      future: getClienteOrVeterinarioFromFirestore(user.email!),
+      initialData: Utente(email:"Caricamento...",),
       builder: (BuildContext context, AsyncSnapshot<dynamic> utente){
         return Drawer(
           child: ListView(
@@ -47,7 +48,7 @@ class _SideMenuState extends State<SideMenu> {
                   children: [
                     CircleAvatar(foregroundImage: AssetImage('assets/images/user.png',), radius: 50,),
                     Text(
-                      utente.data==null ? "Caricamento..." : utente.data!.nome,
+                      utente.data.runtimeType==Utente ? "Caricamento..." : utente.data!.nome,
                       style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
                   ],
@@ -62,51 +63,18 @@ class _SideMenuState extends State<SideMenu> {
               ),
               Column(
                 children: utente.data.runtimeType.toString().contains('Cliente') ? funzioniCliente.map((funzioni) =>
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
-                      child: Material(
-                        elevation: 5,
-                        color: funzioni.colore,
-                        child: MaterialButton(
-                          onPressed: (){
-                            Navigator.pushReplacementNamed(context, funzioni.nextRoute);
-                          },
-                          child: Row(
-                            children: [
-                              Icon(funzioni.icona),
-                              SizedBox(width: 5,),
-                              Text(funzioni.titolo),
-                              Spacer(),
-                              Icon(Icons.navigate_next, size: 30,),
-                            ],
-                          ),),
-                      ),
-                    )
-
-                ).toList() :
-                funzioniVeterinario.map((funzioni) =>
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
-                      child: Material(
-                        elevation: 5,
-                        color: funzioni.colore,
-                        child: MaterialButton(
-                          onPressed: (){
-                            Navigator.pushReplacementNamed(context, funzioni.nextRoute);
-                          },
-                          child: Row(
-                            children: [
-                              Icon(funzioni.icona),
-                              SizedBox(width: 5,),
-                              Text(funzioni.titolo),
-                              Spacer(),
-                              Icon(Icons.navigate_next, size: 30,),
-                            ],
-                          ),),
-                      ),
-                    )
-
+                  menuItem(context, funzioni.colore, funzioni.titolo, funzioni.nextRoute, funzioni.icona)
                 ).toList()
+                    :
+                    utente.data.runtimeType.toString().contains('Veterinario') ? funzioniVeterinario.map((funzioni) =>
+                    menuItem(context, funzioni.colore, funzioni.titolo, funzioni.nextRoute, funzioni.icona)
+                ).toList()
+                        :
+                    utente.data.runtimeType.toString().contains('PetShop') ? funzioniPetShop.map((funzioni) =>
+                        menuItem(context, funzioni.colore, funzioni.titolo, funzioni.nextRoute, funzioni.icona)
+                    ).toList()
+                        :
+                    []
               ),
               /*Padding(
               padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
@@ -212,7 +180,7 @@ class _SideMenuState extends State<SideMenu> {
                     ),),
                 ),
               ),
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.fromLTRB(4.0, 4.0, 20.0, 4.0),
                 child: Material(
                   elevation: 5,
@@ -232,7 +200,7 @@ class _SideMenuState extends State<SideMenu> {
                       ],
                     ),),
                 ),
-              ),
+              ),*/
             ],
           ),
         );
@@ -240,4 +208,27 @@ class _SideMenuState extends State<SideMenu> {
 
     );
   }
+}
+
+Widget menuItem(BuildContext context, Color colore, String titolo, String nextRoute, IconData icona){
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(4.0, 8.0, 20.0, 4.0),
+    child: Material(
+      elevation: 5,
+      color: colore,
+      child: MaterialButton(
+        onPressed: (){
+          Navigator.pushReplacementNamed(context, nextRoute);
+        },
+        child: Row(
+          children: [
+            Icon(icona),
+            SizedBox(width: 5,),
+            Text(titolo),
+            Spacer(),
+            Icon(Icons.navigate_next, size: 30,),
+          ],
+        ),),
+    ),
+  );
 }

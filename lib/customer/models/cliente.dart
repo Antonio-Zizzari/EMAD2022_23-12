@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/models/pet_class.dart';
+import 'package:justpet/global/models/utenteClass.dart';
 // import 'package:justpet/global/models/utenteClass.dart';
 import 'package:justpet/veterinarian/models/event_class.dart';
 
 
-class Cliente{
+class Cliente extends Utente{
   String email, nome, cognome;
   List<Evento> eventi;
 
@@ -14,7 +15,7 @@ class Cliente{
     required this.nome,
     required this.cognome,
     required this.eventi,
-  });
+  }):super(email: email);
 
   factory Cliente.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -53,60 +54,16 @@ class Cliente{
   );
 }
 
-
-Veterinario veterinario_filler = Veterinario(
-  email: "errore",
-  immagine: "errore",
-  immagine_profilo: "errore",
-  nome: "errore",
-  indirizzo: "errore",
-  votazione: "errore",
-  descrizione: "errore",
-  turni:List.filled(0, "errore"),
-  prenotazioni: List.filled(0, "errore"),
-  eventi: List.filled(0, evento),
-);
-
-
-Future<dynamic> getUtenteFromFirestore(String email) async{
-
-  late Cliente cliente;
-  late Veterinario vet;
-
-  cliente = await getClienteFromFirestore(email);
-
-  if(cliente!=null){
-    print("Ritorno cliente");
-    return cliente;
-  }
-  else{
-    print("Provo con veterinario...");
-    vet = await getVeterinarioFromFirestore(email);
-    if(vet!=null){
-      print("Ritorno veterinario");
-      return vet;
-    }
-    else{
-      print("Ritorno filler");
-      return veterinario_filler;
-    }
-  }
-}
-
-
-
-
-
 Future<Cliente> getClienteFromFirestore(String email) async{
-  late Cliente cliente;
+  late Cliente? cliente;
   final ref = FirebaseFirestore.instance.collection("Cliente").doc(email).withConverter(
     fromFirestore: Cliente.fromFirestore,
     toFirestore: (Cliente cliente, _) => cliente.toFirestore(),
   );
-  await ref.get().then((value) => {cliente=value.data()!});
+  await ref.get().then((value) => {cliente=value.data()});
   //final cliente = docSnap.data(); // Convert to Cliente object
   if (cliente != null) {
-    return cliente;
+    return cliente!;
   } else {
     return Cliente(
       email: "errore",
