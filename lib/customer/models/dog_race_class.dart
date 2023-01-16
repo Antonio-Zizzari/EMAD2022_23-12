@@ -99,8 +99,6 @@ Future<Map<String,dynamic>> getAllRaces () async{
           description: descrizioneTest,
           pathImage: "assets/images/dogRace1.jpg"));
     }
-    print(races_ids);
-    print(races);
     return Map.fromIterables(races_ids,races);
 }
 

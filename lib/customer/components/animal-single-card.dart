@@ -133,7 +133,7 @@ Widget buildBody(double width, double height, Pets data, BuildContext context){
                                 children: [
                                   Icon(Icons.monitor_weight_outlined, size: 20, color: Color.fromRGBO(255, 255, 255, 1),),
                                   SizedBox(width: 3,),
-                                  Text(data.peso, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 13),),
+                                  Text("${data.peso} kg", maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 13),),
                                 ],
                               ),
                             ],

@@ -3,12 +3,13 @@ import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:justpet/customer/models/pet_class.dart';
 import 'package:justpet/theme/color.dart';
+import 'package:justpet/veterinarian/models/event_class.dart';
 import '../../global/models/color.dart';
 import '../models/visit_class.dart';
 
 class VeterinarianDate extends StatelessWidget {
   final Pets data;
-  final VisitClass visita;
+  final dynamic visita;
 
   VeterinarianDate({Key? key, required this.data, required this.visita})
       : super(key: key);
@@ -196,7 +197,7 @@ class VeterinarianDate extends StatelessWidget {
                                 children: [
                                   SizedBox(height: 10),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
                                     child: IntrinsicHeight(
                                       child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -207,14 +208,14 @@ class VeterinarianDate extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
                                               Text(
-                                                "${returnItalianDay(DateFormat('EEEE').format(visita.data))} ${visita.data.day}",
+                                                "${returnItalianDay(DateFormat('EEEE').format(DateTime.utc(int.parse(visita["anno"]), int.parse(visita["mese"]), int.parse(visita["giorno"]))))} ${visita["giorno"]}",
                                                 style: TextStyle(
                                                     color: Color(0xff212121),
                                                     fontSize: 17,
                                                     fontWeight: FontWeight.w500),
                                               ),
                                               Text(
-                                                "alle ore ${DateFormat("HH:mm").format(visita.data)}",
+                                                "alle ore ${visita["ora"]}: ${visita["minuto"]}",
                                                 style: TextStyle(
                                                   color: Color(0xff212121),
                                                   fontSize: 14,
@@ -232,7 +233,7 @@ class VeterinarianDate extends StatelessWidget {
                                               children: [
                                                 Icon(Icons.man_rounded, size: 30),
                                                 Text(
-                                                  visita.nomeVeterinario,
+                                                  visita["nome_cliente"],
                                                   style: TextStyle(
                                                       color: Color(0xff212121), fontSize: 18, fontWeight: FontWeight.w500),
                                                 ),
@@ -273,7 +274,7 @@ class VeterinarianDate extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
                                     child: Text(
-                                      visita.descrizione,
+                                      visita["tipoOperazione"],
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                         fontSize: 16

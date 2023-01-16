@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:justpet/customer/components/veterinarian_date.dart';
-import 'package:justpet/customer/models/visit_class.dart';
+import 'package:justpet/veterinarian/models/event_class.dart';
 
 import '../models/pet_class.dart';
 
 class VisitCard extends StatelessWidget {
-  final VisitClass visita;
+  final dynamic visita;
   final Pets data;
 
   const VisitCard({Key? key, required this.data, required this.visita}) : super(key: key);
@@ -25,17 +25,18 @@ class VisitCard extends StatelessWidget {
       child: Center(
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.fromLTRB(22.0, 10, 50, 10),
             child: IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${returnItalianDay(DateFormat('EEEE').format(visita.data))} ${visita.data.day}",
+                        "${returnItalianDay(DateFormat('EEEE').format(DateTime.utc(int.parse(visita["anno"]), int.parse(visita["mese"]), int.parse(visita["giorno"]))))} ${visita["giorno"]}",
                         style: TextStyle(
                           color: Color(0xff212121),
                           fontSize: 17,
@@ -43,7 +44,7 @@ class VisitCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "alle ore ${DateFormat("HH:mm").format(visita.data)}",
+                        "alle ore ${visita["ora"]}:${visita["minuto"]}",
                         style: TextStyle(
                           color: Color(0xff212121),
                           fontSize: 14,
@@ -59,7 +60,7 @@ class VisitCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(visita.nomeVeterinario, style: TextStyle(
+                      Text(visita["nome_cliente"], style: TextStyle(
                           color: Color(0xff212121),
                           fontSize: 17
                       ),
@@ -70,9 +71,8 @@ class VisitCard extends StatelessWidget {
                           Icon(Icons.description_outlined,size: 18,),
                           SizedBox(width: 3,),
                           Container(
-                            width: 150,
                             child: Text(
-                              visita.descrizione,
+                                visita["tipoOperazione"],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -84,7 +84,6 @@ class VisitCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 8),
                 ],
               ),
             ),

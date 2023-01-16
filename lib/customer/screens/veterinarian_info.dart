@@ -15,8 +15,17 @@ class VeterinarianInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: MainAppBar(_scaffoldKey),
-      drawer: SideMenu(),
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        title: Text(veterinario.nome,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

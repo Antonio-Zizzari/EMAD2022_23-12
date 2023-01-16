@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/Corso.dart';
 import 'package:justpet/customer/components/ContenutoCorso.dart';
+import 'package:justpet/global/models/color.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 
 class DettagliVideoCorso extends StatelessWidget {
@@ -39,7 +40,7 @@ class DettagliVideoCorso extends StatelessWidget {
 
   final List<SnappingPosition> positions = [
     SnappingPosition.pixels(
-      positionPixels: 350,
+      positionPixels: 270,
       snappingCurve: Curves.easeOut,
       snappingDuration: Duration(milliseconds: 300),
     ),
@@ -53,6 +54,17 @@ class DettagliVideoCorso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        title: Text(corso.titolo,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+      ),
       body: SnappingSheet(
         initialSnappingPosition: positions[0],
         snappingPositions: positions,

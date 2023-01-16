@@ -20,7 +20,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.data.name);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,

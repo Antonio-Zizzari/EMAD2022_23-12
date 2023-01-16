@@ -192,7 +192,7 @@ Widget containerWithoutAnimation(bool animation, BuildContext context){
             padding: const EdgeInsets.fromLTRB(15, 35, 15, 15),
             child: animation ? cardLoading() : SingleChildScrollView(
               child: Column(
-                children: medicines.map((medicine) => productCard(medicine, context )).toList(),
+                children: medicines.map((medicine) => medicine.categorie.contains("Ortopedia") ? productCard(medicine, context ) : Container()).toList(),
               ),
             ),
           ),
@@ -297,20 +297,20 @@ Widget catStack(VoidCallback function){
       Container(
         alignment: Alignment.center,
         child: Image.asset(
-          "assets/images/cat_body.png",
+          "assets/images/cat_body.jpg",
           fit: BoxFit.cover,
           scale: 0.5,
         ),
       ),
-      bodyPartButton(icon: Icons.headphones, text: 'Comportamento', top: 40, right: 100, color: Colors.red[700], function: function),
-      bodyPartButton(icon: Icons.remove_red_eye, text: 'Oculistica', top: 50, left: 60, color: Colors.blue[800], function: function),
-      bodyPartButton(icon: Icons.settings_bluetooth_outlined, text: 'Odontostomatologia', top: 90, left: 20, color: Colors.pink[700], function: function),
+      bodyPartButton(icon: Icons.headphones, text: 'Comportamento', top: 10, right: 110, color: Colors.red[700], function: function),
+      bodyPartButton(icon: Icons.remove_red_eye, text: 'Oculistica', top: 55, left: 122, color: Colors.blue[800], function: function),
+      bodyPartButton(icon: Icons.settings_bluetooth_outlined, text: 'Odontostomatologia', top: 90, left: 100, color: Colors.pink[700], function: function),
       bodyPartButton(icon: Icons.account_tree, text: 'Algologia', top: 120, right: 100, color: Colors.orange[700], function: function),
-      bodyPartButton(icon: Icons.water_drop, text: 'Dermatologia', top: 150, left: 40, color: Colors.blueAccent[700], function: function),
-      bodyPartButton(icon: Icons.balance, text: 'Nefrologia', bottom: 120, right: 60, color: Colors.yellow, function: function),
-      bodyPartButton(icon: Icons.confirmation_num, text: 'Gastroenterologia', color: Colors.red[700], function: function),
-      bodyPartButton(icon: Icons.label_important, text: 'Ortopedia', bottom: 30, right: 30, color: Colors.green[700], function: function),
-      bodyPartButton(icon: Icons.access_alarms_rounded, text: 'Urologia', bottom: 60, right: 80, color: Colors.black54, function: function),
+      bodyPartButton(icon: Icons.water_drop, text: 'Dermatologia', top: 170, left: 40, color: Colors.blueAccent[700], function: function),
+      bodyPartButton(icon: Icons.balance, text: 'Nefrologia', bottom: 120, right: 40, color: Colors.yellow, function: function),
+      bodyPartButton(icon: Icons.confirmation_num, text: 'Gastroenterologia', bottom: 90, right: 30, color: Colors.red[700], function: function),
+      bodyPartButton(icon: Icons.label_important, text: 'Ortopedia', bottom: 10, right: 30, color: Colors.green[700], function: function),
+      bodyPartButton(icon: Icons.access_alarms_rounded, text: 'Urologia', bottom: 40, right: 120, color: Colors.black54, function: function),
       /*Positioned(
                  top: 10,
                  right: 10,
@@ -458,11 +458,6 @@ Widget cardLoading(){
 Widget productCard(MedicineHelp medicine, BuildContext context) {
   TextStyle titleStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
   TextStyle descriptionStyle = TextStyle(fontSize: 16);
-  List<String> immagini = [
-    'assets/images/dog_medicine1.jpg',
-    'assets/images/dog_medicine2.jpg',
-    'assets/images/dog_medicine3.jpg'
-  ];
 
   return Padding(
     padding: const EdgeInsets.only(bottom: 15.0),
@@ -522,22 +517,3 @@ Widget productCard(MedicineHelp medicine, BuildContext context) {
   ,
   );
 }
-
-List<CategoryItem> lista = [
-  CategoryItem(
-    title: "Cane",
-    isActive: false,
-    press: () {
-      lista[0].isActive=true;
-      lista[1].isActive=false;
-    },
-  ),
-  CategoryItem(
-    title: "Gatto",
-    isActive: true,
-    press: () {
-      lista[0].isActive=false;
-      lista[1].isActive=true;
-    },
-  ),
-];

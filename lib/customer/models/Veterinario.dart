@@ -55,7 +55,6 @@ class Veterinario extends Utente{
 }
 
 void setVeterinarioToFirestore(Veterinario veterinario) async{
-  print("Imposto veterinario "+veterinario.email);
   final docRef = FirebaseFirestore.instance
       .collection("Veterinario")
       .withConverter(
@@ -121,6 +120,7 @@ Evento evento = Evento(
     nome_dottore: "Errore",
     email_cliente: "Errore",
     email_dottore: "Errore",
+    nome_animale: "Errore",
     razza_animale: "Errore",
     anno: "Errore",
     mese: "Errore",

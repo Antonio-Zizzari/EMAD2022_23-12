@@ -9,6 +9,13 @@ class PetsVisits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print(data.visiteAnnuali['2023']!['1']);
+    /*for(String key in data.visiteAnnuali.keys){
+      print(data.visiteAnnuali[key]);
+      for(String keyy in data.visiteAnnuali[key]!.keys){
+        print(data.visiteAnnuali[key]![keyy]);
+      }
+    }*/
     if(data.visiteAnnuali.entries.isNotEmpty) {
       return SingleChildScrollView(
         child: Container(

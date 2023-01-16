@@ -6,6 +6,7 @@ import 'package:justpet/customer/screens/ListaVeterinari.dart';
 import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
 import 'package:justpet/global/components/appbar.dart';
 import 'package:justpet/customer/models/utils_functions.dart';
+import 'package:justpet/global/models/color.dart';
 import 'package:survey_kit/survey_kit.dart';
 import '../../global/components/SideMenu.dart';
 import '../../customer/models/dog_race_class.dart';
@@ -151,8 +152,17 @@ class SearchIdealDog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: MainAppBar(_scaffoldKey),
-      drawer: SideMenu(),
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        title: Text("Sondaggio",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+      ),
       body: SurveyKit(
         themeData: data,
         showProgress: true,
@@ -179,7 +189,7 @@ class SearchIdealDog extends StatelessWidget {
           //Prendiamo le risposte
           for(int i = 1; i < result.results.length - 1; i++){
             for(int j = 0; j < result.results[i].results.length; j++){
-              print(result.results[i].results[j].valueIdentifier);
+              //print(result.results[i].results[j].valueIdentifier);
               if(result.results[i].results[j].id!.id=='scelta') {
                 ;
               }
@@ -204,8 +214,8 @@ class SearchIdealDog extends StatelessWidget {
           } else {
             response=Return_Sorted_LUIS_List(await LuisQuery(query));
           }
-          print(response.razza);
-          print(response.score);
+          //print(response.razza);
+          //print(response.score);
           List<DogRace> razza = [];
           for (int i=0; i<response.razza.length && i<5; i++){
             if(response.score[i]>0.1){

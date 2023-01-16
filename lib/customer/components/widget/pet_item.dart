@@ -113,7 +113,7 @@ class PetItem extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              AnimalCard(data: pets[index]),
+                                              AnimalCard(data: data),
                                         ),
                                       );
                                     }),

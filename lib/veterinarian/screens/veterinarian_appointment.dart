@@ -43,8 +43,21 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
     initializeDateFormatting("it_IT", null).then((_) {});
     return Scaffold(
       key: _scaffoldKey,
-      appBar: MainAppBar(_scaffoldKey),
-      drawer: SideMenu(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: kPrimaryColor,
+        foregroundColor: Colors.white,
+        title: Text(
+          "Prenota appuntamento",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1.5,
+          ),
+        ),
+      ),
+
       //backgroundColor: kTertiaryColor,
       body: SingleChildScrollView(
         child: Column(
@@ -253,6 +266,7 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                           nome_dottore: veterinario.nome,
                           email_cliente: cliente.email,
                           email_dottore: veterinario.email,
+                          nome_animale: pet!.nome,
                           razza_animale: pet!.tipoAnimale,
                           anno: giornoSelezionato.year.toString(),
                           mese: giornoSelezionato.month.toString(),
@@ -263,6 +277,8 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                         );
                         updateVeterinario(veterinario, date);
                         setEventoToFirestore(evento);
+                        //pet!.visiteAnnuali[giornoSelezionato.year.toString()]![giornoSelezionato.month.toString()]!.add(evento.toFirestore());
+                        updateAnimaleOnFirestore(pet!, evento);
                         Navigator.pop(context);
                       }
                       else{

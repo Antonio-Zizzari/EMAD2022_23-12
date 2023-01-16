@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:justpet/customer/models/cliente.dart';
 import 'package:justpet/customer/models/visit_class.dart';
 import 'package:collection/collection.dart';
+import 'package:justpet/veterinarian/models/event_class.dart';
 
 class Pets{
   final String nome, tipoAnimale, sesso, colore, eta, peso, pathImage;
@@ -39,8 +40,19 @@ class Pets{
     */
     Map<String, List<dynamic>> mapp = new Map();
     Map<String, Map<String, List<dynamic>>> mappp=new Map();
-    //(data?['visiteAnnuali'] as Map<String, dynamic>).forEach((key, value) { (value as Map<String, dynamic>).forEach((key, value) {print(value); print(value.runtimeType); mapp[key] = value;}); mappp[key]=mapp;});
-    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+
+
+
+    (data?['visiteAnnuali'] as Map<String, dynamic>).forEach((key, value) {
+      (value as Map<String, dynamic>).forEach((key, value) {
+        //print(value);
+        //print(value.runtimeType);
+        mapp[key] = value;
+      });
+      mappp[key]=mapp;
+    });
+
+
     return Pets(
       nome: data?['nome'],
       tipoAnimale: data?['tipoAnimale'],
@@ -65,12 +77,12 @@ class Pets{
       (key, value) {
         value.forEach((key, value) {
           for (int i = 0; i < value.length; i++){
-            value[i] = (value[i].toMap());
+            value[i] = (value[i].toFirestore());
           }
         });
       }
     );
-    print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+
     return {
       if (nome != null) "nome": nome,
       if (tipoAnimale != null) "tipoAnimale": tipoAnimale,
@@ -111,6 +123,38 @@ void setAnimaleToFirestore(String email, Pets pet) async{
       .doc(pet.nome);
   await docRef.set(pet);
 }
+
+
+void updateAnimaleOnFirestore(Pets animale, Evento evento) async{
+  /*final washingtonRef = db.collection("cites").doc("DC");
+washingtonRef.update({"capital": true}).then(
+    (value) => print("DocumentSnapshot successfully updated!"),
+    onError: (e) => print("Error updating document $e"));*/
+
+  if(animale.visiteAnnuali[evento.anno.toString()]![evento.mese.toString()] !=null) {
+    animale.visiteAnnuali[evento.anno.toString()]![evento.mese.toString()]!.add(
+        evento.toFirestore());
+  }
+  else {
+    Map<String, List<dynamic>> eventi_mensili = {
+      evento.mese.toString(): [evento.toFirestore()]
+    };
+    animale.visiteAnnuali[evento.anno.toString()]!.addEntries(eventi_mensili.entries);
+  }
+  final docRef = FirebaseFirestore.instance
+      .collection("Animale")
+  .doc(evento.email_cliente)
+  .collection("Animali")
+      .withConverter(
+    fromFirestore: Pets.fromFirestore,
+    toFirestore: (Pets animale, options) => animale.toFirestore(),
+  )
+      .doc(animale.nome);
+  await docRef.update({"visiteAnnuali": animale.visiteAnnuali}).then(
+          (value) => print("Prenotazione aggiunta con successo"),
+      );
+}
+
 
 Future<List<Pets>> getAllAnimaliFromFirestore(String email) async{
   final List<Pets> lista = [];

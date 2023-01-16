@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:justpet/customer/screens/animal-card.dart';
 import 'package:justpet/theme/color.dart';
 
 import 'package:justpet/global/models/color.dart';
@@ -70,23 +71,13 @@ class _AddPetState extends State<AddPet> {
 
   @override
   Widget build(BuildContext context) {
-    for(int i = 0; i < vaccini.length; i++){
-      print("Counter Vaccini: ${vaccini[i].counter}   Index: $i\n");
-    }
-    for(int i = 0; i < intolleranze.length; i++){
-      print("Counter Intolleranze: ${intolleranze[i].counter}   Index: $i\n");
-    }
-    for(int i = 0; i < allergie.length; i++){
-      print("Counter Allergie: ${allergie[i].counter}   Index: $i\n");
-    }
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: const Text("Aggiungi Animale",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 35,
+            fontSize: 23,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
           ),
@@ -417,10 +408,16 @@ class _AddPetState extends State<AddPet> {
                         intolleranze: intoll,
                         allergie: aller,
                         pathImage: "assets/images/pet1.jpg",
-                        visiteAnnuali: pets[0].visiteAnnuali
+                        visiteAnnuali: {}
                     );
 
                     setAnimaleToFirestore(user.email!, pet);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyPets(),
+                      ),
+                    );
                   },
                 )
               ],

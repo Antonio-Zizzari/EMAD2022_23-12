@@ -21,7 +21,7 @@ class SelectAnimal extends StatefulWidget {
 class _SelectAnimalState extends State<SelectAnimal> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final user = FirebaseAuth.instance.currentUser!;
-  late int animaleScelto=1;
+  late int animaleScelto=0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,17 @@ class _SelectAnimalState extends State<SelectAnimal> {
         builder: (BuildContext context, AsyncSnapshot<List<Pets>> animali) {
           return Scaffold(
             key: _scaffoldKey,
-            appBar: MainAppBar(_scaffoldKey),
-            drawer: SideMenu(),
+            appBar: AppBar(
+              backgroundColor: kPrimaryColor,
+              title: Text("I tuoi animali",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                ),
+              ),
+            ),
             body: Column(
               children: [
                 buildBody(animali.data!),
@@ -76,7 +85,7 @@ class _SelectAnimalState extends State<SelectAnimal> {
                   icon: Icon(Icons.add_circle_sharp, color: kPrimaryColor),
                   onPressed: () {
                     if(animali.length>0) {
-                      Navigator.pop(context, animali[animaleScelto - 1]);
+                      Navigator.pop(context, animali[animaleScelto]);
                     }
                     else{
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
