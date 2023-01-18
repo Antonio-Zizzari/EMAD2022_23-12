@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:justpet/customer/components/petshop.dart';
 import 'package:justpet/customer/screens/animal-card.dart';
 import 'package:justpet/customer/screens/favorite_dogs_race_screen.dart';
-import 'package:justpet/global/screens/body_medicines.dart';
+import 'package:justpet/customer/screens/mie_prenotazioni.dart';
+import 'package:justpet/global/screens/body_medicines_new.dart';
 import 'package:justpet/veterinarian/screens/dizionario_screen.dart';
 import 'package:justpet/veterinarian/screens/prenotazioni_screen.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
@@ -15,12 +16,26 @@ import 'package:justpet/global/screens/welcome_page.dart';
 import 'package:justpet/global/screens/login_page.dart';
 import 'package:justpet/global/screens/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  AwesomeNotifications().initialize(
+      'resource://drawable/res_app_icon',
+      [
+        NotificationChannel(
+          channelGroupKey: 'prenotazioni',
+          channelKey: 'prenotazioni',
+          channelName: 'Prenotazioni',
+          channelDescription: 'Notification channel for prenotazioni',
+          defaultColor: Color(0xFF9D50DD),
+          ledColor: Colors.white
+        )
+      ]
+  );
 
   String initialRoute = "/welcome";
 
@@ -32,6 +47,7 @@ Future main() async{
     navigatorKey: navigatorKey,
     initialRoute: initialRoute,
     routes: {
+      '/mie_prenotazioni': (context) => MiePrenotazioni(),
       '/lista': (context) => ListaVeterinari(),
       '/videocorsi': (context) => VideoCorsi(),
       '/petshop': (context) => PetShop(),

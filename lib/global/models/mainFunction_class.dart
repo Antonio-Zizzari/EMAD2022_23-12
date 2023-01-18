@@ -27,6 +27,7 @@ class FunzioniSecondarie {
 }
 
 List<FunzioniMain> tutteFunzioni = [
+  FunzioniMain(titolo: 'Le mie prenotazioni', icona: Icons.calendar_month, nextRoute: '/mie_prenotazioni'),
   FunzioniMain(titolo: 'Scheda animali', icona: Icons.pets, nextRoute: '/scheda_animali'),
   FunzioniMain(titolo: 'Cerca veterinari', icona: Icons.search_sharp, nextRoute: '/lista'),
   FunzioniMain(titolo: 'Video corsi', icona: Icons.video_collection, nextRoute: '/videocorsi'),
@@ -41,6 +42,7 @@ List<FunzioniMain> tutteFunzioni = [
 
 
 List<FunzioniMain> funzioniCliente = [
+  FunzioniMain(titolo: 'Le mie prenotazioni', icona: Icons.calendar_month, nextRoute: '/mie_prenotazioni'),
   FunzioniMain(titolo: 'Scheda animali', icona: Icons.pets, nextRoute: '/scheda_animali'),
   FunzioniMain(titolo: 'Cerca veterinari', icona: Icons.search_sharp, nextRoute: '/lista'),
   FunzioniMain(titolo: 'Video corsi', icona: Icons.video_collection, nextRoute: '/videocorsi'),
