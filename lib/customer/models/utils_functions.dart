@@ -114,7 +114,37 @@ LuissClass GetChainSumSort(LuissClass lista1,LuissClass lista2){
 
 }
 
+Future<LuissClass> GetSentimentDogChain(String Query1,String Query2) async{
+
+  final response = await http
+      .get(Uri.parse(LUIS_LINK_COLOR_QUERY+Query2));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    var jsonData = jsonDecode(response.body);
+    //print(jsonData['prediction']['intents']);
+    List list1=List.filled(0, null, growable: true);
+    for (MapEntry<String, dynamic> entry in jsonData['prediction']['intents'].entries) {
+      list1.add(entry.key);
+    }
+    String FinalQ2=Query2+" colore "+list1.elementAt(0)+" "+list1.elementAt(1);
+
+    return GetChainSumSort(Return_Sorted_LUIS_List(await LuisQuery(Query1)), Return_Sorted_LUIS_List(await LuisQuery(FinalQ2)));
+
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load http request');
+  }
+}
+
+
+
+
 /*
+//Esempio 0
+Future<LuissClass> test= GetSentimentDogChain("Cane che ama il gioco","Sono romantico");
 //ESEMPIO D'USO SU FLUTTER 1
 onPressed: () async {
 
