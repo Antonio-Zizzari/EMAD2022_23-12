@@ -1,7 +1,101 @@
 import 'dart:convert';
-
+import "dart:io";
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+
+List tutteLeRazze=["AKITA AMERICANO",
+  "AKITA INU",
+  "ALANO",
+  "ALASKAN MALAMUTE",
+  "AMERICAN STAFFORDSHIRE TERRIER",
+  "AUSTRALIAN CATTLE DOG",
+  "AUSTRALIAN SHEPHERD",
+  "BARBONCINO TOY",
+  "BARBONE",
+  "BASENJI",
+  "BASSET HOUND",
+  "BASSOTTO TEDESCO",
+  "BEAGLE",
+  "BICHON A POIL FRISE",
+  "BOBTAIL",
+  "BOLOGNESE",
+  "BOSTON TERRIER",
+  "BOVARO DEL BERNESE",
+  "BOXER",
+  "BRACCO ITALIANO",
+  "BRETON",
+  "BULL TERRIER",
+  "BULL TERRIER MINIATURA",
+  "BULLDOG INGLESE",
+  "BULLMASTIFF",
+  "CANE CORSO",
+  "CANE DA MONTAGNA DEI PIRENEI",
+  "CANE DA PASTORE BELGA",
+  "CANE DA PASTORE BERGAMASCO",
+  "CANE DA PASTORE DELL'ASIA CENTRALE",
+  "CARLINO",
+  "CAVALIER KING CHARLES SPANIEL",
+  "CHIHUAHUA",
+  "CHIN GIAPPONESE",
+  "CHOW CHOW",
+  "COCKER AMERICANO",
+  "COCKER SPANIEL INGLESE",
+  "COTON DE TULEAR",
+  "DALMATA",
+  "DOBERMANN",
+  "DOGO ARGENTINO",
+  "DOGUE DE BORDEAUX",
+  "EPAGNEUL NANO CONTINENTALE",
+  "FILA BRASILEIRO",
+  "FLAT COATED RETRIEVER",
+  "FOX TERRIER",
+  "GOLDEN RETRIEVER",
+  "HOVAWART",
+  "JACK RUSSELL TERRIER",
+  "LABRADOR RETRIEVER",
+  "LAGOTTO ROMAGNOLO",
+  "LAPINKOIRA",
+  "LEONBERGER",
+  "LEVRIERO",
+  "LUPO CECOSLOVACCO",
+  "MALTESE",
+  "MASTINO NAPOLETANO",
+  "None",
+  "PASTORE MAREMMANO ABRUZZESE",
+  "PASTORE SCOZZESE",
+  "PASTORE SVIZZERO BIANCO",
+  "PASTORE TEDESCO",
+  "PECHINESE",
+  "PINSCHER NANO",
+  "PITBULL",
+  "POINTER",
+  "RHODESIAN RIDGEBACK",
+  "ROTTWEILER",
+  "SAMOIEDO",
+  "SAN BERNARDO",
+  "SCHNAUZER GIGANTE",
+  "SCHNAUZER MEDIO",
+  "SCHNAUZER NANO",
+  "SEGUGIO ITALIANO",
+  "SETTER IRLANDESE",
+  "SHAR PEI",
+  "SHIBA INU",
+  "SHIH TZU",
+  "SIBERIAN HUSKY",
+  "SPINONE ITALIANO",
+  "SPITZ",
+  "SPITZ FINNICO",
+  "SPITZ TEDESCHI WOLFSPITZ",
+  "STAFFORDSHIRE BULL TERRIER",
+  "TERRANOVA",
+  "TIBETAN MASTIFF",
+  "VOLPINO ITALIANO",
+  "VOLPINO POMERANIA",
+  "WEIMARANER",
+  "WELSH CORGI PEMBROKE",
+  "WEST HIGHLAND WHITE TERRIER",
+  "YORKSHIRE TERRIER",
+];
 
 class DogRace{
   final String race, description, pathImage;
@@ -89,16 +183,20 @@ Future<Map<String,dynamic>> getAllRaces () async{
       description: descrizioneTest,
       pathImage: "assets/images/dogRace1.jpg"
   ), growable: true);
-    final String response = await rootBundle.loadString('assets/JustPet-races.json');
-    final data = await jsonDecode(response);
     //print(data.runtimeType);
     //print(data);
-    for (dynamic entry in data['intents']) {
-      races_ids.add(entry['name']);
-      races.add(DogRace(race: entry['name'],
+
+    for (String entry in tutteLeRazze) {
+      races_ids.add(entry);
+      races.add(DogRace(race: entry,
           description: descrizioneTest,
           pathImage: "assets/images/dogRace1.jpg"));
     }
+/*    print("[");
+    for(String test in races_ids){
+      print("\""+test+"\",");
+    }
+    print("]");*/
     return Map.fromIterables(races_ids,races);
 }
 
