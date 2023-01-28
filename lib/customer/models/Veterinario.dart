@@ -19,6 +19,11 @@ class Veterinario extends Utente{
 
   Veterinario ({required this.email, required this.immagine, required this.immagine_profilo, required this.nome, required this.indirizzo, required this.votazione, required this.descrizione, required this.turni, required this.prenotazioni, required this.eventi}) : super(email: email);
 
+  @override
+  String toString() {
+    return nome;
+  }
+
   factory Veterinario.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot,
       SnapshotOptions? options,

@@ -44,10 +44,11 @@ class _DizionarioScreenState extends State<DizionarioScreen> {
               ),
               )
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: SearchBarWidget(queryFunction: dizionarioSearchBarQuery, hintText: "Cerca un farmaco"),
-          ),
+          //AAAA
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 10),
+          //   child: SearchBarWidget(queryFunction: dizionarioSearchBarQuery, hintText: "Cerca un farmaco"),
+          // ),
           Container(
             child: Text("Alfabeto", style: TextStyle(color: Color(0xff666666),fontSize: 22),),
             margin: const EdgeInsets.fromLTRB(25,15,25,5),

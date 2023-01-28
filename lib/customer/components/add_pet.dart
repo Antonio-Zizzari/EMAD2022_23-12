@@ -12,13 +12,13 @@ import 'package:justpet/global/models/color.dart';
 import '../models/pet_class.dart';
 
 final List<CustomTextField> vaccini = [
-  CustomTextField(labelHint: 'Inserisci vaccini animale: ', hint: "Vaccini", controllers: TextEditingController(), counter: 1, lista: 1, canDelete: false),
+  CustomTextField(labelHint: 'Inserisci vaccini animale: ', hint: "Vaccino", controllers: TextEditingController(), counter: 1, lista: 1, canDelete: false),
 ];
 final List<CustomTextField> intolleranze = [
-  CustomTextField(labelHint: 'Inserisci intolleranze animale: ', hint: "Intolleranze", controllers: TextEditingController(), counter: 1, lista: 2, canDelete: false),
+  CustomTextField(labelHint: 'Inserisci intolleranze animale: ', hint: "Intolleranza", controllers: TextEditingController(), counter: 1, lista: 2, canDelete: false),
 ];
 final List<CustomTextField> allergie = [
-  CustomTextField(labelHint: 'Inserisci allergie animale: ', hint: "Allergie", controllers: TextEditingController(), counter: 1, lista: 3, canDelete: false)
+  CustomTextField(labelHint: 'Inserisci allergie animale: ', hint: "Allergia", controllers: TextEditingController(), counter: 1, lista: 3, canDelete: false)
 ];
 
 class AddPet extends StatefulWidget {
@@ -500,25 +500,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         onDismissed: (direction) {
           setState(() {
-            if(widget.lista == 1) {
-              if(vaccini.length > 1) {
-                vaccini.removeAt(widget.counter-1);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
-              }
-            } else if (widget.lista == 2) {
-              if(intolleranze.length > 1) {
-                intolleranze.removeAt(widget.counter-1);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
-              }
-            } else {
-              if(allergie.length > 1) {
-                allergie.removeAt(widget.counter-1);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
-              }
-            }
+            if(widget.lista == 1)
+              vaccini.length > 1 ? vaccini.removeAt(widget.counter-1) : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
+            else if (widget.lista == 2)
+              intolleranze.length > 1 ? intolleranze.removeAt(widget.counter-1) : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
+            else
+              allergie.length > 1 ? allergie.removeAt(widget.counter-1) : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
           });
           widget.callbackToParent?.call();
         },
@@ -544,15 +531,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   }
                   if(l.length < 5) {
                     l.add(
-                        CustomTextField(
-                            labelHint: l[0].labelHint,
-                            hint: l[0].hint,
-                            controllers: TextEditingController(),
-                            counter: l.indexOf(widget) + 1,
-                            lista: widget.lista,
-                            canDelete: true,
-                            callbackToParent: widget.callbackToParent
-                        )
+                      CustomTextField(
+                        labelHint: l[0].labelHint,
+                        hint: l[0].hint,
+                        controllers: TextEditingController(),
+                        counter: l.indexOf(widget) + 1,
+                        lista: widget.lista,
+                        canDelete: true,
+                        callbackToParent: widget.callbackToParent
+                      )
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Puoi aggiungere massimo 5 righe per tipologia!")));
@@ -576,23 +563,3 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
-
-// void updateIndexes(int typeList){
-//   switch(typeList){
-//     case 1:
-//       for(int i = 0; i < vaccini.length; i++){
-//         vaccini[i].counter = i + 1;
-//       }
-//       break;
-//     case 2:
-//       for(int i = 0; i < intolleranze.length; i++){
-//         intolleranze[i].counter = i + 1;
-//       }
-//       break;
-//     case 3:
-//       for(int i = 0; i < allergie.length; i++){
-//         allergie[i].counter = i + 1;
-//       }
-//       break;
-//   }
-// }

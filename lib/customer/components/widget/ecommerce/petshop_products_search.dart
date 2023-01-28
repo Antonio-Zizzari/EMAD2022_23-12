@@ -32,7 +32,7 @@ class _PetShopSearchState extends State<PetShopSearch> {
 
   @override
   Widget build(BuildContext context) {
-    return SearchBarWidget(queryFunction: queryFunction, hintText: "Cerca un prodotto");
+    return Center(child: Container(color: Colors.red));
   }
 
 

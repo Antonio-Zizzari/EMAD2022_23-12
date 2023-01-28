@@ -26,20 +26,21 @@ class _PetShopState extends State<PetShop> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-            //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            height: 50,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color(0xFFF5F5F7),
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca un petshop')
-            ),
-          ),
+          //AAAA
+          // Container(
+          //   margin: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+          //   //padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          //   height: 50,
+          //   width: double.infinity,
+          //   decoration: BoxDecoration(
+          //     color: Color(0xFFF5F5F7),
+          //     borderRadius: BorderRadius.circular(40),
+          //   ),
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(left: 10.0),
+          //     child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca un petshop')
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsets.fromLTRB(20.0, 16.0, 0.0, 10.0),
             child: Text(

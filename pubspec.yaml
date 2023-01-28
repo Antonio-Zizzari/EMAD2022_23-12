@@ -76,6 +76,7 @@ dependencies:
   firebase_auth: ^4.2.4
   table_calendar: ^3.0.8
   awesome_notifications: ^0.7.4+1
+  flutter_typeahead: ^4.1.1
 
 
 dev_dependencies:
@@ -116,7 +117,6 @@ flutter:
     - assets/parrot.jpg
     - assets/user.png
     - assets/dizionario/
-    - assets/JustPet-races.json
     - assets/images/medicines/
 
 

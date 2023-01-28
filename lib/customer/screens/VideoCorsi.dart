@@ -50,16 +50,17 @@ class _VideoCorsiState extends State<VideoCorsi> {
                 // fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20),
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xFFF5F5F7),
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca videocorso per categoria',)
-            ),
+            //AAAA
+            // Container(
+            //   margin: EdgeInsets.symmetric(vertical: 20),
+            //   height: 50,
+            //   width: double.infinity,
+            //   decoration: BoxDecoration(
+            //     color: Color(0xFFF5F5F7),
+            //     borderRadius: BorderRadius.circular(40),
+            //   ),
+            //   child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca videocorso per categoria',)
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

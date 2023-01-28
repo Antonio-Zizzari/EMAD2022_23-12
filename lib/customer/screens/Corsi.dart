@@ -34,16 +34,17 @@ class _CorsiState extends State<Corsi> {
                 ),
                 items: corsi.map((e) => ContainerCorsoSlider(corso: e)).toList(),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  border: Border.all(color: Colors.grey, style: BorderStyle.solid)
-                ),
-                child: SearchBarWidget(queryFunction: queryFunction, hintText: "Cerca videocorso"),
-              ),
+              //AAAA
+              // Container(
+              //   margin: EdgeInsets.symmetric(vertical: 20),
+              //   height: 50,
+              //   width: double.infinity,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(40),
+              //     border: Border.all(color: Colors.grey, style: BorderStyle.solid)
+              //   ),
+              //   child: SearchBarWidget(queryFunction: queryFunction, hintText: "Cerca videocorso"),
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 import 'package:justpet/customer/components/CardVeterinario.dart';
 import 'package:justpet/customer/components/widget/cardVeterinario.dart';
+import 'package:justpet/customer/screens/veterinarian_info.dart';
 import 'package:justpet/global/components/SideMenu.dart';
 import 'package:justpet/global/components/appbar.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class ListaVeterinari extends StatefulWidget {
   const ListaVeterinari();
@@ -22,11 +24,19 @@ class _ListaVeterinariState extends State<ListaVeterinari> {
 
     Veterinario initialVet = Veterinario(email: 'c',immagine: 'c', immagine_profilo: 'c', nome: 'c', indirizzo: 'c', votazione: 'c', descrizione: 'c', turni: [''], prenotazioni: ["5:00"], eventi: [evento]);
     List<Veterinario> initialData = List.filled(0, initialVet, growable: true);
+    final TextEditingController _typeAheadController = TextEditingController();
 
     return FutureBuilder(
       future: getAllVeterinariFromFirestore(),
       initialData: initialData,
       builder: (BuildContext context, AsyncSnapshot<List<Veterinario>> vets) {
+        List<String> _getSuggestions(String query) {
+          List<String> names = [];
+          vets.data?.map((e) => names.add(e.nome)).toList();
+          names.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+          return names;
+        }
+
         return Scaffold(
           key: _scaffoldKey,
           appBar: MainAppBar(_scaffoldKey) /*AppBarVeterinario(
@@ -42,38 +52,77 @@ class _ListaVeterinariState extends State<ListaVeterinari> {
                   padding: const EdgeInsets.all(10),
                   child: Row(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0,10,0,0),
+                        child: Icon(Icons.search, color: Colors.black, size: 30),
+                      ),
+                      SizedBox(width: 10),
                       Expanded(
                         child: Container(
                           height: 50,
-                          child: TextField(
-                            cursorColor: Colors.grey,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 20),
-                              fillColor: Colors.white,
-                              prefixIcon: Icon(
-                                  Icons.search, color: Colors.black),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide.none
-                              ),
-                              hintText: "Cerca un veterinario",
-                              hintStyle: TextStyle(
-                                  fontSize: 14, color: Colors.black),
+                          child: TypeAheadFormField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                              controller: _typeAheadController,
+                              decoration: InputDecoration(labelText: "Cerca un veterinario"),
                             ),
-                          ),
+                            minCharsForSuggestions: 1,
+                            suggestionsCallback: (pattern){
+                              return _getSuggestions(pattern);
+                            },
+                            itemBuilder: (context, suggestion) {
+                              return ListTile(
+                                title: Text(suggestion.toString()),
+                              );
+                            },
+                            noItemsFoundBuilder: (context) {
+                              return ListTile(
+                                title: Text("Nessun veterinario trovato!!"),
+                              );
+                            },
+                            loadingBuilder: (context){
+                              return CircularProgressIndicator();
+                            },
+                            onSuggestionSelected: (suggestion) {
+                              _typeAheadController.text = suggestion.toString();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => VeterinarianInfo(
+                                          veterinario: vets.data!.firstWhere((element) => element.nome == suggestion)
+                                      )
+                                  )
+                              );
+                            },
+                          )
+
+
+                          // Autocomplete<Veterinario>(
+                          //   displayStringForOption: _displayStringForOption,
+                          //   optionsBuilder: (TextEditingValue textEditingValue) {
+                          //     if (textEditingValue.text == '') {
+                          //       return const Iterable<Veterinario>.empty();
+                          //     }
+                          //     return vets.data!.where((Veterinario option) {
+                          //       return option
+                          //           .toString()
+                          //           .contains(textEditingValue.text.toLowerCase());
+                          //     });
+                          //   },
+                          //   onSelected: (Veterinario selection){
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => VeterinarianInfo(
+                          //                 veterinario: selection
+                          //             )
+                          //         )
+                          //     );
+                          //     setState(() {});
+                          //   }
+                          // )
                         ),
                       ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.filter_list, color: Colors.black,
-                            size: 30,),
-                        ),
-                      ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 20),
                     ],
                   ),
                 ),
@@ -89,7 +138,7 @@ class _ListaVeterinariState extends State<ListaVeterinari> {
                   child: Column(
                     children: vets.data!
                         .map((e) => cardVeterinario(veterinario: e))
-                        .toList(),
+                        .toList()
                   ),
                 ),
               ],

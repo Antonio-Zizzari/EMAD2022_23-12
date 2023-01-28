@@ -32,10 +32,11 @@ class _BodyState extends State<Body> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20,10,0,0),
-          child: SearchBarWidget(queryFunction: chatSearchBarQuery, hintText: "Cerca un contatto"),
-        ),
+        //AAAA
+        // Padding(
+        //   padding: const EdgeInsets.fromLTRB(20,10,0,0),
+        //   child: SearchBarWidget(queryFunction: chatSearchBarQuery, hintText: "Cerca un contatto"),
+        // ),
         Expanded(
             child: ListView.builder(
                 itemCount: chatsData.length,
