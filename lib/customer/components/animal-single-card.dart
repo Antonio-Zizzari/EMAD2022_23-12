@@ -19,7 +19,7 @@ class AnimalCard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: Text("Il tuo pet",
+        title: Text("Il tuo animale",
           style: TextStyle(
             color: Colors.white,
             fontSize: 30,

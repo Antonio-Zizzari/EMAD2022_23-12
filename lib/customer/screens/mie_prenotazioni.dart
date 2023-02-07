@@ -28,7 +28,7 @@ class MiePrenotazioni extends StatelessWidget {
           else{
             return SingleChildScrollView(
               child: Column(
-                children: eventi.data!.map((e) => eventWidget()).toList(),
+                children: eventi.data!.map((e) => eventWidget(e)).toList(),
               ),
             );
           }
@@ -38,7 +38,7 @@ class MiePrenotazioni extends StatelessWidget {
   }
 }
 
-Widget eventWidget(){
+Widget eventWidget(Evento evento){
   return Padding(
     padding: const EdgeInsets.fromLTRB(16.0, 6.0, 16.0, 6.0),
     child: Container(
@@ -62,8 +62,8 @@ Widget eventWidget(){
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Dottor Mario Rossi', style: TextStyle(fontSize: 18),),
-                Text('11 Gennaio 2022', style: TextStyle(fontSize: 14),),
+                Text(evento.nome_dottore, style: TextStyle(fontSize: 18),),
+                Text(evento.anno.toString()+'/'+evento.mese.toString()+'/'+evento.giorno, style: TextStyle(fontSize: 14),),
               ],
             ),
             Spacer(),

@@ -218,6 +218,7 @@ class SearchIdealDog extends StatelessWidget {
           //print(response.score);
           List<DogRace> razza = [];
           for (int i=0; i<response.razza.length && i<5; i++){
+            //print(response.razza.toString());
             if(response.score[i]>0.1){
               await getAllRaces().then((value) => razza.add(value[response.razza[i]]));
               //razza.add(getAllRaces()[response.razza[i]]!);

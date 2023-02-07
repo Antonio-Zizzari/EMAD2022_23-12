@@ -13,6 +13,8 @@ import 'package:flutter_calendar_week/flutter_calendar_week.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:justpet/customer/models/pet_class.dart';
 
+import 'appointment_confirmed.dart';
+
 class VeterinarianAppointment extends StatefulWidget {
   final Veterinario veterinario;
   const VeterinarianAppointment({Key? key, required this.veterinario}) : super(key: key);
@@ -279,7 +281,11 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                         setEventoToFirestore(evento);
                         //pet!.visiteAnnuali[giornoSelezionato.year.toString()]![giornoSelezionato.month.toString()]!.add(evento.toFirestore());
                         updateAnimaleOnFirestore(pet!, evento);
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(context,
+                          MaterialPageRoute(
+                            builder: (context) => AppointmentSuccess(),
+                          ),
+                        );
                       }
                       else{
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

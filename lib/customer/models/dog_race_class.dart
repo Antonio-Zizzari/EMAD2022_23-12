@@ -190,7 +190,7 @@ Future<Map<String,dynamic>> getAllRaces () async{
       races_ids.add(entry);
       races.add(DogRace(race: entry,
           description: descrizioneTest,
-          pathImage: "assets/images/dogRace1.jpg"));
+          pathImage: "assets/images/razzeCani/"+entry+".jpg"));
     }
 /*    print("[");
     for(String test in races_ids){
