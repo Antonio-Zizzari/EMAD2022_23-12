@@ -77,6 +77,13 @@ dependencies:
   table_calendar: ^3.0.8
   awesome_notifications: ^0.7.4+1
   flutter_typeahead: ^4.1.1
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo/logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
 
 dev_dependencies:
@@ -119,6 +126,7 @@ flutter:
     - assets/user.png
     - assets/dizionario/
     - assets/images/medicines/
+    - assets/images/razzeCani/
 
 
 

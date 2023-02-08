@@ -46,8 +46,9 @@ class _RegisterState extends State<Register> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(height: 20,),
                 Text('Benvenuto su JustPet', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-                Image.asset('assets/logo/logo.png', scale: 2.5,),
+                Image.asset('assets/logo/logo.png', scale: 2.8,),
                 Text('Registrati', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                 SizedBox(height: 20,),
                 inputField('Nome', kTertiaryColor, nameController, false),

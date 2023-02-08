@@ -36,7 +36,7 @@ class _VideoCorsiState extends State<VideoCorsi> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("Ciao Andrea, ",
+            Text("Ciao Mario ",
                 style: TextStyle(
                 fontSize: 28,
                 color: Color(0xFF0D1333),
@@ -61,6 +61,7 @@ class _VideoCorsiState extends State<VideoCorsi> {
             //   ),
             //   child: SearchBarWidget(queryFunction: queryFunction, hintText: 'Cerca videocorso per categoria',)
             // ),
+            SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

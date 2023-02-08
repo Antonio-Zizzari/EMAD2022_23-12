@@ -12,7 +12,7 @@ List<Categoria> categorie = [
   Categoria('Gatti', 17, "assets/cat.jpg"),
   Categoria('Cani', 25, "assets/dog.jpg"),
   Categoria('Pappagalli', 13, "assets/parrot.jpg"),
-  Categoria('Lupi', 3, "assets/dog.jpg"),
+  Categoria('Furetti', 3, "assets/images/furetto.jpg"),
 ];
 
 /*List<Category> categories = categoriesData

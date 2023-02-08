@@ -376,7 +376,7 @@ class VeterinarianDate extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0, vertical: 15.0),
                                           child: Text(
-                                            visita.tipoOperazione,
+                                            "Il cane spesso rimette sul pavimento di casa dopo aver mangiato i croccantini che gli ho comprato. Chiedo il suo aiuto dottore!",
                                             textAlign: TextAlign.justify,
                                             style: TextStyle(
                                                 fontSize: 16

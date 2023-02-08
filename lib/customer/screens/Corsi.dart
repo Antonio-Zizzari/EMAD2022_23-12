@@ -69,7 +69,7 @@ class _CorsiState extends State<Corsi> {
               Row(
                 children: [
                   Container(
-                    width: 370,
+                    width: 350,
                     height: 200,
                     child: ListView.builder(
                     shrinkWrap: false,
@@ -107,7 +107,7 @@ class _CorsiState extends State<Corsi> {
               Row(
                   children: [
                     Container(
-                      width: 370,
+                      width: 350,
                       height: 200,
                       child: ListView.builder(
                         shrinkWrap: true,

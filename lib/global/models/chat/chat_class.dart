@@ -16,19 +16,19 @@ List chatsData = [
   Chat(
     name: "Jenny Wilson",
     lastMessage: "Hope you are doing well...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_6.png",
     time: "3m ago",
   ),
   Chat(
     name: "Esther Howard",
     lastMessage: "Hello Abdullah! I am...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_5.png",
     time: "8m ago",
   ),
   Chat(
     name: "Ralph Edwards",
     lastMessage: "Do you have update...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_4.png",
     time: "5d ago",
   ),
   Chat(
@@ -40,43 +40,43 @@ List chatsData = [
   Chat(
     name: "Albert Flores",
     lastMessage: "Thanks",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_2.png",
     time: "6d ago",
   ),
   Chat(
     name: "Jenny Wilson",
     lastMessage: "Hope you are doing well...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_3.png",
     time: "3m ago",
   ),
   Chat(
     name: "Esther Howard",
     lastMessage: "Hello Abdullah! I am...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_4.png",
     time: "8m ago",
   ),
   Chat(
     name: "Ralph Edwards",
     lastMessage: "Do you have update...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_5.png",
     time: "5d ago",
   ),
   Chat(
     name: "Ralph Edwards",
     lastMessage: "Do you have update...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_6.png",
     time: "5d ago",
   ),
   Chat(
     name: "Ralph Edwards",
     lastMessage: "Do you have update...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_2.png",
     time: "5d ago",
   ),
   Chat(
     name: "Ralph Edwards",
     lastMessage: "Do you have update...",
-    image: "assets/images/userMain.png",
+    image: "assets/images/user_2.png",
     time: "5d ago",
   ),
 ];
