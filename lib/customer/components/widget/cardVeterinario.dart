@@ -3,6 +3,7 @@ import 'package:justpet/global/models/color.dart';
 import 'package:justpet/customer/models/Veterinario.dart';
 //import 'package:justpet/customer/screens/Prenotazione.dart';
 import 'package:justpet/customer/screens/veterinarian_info.dart';
+import 'package:justpet/veterinarian/screens/veterinarian_appointment.dart';
 
 class cardVeterinario extends StatelessWidget {
   final Veterinario veterinario;
@@ -39,16 +40,18 @@ class cardVeterinario extends StatelessWidget {
                 Row(
                   children: [
                     CircleAvatar(foregroundImage: AssetImage('assets/images/'+veterinario.immagine_profilo,), radius: 50,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          premiumContainer('Annuncio'),
-                          Text(veterinario.nome, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
-                          Text('Veterinario, Endocrinologo'),
-                          reviewField(veterinario.votazione)
-                        ],
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            premiumContainer('Annuncio'),
+                            Text(veterinario.nome, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                            Text('Veterinario, Endocrinologo'),
+                            reviewField(veterinario.votazione)
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -58,7 +61,7 @@ class cardVeterinario extends StatelessWidget {
                 SizedBox(height: 10,),
                 richText(Icons.medical_information_outlined, 'Visita generica'),
                 SizedBox(height: 10,),
-                richText(Icons.calendar_month, 'Prossimo appuntamento: Lun, 5 Dicembre'),
+                richText(Icons.calendar_month, 'Prossimo appuntamento: Ven, 17 Febbraio'),
                 SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(left: 3.0, right: 15.0),
@@ -66,17 +69,17 @@ class cardVeterinario extends StatelessWidget {
                     veterinario.turni.length > 3 ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        clockContainer(veterinario.turni[0]),
-                        clockContainer(veterinario.turni[1]),
-                        clockContainer(veterinario.turni[2]),
-                        clockContainer('Altro >')
+                        clockContainer(context, veterinario, veterinario.turni[0]),
+                        clockContainer(context, veterinario, veterinario.turni[1]),
+                        clockContainer(context, veterinario, veterinario.turni[2]),
+                        clockContainer(context, veterinario, 'Altro >')
                       ],
                     ): Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: veterinario.turni.length == 0 ?
-                        [clockContainer('Nessun turno disponibile')]
+                        [clockContainer(context, veterinario, 'Nessun turno disponibile')]
                         :
-                        veterinario.turni.map((e) => clockContainer(e)).toList()
+                        veterinario.turni.map((e) => clockContainer(context, veterinario, e)).toList()
                     )
                 ),
                 SizedBox(height: 10,)
@@ -124,15 +127,27 @@ Widget premiumContainer(String text){
   );
 }
 
-Widget clockContainer(String time){
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(5),
-      color: Colors.red[100]
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(time, style: TextStyle(fontWeight: FontWeight.bold),),
+Widget clockContainer(BuildContext context, Veterinario vet, String time){
+  return InkWell(
+    onTap: (){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VeterinarianAppointment(
+                  veterinario: vet
+              )
+          )
+      );
+    },
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: Colors.red[100]
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(time, style: TextStyle(fontWeight: FontWeight.bold),),
+      ),
     ),
   );
 }

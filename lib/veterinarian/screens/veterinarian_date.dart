@@ -303,7 +303,7 @@ class VeterinarianDate extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       "alle ore ${visita
-                                                          .ora}: ${visita
+                                                          .ora}:${visita
                                                           .minuto}",
                                                       style: TextStyle(
                                                         color: Color(
@@ -435,49 +435,62 @@ Widget mostraStoricoMedico(Pets data){
       borderRadius: BorderRadius.circular(25),
     ),
     //STORICO MEDICO
-    child: Column(
+    child: Table(
+      columnWidths: const {
+        0: FlexColumnWidth(0.5),
+        1: FlexColumnWidth(0.8),
+        2: FlexColumnWidth(1)
+      },
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
-        Container(
-          margin: const EdgeInsets.all(5),
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+        TableRow(
             children: [
-              Container(
-                width: 40, height: 40,
-                margin: EdgeInsets.fromLTRB(10, 0, 20, 0),
-                decoration: BoxDecoration(
-                  color: Colors.deepOrange,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: shadowColor.withOpacity(0.1),
-                      spreadRadius: .5,
-                      blurRadius: .5,
-                      offset: Offset(0, 1), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: const Center(child: Icon(Icons.vaccines_sharp, size: 30, color: Colors.white)),
+              SizedBox(height: 10),
+              SizedBox(height: 10),
+              SizedBox(height: 10)
+            ]
+        ),
+        TableRow(
+          children: [
+            Container(
+              width: 40, height: 40,
+              margin: EdgeInsets.fromLTRB(10, 0, 20, 0),
+              decoration: BoxDecoration(
+                color: Colors.deepOrange,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: shadowColor.withOpacity(0.1),
+                    spreadRadius: .5,
+                    blurRadius: .5,
+                    offset: Offset(0, 1), // changes position of shadow
+                  ),
+                ],
               ),
-              const Expanded(
+              child: const Center(child: Icon(Icons.vaccines_sharp, size: 30, color: Colors.white)),
+            ),
+            Flex(
+              direction: Axis.horizontal,
+              children: [
+                Expanded(
                 flex: 3,
-                child: Center(
-                  child: Text("Vaccini ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
+                child: Text("Vaccini",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
-              Expanded(
+              )
+              ],
+            ),
+            Flex(
+              direction: Axis.horizontal,
+              children: [
+                Expanded(
                 flex: 5,
                 child: Theme(
-                  data: ThemeData().copyWith(dividerColor: Colors.transparent, indicatorColor: Colors.white),
+                  data: ThemeData().copyWith(dividerColor: Colors.transparent),
                   child: ExpansionTile(
                     collapsedIconColor: Colors.white,
                     iconColor: Colors.white,
@@ -526,17 +539,19 @@ Widget mostraStoricoMedico(Pets data){
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+              ]
+            ),
+          ]
         ),
-        Container(
-          margin: const EdgeInsets.all(5),
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+        TableRow(
+            children: [
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              SizedBox(height: 20)
+            ]
+        ),
+        TableRow(
             children: [
               Container(
                 width: 40, height: 40,
@@ -555,9 +570,11 @@ Widget mostraStoricoMedico(Pets data){
                 ),
                 child: const Center(child: Icon(Icons.medical_services_outlined, size: 30, color: Colors.white)),
               ),
-              const Expanded(
-                flex: 3,
-                child: Center(
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  Expanded(
+                  flex: 3,
                   child: Text("Allergie",
                     style: TextStyle(
                       color: Colors.white,
@@ -566,70 +583,76 @@ Widget mostraStoricoMedico(Pets data){
                     ),
                   ),
                 ),
+                ]
               ),
-              Expanded(
-                flex: 5,
-                child: Theme(
-                  data: ThemeData().copyWith(dividerColor: Colors.transparent),
-                  child: ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "Apri Lista",
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  Expanded(
+                  flex: 5,
+                  child: Theme(
+                    data: ThemeData().copyWith(dividerColor: Colors.transparent),
+                    child: ExpansionTile(
+                      collapsedIconColor: Colors.white,
+                      iconColor: Colors.white,
+                      title: const Text(
+                        "Apri Lista",
+                        textAlign: TextAlign.right,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: data.allergie!.isEmpty ? 1 : data.allergie!.length, //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
+                          itemBuilder: (context, index) {
+                            if(data.allergie!.isEmpty)
+                              return Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                child: const Text(
+                                  "N/D",
+                                  textAlign: TextAlign.right,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              );
+                            else
+                              return Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                child: Text(
+                                  data.allergie![index],
+                                  textAlign: TextAlign.right,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              );
+                          },
+                        ),
+                      ],
                     ),
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: data.allergie!.isEmpty ? 1 : data.allergie!.length, //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
-                        itemBuilder: (context, index) {
-                          if(data.allergie!.isEmpty)
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: const Text(
-                                "N/D",
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            );
-                          else
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: Text(
-                                data.allergie![index],
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            );
-                        },
-                      ),
-                    ],
                   ),
                 ),
+                ]
               )
-            ],
-          ),
+            ]
         ),
-        Container(
-          margin: const EdgeInsets.all(5),
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+        TableRow(
+            children: [
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              SizedBox(height: 20)
+            ]
+        ),
+        TableRow(
             children: [
               Container(
                 width: 40, height: 40,
@@ -648,75 +671,89 @@ Widget mostraStoricoMedico(Pets data){
                 ),
                 child: const Center(child: Icon(Icons.food_bank_outlined, size: 35, color: Colors.white)),
               ),
-              const Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text("Intolleranze",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Theme(
-                  data: ThemeData().copyWith(dividerColor: Colors.transparent),
-                  child: ExpansionTile(
-                    collapsedIconColor: Colors.white,
-                    iconColor: Colors.white,
-                    title: const Text(
-                      "Apri Lista",
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Text("Intolleranze ",
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: data.intolleranze!.isEmpty ? 1 : data.intolleranze!.length, //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
-                        itemBuilder: (context, index) {
-                          if(data.intolleranze!.isEmpty)
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: const Text(
-                                "N/D",
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            );
-                          else
-                            return Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: Text(
-                                data.intolleranze![index],
-                                textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            );
-                        },
-                      ),
-                    ],
                   ),
-                ),
-              )
-            ],
-          ),
+                ]
+              ),
+              Flex(
+                direction: Axis.horizontal,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Theme(
+                      data: ThemeData().copyWith(dividerColor: Colors.transparent,),
+                      child: ExpansionTile(
+                        collapsedIconColor: Colors.white,
+                        iconColor: Colors.white,
+                        title: const Text(
+                          "Apri Lista",
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: data.intolleranze!.isEmpty ? 1 : data.intolleranze!.length, //Serve per far funzionare i controlli sotto, perchè se itemCount == 0 il codice sotto non viene eseguito.
+                            itemBuilder: (context, index) {
+                              if(data.intolleranze!.isEmpty)
+                                return Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                  child: const Text(
+                                    "N/D",
+                                    textAlign: TextAlign.right,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                );
+                              else
+                                return Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                  child: Text(
+                                    data.intolleranze![index],
+                                    textAlign: TextAlign.right,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]
+              ),
+            ]
+        ),
+        TableRow(
+            children: [
+              SizedBox(height: 10),
+              SizedBox(height: 10),
+              SizedBox(height: 10)
+            ]
         ),
       ],
-    ),
+    )
   );
 }

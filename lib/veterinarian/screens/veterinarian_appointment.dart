@@ -168,12 +168,12 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                           if(veterinario.turni[i] == '00:00'){
                             pomeriggio=true;
                             l.add(pulsante_invisibile("", i));
-                          }
-
-                          else {
+                          } else {
+                            String today= DateTime.now().year.toString()+DateTime.now().month.toString()+DateTime.now().day.toString();
                             pomeriggio=false;
+
                             l.add(TextButton(
-                              style: veterinario.prenotazioni.contains(date.substring(0, date.length-5) + veterinario.turni[i]) ? TextButton.styleFrom(
+                              style: veterinario.prenotazioni.contains(date.substring(0, date.length-5) + veterinario.turni[i]) || (today==date.toString().substring(0, date.length-5) && DateTime.now().hour >= int.parse(veterinario.turni[i].substring(0, 2))) ? TextButton.styleFrom(
                                 backgroundColor: Colors.grey[100],
                                 foregroundColor: Colors.black26,
                                 fixedSize: Size(110, 45),
