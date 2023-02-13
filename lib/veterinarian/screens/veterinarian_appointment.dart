@@ -35,6 +35,7 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
   var date = DateTime.now().year.toString()+DateTime.now().month.toString()+DateTime.now().day.toString()+"05:00";
   int precedente=0;
   bool oggi_selezionato=true;
+  bool isWeekend=false;
 
   _VeterinarianAppointmentState(this.veterinario);
 
@@ -83,6 +84,11 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                   onDatePressed: (DateTime datetime) {
                     // Do something
                     setState(() {
+                      if(datetime.weekday == DateTime.saturday || datetime.weekday == DateTime.sunday) {
+                        isWeekend = true;
+                      } else {
+                        isWeekend = false;
+                      }
                       date=datetime.year.toString()+datetime.month.toString()+datetime.day.toString()+"05:00";
                       giornoSelezionato = datetime;
                       selezionato=List.filled(turni.length, false);
@@ -131,7 +137,7 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                   )),*/
               ]),
             ),
-            Padding(
+            !isWeekend ? Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -260,9 +266,33 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                     ),
                   ),
                   SizedBox(height: 20,),
+                  Text('Descrizione (facoltativo)',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  SizedBox(height: 20,),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: TextField(
+                  controller: TextEditingController(),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 5,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[800]),
+                      hintText: 'Inserisci una descrizione',
+                      fillColor: Colors.white),
+                ),
+              ),
+                  SizedBox(height: 20,),
                   ElevatedButton(
                     onPressed: (){
-                      if (pet!= null) {
+                      if (pet!= null && selezionato.contains(true)) {
                         Evento evento = Evento(
                           nome_cliente: cliente.nome+" "+cliente.cognome,
                           nome_dottore: veterinario.nome,
@@ -289,8 +319,24 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                       }
                       else{
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Devi scegliere un animale", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                        ));
+                            behavior: SnackBarBehavior.floating,
+                            backgroundColor: Colors.white,
+                            elevation: 25.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+
+                            ),
+                            content: Row(children: [
+                              Icon(Icons.error, color: kPrimaryColor,),
+                              SizedBox(width: 5,),
+                              Text(selezionato.contains(true) ? "Devi scegliere un animale per proseguire" : "Devi scegliere un turno per proseguire",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                            )));
                       }
                       },
                     child: Text('Prenota ora'),
@@ -299,6 +345,17 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                         fixedSize: Size(500, 40)
                     ),
                   ),
+                ],
+              ),
+            ) :
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.highlight_remove, size: 50, color: kPrimaryColor,),
+                  Text('Nessuna turno prenotabile',
+                      style: TextStyle(
+                          fontSize: 21, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),

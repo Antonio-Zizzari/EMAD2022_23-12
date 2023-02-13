@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:justpet/theme/color.dart';
@@ -43,7 +45,7 @@ class PetItem extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(radius),
-                child: Image.asset(data.pathImage),
+                child: data.pathImage.contains("cache") ? Image.file(fit: BoxFit.fitWidth, File(data.pathImage)) : Image.asset(data.pathImage),
               ),
             ),
             Positioned(

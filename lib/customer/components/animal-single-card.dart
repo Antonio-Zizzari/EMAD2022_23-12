@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:justpet/customer/components/veterinarian_date.dart';
 import 'package:justpet/customer/components/widget/info_list.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +53,7 @@ Widget buildBody(double width, double height, Pets data, BuildContext context){
                 width: width, height: 600,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
-                  child: Image.asset(fit: BoxFit.fitWidth, data.pathImage),
+                  child: data.pathImage.contains("cache") ? Image.file(fit: BoxFit.fitWidth, File(data.pathImage)) : Image.asset(fit: BoxFit.fitWidth, data.pathImage),
                 ),
               ),
               Positioned(

@@ -67,7 +67,7 @@ class _AddPetState extends State<AddPet> {
   XFile? photo;
   String? _sesso, _tipoAnimale, _colore;
   String peso = '2Kg';
-  DateTime? date;
+  DateTime? date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +169,7 @@ class _AddPetState extends State<AddPet> {
                       width: 400,
                       height: 30,
                       child: CupertinoDatePicker(
+                        maximumDate: DateTime.now().add(Duration(minutes: 1)),
                         mode: CupertinoDatePickerMode.date,
                         onDateTimeChanged: (DateTime t){
                           date=t;
@@ -407,11 +408,21 @@ class _AddPetState extends State<AddPet> {
                         tipiVaccino: vaxs,
                         intolleranze: intoll,
                         allergie: aller,
-                        pathImage: "assets/images/pet1.jpg",
+                        pathImage: photo !=null ? photo!.path : (tipo.contains("Cane") ? "assets/images/pet1.jpg" : "assets/images/cat1.jpg"),
                         visiteAnnuali: {}
                     );
 
                     setAnimaleToFirestore(user.email!, pet);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.white,
+                        elevation: 25.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+
+                        ),
+                        content: Row(children: [Icon(Icons.add_box, color: kPrimaryColor,), SizedBox(width: 5,), Text(nome+" aggiunto con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
+                        )));
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

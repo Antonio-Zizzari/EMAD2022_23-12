@@ -7,6 +7,7 @@ import 'package:justpet/global/components/SideMenu.dart';
 import 'package:justpet/global/models/color.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:justpet/global/screens/main_chat.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/veterinarian/screens/veterinarian_appointment.dart';
 
@@ -76,6 +77,15 @@ class VeterinarianInfo extends StatelessWidget {
                   ),
                 );
               }, icon: Icon(Icons.calendar_month), label: Text('Prenota'), style: ElevatedButton.styleFrom(backgroundColor: kPrimaryColor, fixedSize: Size(500, 45), textStyle: TextStyle(fontSize: 16)),),
+              SizedBox(height: 10,),
+              ElevatedButton.icon(onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Chat(),
+                  ),
+                );
+              }, icon: Icon(Icons.chat), label: Text('Contatta'), style: ElevatedButton.styleFrom(backgroundColor: kTextLightColor, fixedSize: Size(500, 45), textStyle: TextStyle(fontSize: 16)),),
               SizedBox(height: 10,),
               Divider(thickness: 1.5, color: kPrimaryColor,),
               SizedBox(height: 10,),

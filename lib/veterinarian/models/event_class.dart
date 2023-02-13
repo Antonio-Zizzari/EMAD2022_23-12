@@ -136,15 +136,15 @@ Future<List<Evento>> getAllEventiFromFirestore(String email, bool isCliente) asy
   List<Evento> lista = List.filled(0, Evento(
     nome_cliente: "Errore",
     nome_dottore: "Errore",
-    email_cliente: "Errore",
-    email_dottore: "Errore",
-    nome_animale: "Errore",
-    razza_animale: "Errore",
-    anno: "Errore",
-    mese: "Errore",
-    giorno: "Errore",
-    ora: "Errore",
-    minuto: "Errore",
+    email_cliente: "",
+    email_dottore: "",
+    nome_animale: "",
+    razza_animale: "",
+    anno: "",
+    mese: "",
+    giorno: "",
+    ora: "",
+    minuto: "",
     tipoOperazione: "visita",
   ), growable: true);
 
@@ -164,8 +164,22 @@ Future<List<Evento>> getAllEventiFromFirestore(String email, bool isCliente) asy
     res.docs.forEach((element) {lista.add(element.data());});
     return lista;
   }
+}
 
+Future<bool> removeEventoFromFirestore(Evento evento) async{
+  bool t=false;
+  final ref = FirebaseFirestore.instance.collection("Cliente").doc(evento.email_cliente).collection("Eventi").doc(evento.anno+evento.mese+evento.giorno+evento.ora+evento.minuto).withConverter(
+    fromFirestore: Evento.fromFirestore,
+    toFirestore: (Evento evento, _) => evento.toFirestore(),
+  );
+  await ref.delete().then((value) => t=true).onError((error, stackTrace) => t=false);
 
+  final ref_doc = FirebaseFirestore.instance.collection("Veterinario").doc(evento.email_dottore).collection("Eventi").doc(evento.anno+evento.mese+evento.giorno+evento.ora+evento.minuto).withConverter(
+    fromFirestore: Evento.fromFirestore,
+    toFirestore: (Evento evento, _) => evento.toFirestore(),
+  );
+  await ref_doc.delete().then((value) => t=true).onError((error, stackTrace) => t=false);
+  return t;
 }
 
 List listaEventi = [

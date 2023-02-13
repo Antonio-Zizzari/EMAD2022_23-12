@@ -127,11 +127,11 @@ Evento evento = Evento(
     email_dottore: "Errore",
     nome_animale: "Errore",
     razza_animale: "Errore",
-    anno: "Errore",
-    mese: "Errore",
-    giorno: "Errore",
-    ora: "Errore",
-    minuto: "Errore",
+    anno: "",
+    mese: "",
+    giorno: "",
+    ora: "",
+    minuto: "",
     tipoOperazione: "visita",);
 
 final List<Veterinario> veterinari = [

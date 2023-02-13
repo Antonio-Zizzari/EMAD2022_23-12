@@ -94,7 +94,14 @@ class IdealDogResult extends StatelessWidget {
                                           onPressed: () {
                                             setDogRaceToFirestore(user.email!, razza[0]);
                                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                                content: Row(children: [Icon(Icons.add_box, color: Colors.white,) ,Text(razza[0].race+" aggiunto ai preferiti", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)],
+                                                behavior: SnackBarBehavior.floating,
+                                                backgroundColor: Colors.white,
+                                                elevation: 25.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+
+                                                ),
+                                                content: Row(children: [Icon(Icons.add_box, color: kPrimaryColor,), SizedBox(width: 5,), Text(razza[0].race+" aggiunto con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
                                                 )));
                                           },
                                           padding: EdgeInsets.all(5),
