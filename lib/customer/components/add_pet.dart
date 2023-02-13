@@ -409,7 +409,7 @@ class _AddPetState extends State<AddPet> {
                         intolleranze: intoll,
                         allergie: aller,
                         pathImage: photo !=null ? photo!.path : (tipo.contains("Cane") ? "assets/images/pet1.jpg" : "assets/images/cat1.jpg"),
-                        visiteAnnuali: {}
+                        visiteAnnuali: Map.from({})
                     );
 
                     setAnimaleToFirestore(user.email!, pet);

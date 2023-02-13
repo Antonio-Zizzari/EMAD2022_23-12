@@ -131,11 +131,17 @@ washingtonRef.update({"capital": true}).then(
     (value) => print("DocumentSnapshot successfully updated!"),
     onError: (e) => print("Error updating document $e"));*/
 
-  if(animale.visiteAnnuali[evento.anno.toString()]![evento.mese.toString()] !=null) {
+  if(animale.visiteAnnuali[evento.anno.toString()] != null && animale.visiteAnnuali[evento.anno.toString()]![evento.mese.toString()] !=null) {
     animale.visiteAnnuali[evento.anno.toString()]![evento.mese.toString()]!.add(
         evento.toFirestore());
   }
   else {
+    if(animale.visiteAnnuali[evento.anno.toString()] == null) {
+      Map<String, Map<String, List<dynamic>>> eventi_annuali = {
+        evento.anno.toString(): {}
+      };
+      animale.visiteAnnuali.addEntries(eventi_annuali.entries);
+    }
     Map<String, List<dynamic>> eventi_mensili = {
       evento.mese.toString(): [evento.toFirestore()]
     };

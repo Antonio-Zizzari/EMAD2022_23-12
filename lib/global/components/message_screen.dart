@@ -37,7 +37,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   style: TextStyle(fontSize: 16),
                 ),
                 Text(
-                  "Active "+ widget.data.time,
+                  "Attivo "+ widget.data.time,
                   style: TextStyle(fontSize: 12),
                 )
               ],

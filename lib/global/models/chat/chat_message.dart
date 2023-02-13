@@ -17,13 +17,13 @@ class ChatMessage {
 
 List demeChatMessages = [
   ChatMessage(
-    text: "Hi Sajol,",
+    text: "Buonasera Dottore, la contatto per il mio\nanimale",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.viewed,
     isSender: false,
   ),
   ChatMessage(
-    text: "Hello, How are you?",
+    text: "Si, salve! Mi ripete il suo nome e tutti\ni suoi dettagli per favore?",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.viewed,
     isSender: true,
@@ -41,19 +41,19 @@ List demeChatMessages = [
     isSender: true,
   ),
   ChatMessage(
-    text: "Error happend",
+    text: "Errore di caricamento",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.not_sent,
     isSender: true,
   ),
   ChatMessage(
-    text: "This looks great man!!",
+    text: "Ottimo, attendo sue notizie allora!",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.viewed,
     isSender: false,
   ),
   ChatMessage(
-    text: "Glad you like it",
+    text: "D'accordo, buona giornata",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.not_view,
     isSender: true,

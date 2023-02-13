@@ -34,7 +34,26 @@ class _MiePrenotazioniState extends State<MiePrenotazioni> {
             //caricamento
           }
           else{
-            eventi.data!.sort((a,b) =>(b.anno+b.mese+b.giorno+b.ora+b.minuto).compareTo(a.anno+a.mese+a.giorno+a.ora+a.minuto));
+            int mySortComparison(Evento a, Evento b) {
+              String giornoA = a.giorno;
+              String meseA = a.mese;
+              String giornoB = b.giorno;
+              String meseB = b.mese;
+
+              if(giornoA.length == 1)
+                giornoA = "0" + giornoA;
+              if(meseA.length == 1)
+                meseA = "0" + meseA;
+              if(giornoB.length == 1)
+                giornoB = "0" + giornoB;
+              if(meseB.length == 1)
+                meseB = "0" + meseB;
+
+              String propertyA = a.anno+meseA+giornoA+a.ora+a.minuto;
+              String propertyB = b.anno+meseB+giornoB+b.ora+b.minuto;
+              return propertyA.compareTo(propertyB);
+            } 
+            eventi.data!.sort((a,b) =>mySortComparison(b,a));
             if (eventi.data!.isNotEmpty) {
               return SingleChildScrollView(
                 child: Padding(
@@ -42,7 +61,7 @@ class _MiePrenotazioniState extends State<MiePrenotazioni> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Le mie prentoazioni',
+                      Text('Le mie prenotazioni',
                           style: TextStyle(
                               fontSize: 21, fontWeight: FontWeight.bold)),
                       SizedBox(
@@ -101,7 +120,8 @@ class _MiePrenotazioniState extends State<MiePrenotazioni> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(evento.nome_dottore, style: TextStyle(fontSize: 18),),
-                  Text(evento.anno.toString()+'/'+evento.mese.toString()+'/'+evento.giorno+' ore '+evento.ora+':'+evento.minuto, style: TextStyle(fontSize: 14),),
+                  Text(evento.giorno.toString()+'/'+evento.mese.toString()+'/'+evento.anno+' ore '+evento.ora+':'+evento.minuto, style: TextStyle(fontSize: 14),),
+                  Text(DateTime.now().day <= int.parse(evento.giorno) ? "In scadenza" : "Scaduto", style: TextStyle(fontSize: 14, color: DateTime.now().day <= int.parse(evento.giorno) ? Colors.orange : Colors.red),),
                 ],
               ),
               Spacer(),
