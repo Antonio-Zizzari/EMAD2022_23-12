@@ -510,13 +510,35 @@ class _CustomTextFieldState extends State<CustomTextField> {
           )
         ),
         onDismissed: (direction) {
+          var mess= ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(
+              behavior: SnackBarBehavior
+                  .floating,
+              backgroundColor: Colors.white,
+              elevation: 25.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                    Radius.circular(20)),
+
+              ),
+              content: Row(children: [
+                Icon(Icons.warning,
+                  color: kPrimaryColor,),
+                SizedBox(width: 5,),
+                Text("Non puoi eliminare l'unica riga presente!",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight
+                          .bold),)
+              ],
+              )));
           setState(() {
             if(widget.lista == 1)
-              vaccini.length > 1 ? vaccini.removeAt(widget.counter-1) : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
+              vaccini.length > 1 ? vaccini.removeAt(widget.counter-1) : mess;
             else if (widget.lista == 2)
-              intolleranze.length > 1 ? intolleranze.removeAt(widget.counter-1) : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
+              intolleranze.length > 1 ? intolleranze.removeAt(widget.counter-1) : mess;
             else
-              allergie.length > 1 ? allergie.removeAt(widget.counter-1) : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Non puoi eliminare la riga se ne è presente una sola!")));
+              allergie.length > 1 ? allergie.removeAt(widget.counter-1) : mess;
           });
           widget.callbackToParent?.call();
         },
@@ -553,8 +575,28 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       )
                     );
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Puoi aggiungere massimo 5 righe per tipologia!")));
-                  }
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                        behavior: SnackBarBehavior
+                            .floating,
+                        backgroundColor: Colors.white,
+                        elevation: 25.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(20)),
+
+                        ),
+                        content: Row(children: [
+                          Icon(Icons.warning,
+                            color: kPrimaryColor,),
+                          SizedBox(width: 5,),
+                          Text("Puoi aggiungere massimo 5 righe per tipologia!",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight
+                                    .bold),)
+                        ],
+                        )));}
                 });
                 widget.callbackToParent?.call();
               },

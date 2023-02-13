@@ -87,16 +87,54 @@ class _FavoriteDogsRaceState extends State<FavoriteDogsRace> {
                                   setState(() {
                                     removeRazzaFromFirestore(user.email!, race.race).then((value) => {
                                       if (value) {
-                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                          content: Text(race.race+" rimosso con successo", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                                          )
-                                        )
+                                        ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                        behavior: SnackBarBehavior
+                                            .floating,
+                                        backgroundColor: Colors.white,
+                                        elevation: 25.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+
+                                        ),
+                                        content: Row(children: [
+                                          Icon(Icons.delete_forever,
+                                            color: kPrimaryColor,),
+                                          SizedBox(width: 5,),
+                                          Text(race.race +
+                                              " rimosso con successo!",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight
+                                                    .bold),)
+                                        ],
+                                        )))
                                       }
                                       else {
-                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                          content: Text("Impossibile rimuovere la razza dai preferiti", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                                          )
-                                        )
+                                        ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                        behavior: SnackBarBehavior
+                                            .floating,
+                                        backgroundColor: Colors.white,
+                                        elevation: 25.0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+
+                                        ),
+                                        content: Row(children: [
+                                          Icon(Icons.add_box,
+                                            color: kPrimaryColor,),
+                                          SizedBox(width: 5,),
+                                          Text(race.race +
+                                              " aggiunto con successo!",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight
+                                                    .bold),)
+                                        ],
+                                        )))
                                       }
                                     });
                                   });

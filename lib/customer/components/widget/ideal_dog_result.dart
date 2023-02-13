@@ -20,6 +20,7 @@ class IdealDogResult extends StatelessWidget {
 
     DogRace initialRace = DogRace(race: 'errore', description: 'errore', pathImage: 'errore');
     List<DogRace> initialData = List.filled(0, initialRace, growable: true);
+    int index=0;
 
     return FutureBuilder(
       future: getAllRazzeFromFirestore(user.email!),
@@ -79,36 +80,51 @@ class IdealDogResult extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(
                                 15.0, 0.0, 15.0, 0.0),
                             child: Column(
-                                children: razza.map((race) =>
-                                    DogRaceCard(
-                                        dogRace: race,
-                                        buttonType: MaterialButton(
-                                          color: kPrimaryColor,
-                                          minWidth: 50,
-                                          height: 50,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius
-                                                  .circular(50)
-                                          ),
-                                          //DA MODIFICARE
-                                          onPressed: () {
-                                            setDogRaceToFirestore(user.email!, razza[0]);
-                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                                behavior: SnackBarBehavior.floating,
-                                                backgroundColor: Colors.white,
-                                                elevation: 25.0,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                children: razza.asMap().entries.map((race) {
+                                  return DogRaceCard(
+                                      dogRace: race.value,
+                                      buttonType: MaterialButton(
+                                        color: kPrimaryColor,
+                                        minWidth: 50,
+                                        height: 50,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius
+                                                .circular(50)
+                                        ),
+                                        //DA MODIFICARE
+                                        onPressed: () {
+                                          setDogRaceToFirestore(
+                                              user.email!, razza[race.key]);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                              behavior: SnackBarBehavior
+                                                  .floating,
+                                              backgroundColor: Colors.white,
+                                              elevation: 25.0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
 
-                                                ),
-                                                content: Row(children: [Icon(Icons.add_box, color: kPrimaryColor,), SizedBox(width: 5,), Text(razza[0].race+" aggiunto con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
-                                                )));
-                                          },
-                                          padding: EdgeInsets.all(5),
-                                          child: Center(child: Icon(Icons.star,
-                                            color: Colors.yellowAccent,
-                                            size: 30,)),
-                                        ))
+                                              ),
+                                              content: Row(children: [
+                                                Icon(Icons.add_box,
+                                                  color: kPrimaryColor,),
+                                                SizedBox(width: 5,),
+                                                Text(razza[race.key].race +
+                                                    " aggiunto con successo!",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight
+                                                          .bold),)
+                                              ],
+                                              )));
+                                        },
+                                        padding: EdgeInsets.all(5),
+                                        child: Center(child: Icon(Icons.star,
+                                          color: Colors.yellowAccent,
+                                          size: 30,)),
+                                      ));
+                                }
                                 ).toList()
                             ),
                           ),

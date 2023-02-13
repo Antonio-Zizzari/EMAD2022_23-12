@@ -87,20 +87,20 @@ class PetItem extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: glassTextColor,
-                                    fontSize: 16,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               const Expanded(
-                                flex: 3,
+                                flex: 2,
                                 child: Text(
-                                  "Visualizza scheda animale",
+                                  "Scheda animale",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: glassTextColor,
-                                    fontSize: 10,
+                                    fontSize: 13.5,
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),

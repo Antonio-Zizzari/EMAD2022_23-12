@@ -121,7 +121,7 @@ class _MiePrenotazioniState extends State<MiePrenotazioni> {
                 children: [
                   Text(evento.nome_dottore, style: TextStyle(fontSize: 18),),
                   Text(evento.giorno.toString()+'/'+evento.mese.toString()+'/'+evento.anno+' ore '+evento.ora+':'+evento.minuto, style: TextStyle(fontSize: 14),),
-                  Text(DateTime.now().day <= int.parse(evento.giorno) ? "In scadenza" : "Scaduto", style: TextStyle(fontSize: 14, color: DateTime.now().day <= int.parse(evento.giorno) ? Colors.orange : Colors.red),),
+                  Text((!DateTime.now().toUtc().isAfter(DateTime.utc(int.parse(evento.anno),int.parse(evento.mese),int.parse(evento.giorno),int.parse(evento.ora),int.parse(evento.minuto)))) ? "In scadenza" : "Scaduto", style: TextStyle(fontSize: 14, color: (!DateTime.now().toUtc().isAfter(DateTime.utc(int.parse(evento.anno),int.parse(evento.mese),int.parse(evento.giorno),int.parse(evento.ora),int.parse(evento.minuto)))) ? Colors.orange : Colors.red),),
                 ],
               ),
               Spacer(),

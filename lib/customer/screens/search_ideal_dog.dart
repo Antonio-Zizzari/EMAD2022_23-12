@@ -51,7 +51,7 @@ class SearchIdealDog extends StatelessWidget {
     QuestionStep(
       buttonText: "Successivo",
       title: 'Domanda #3',
-      text: 'Perfetto, vorrei sapere ora con chi starà il tuo cane, ovvero chi lo accudirà...',
+      text: 'Perfetto, vorrei sapere ora con chi starà il tuo cane...',
       isOptional: false,
       answerFormat: SingleChoiceAnswerFormat(
         textChoices: [
@@ -64,13 +64,13 @@ class SearchIdealDog extends StatelessWidget {
     QuestionStep(
       buttonText: "Successivo",
       title: 'Domanda #4',
-      text: 'Mhh...okay...ora mi interessa sapere, quanto tempo passerai a curarlo?',
+      text: 'Mhh...okay...ora mi interessa sapere, quanto frequentemente lo curerai?',
       isOptional: false,
       answerFormat: SingleChoiceAnswerFormat(
         textChoices: [
-          TextChoice(text: 'Sarà curato in tutto', value: 'Sarà curato in tutto'),
-          TextChoice(text: 'Facile da pulire', value: 'Facile da pulire'),
-          TextChoice(text: 'Poche ore al giorno', value: 'Poche ore al giorno'),
+          TextChoice(text: 'Ogni giorno', value: 'Sarà curato in tutto'),
+          TextChoice(text: 'Ogni settimana', value: 'Facile da pulire'),
+          TextChoice(text: 'Ogni mese o più', value: 'Poche ore al giorno'),
         ],
       ),
     ),
