@@ -21,6 +21,7 @@ class _ChatState extends State<Chat> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final args = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
     return Scaffold(
       key: _scaffoldKey,
       appBar: MainAppBar(_scaffoldKey)/*AppBarVeterinario(
@@ -28,7 +29,7 @@ class _ChatState extends State<Chat> {
         showSearch: false,
       )*/,
       drawer: SideMenu(),
-      body: Body(),
+      body: Body(login: args['login']),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           /*print("the response is:\n");

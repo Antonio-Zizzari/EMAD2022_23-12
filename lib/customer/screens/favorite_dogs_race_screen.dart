@@ -89,15 +89,15 @@ class _FavoriteDogsRaceState extends State<FavoriteDogsRace> {
                                       if (value) {
                                         ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
-                                        behavior: SnackBarBehavior
-                                            .floating,
-                                        backgroundColor: Colors.white,
-                                        elevation: 25.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)),
-
-                                        ),
+                                            backgroundColor: Colors.white,
+                                            elevation: 25.0,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                side: BorderSide(
+                                                  color: kPrimaryColor,
+                                                  width: 2,
+                                                )
+                                            ),
                                         content: Row(children: [
                                           Icon(Icons.delete_forever,
                                             color: kPrimaryColor,),
@@ -114,15 +114,15 @@ class _FavoriteDogsRaceState extends State<FavoriteDogsRace> {
                                       else {
                                         ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
-                                        behavior: SnackBarBehavior
-                                            .floating,
-                                        backgroundColor: Colors.white,
-                                        elevation: 25.0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)),
-
-                                        ),
+                                            backgroundColor: Colors.white,
+                                            elevation: 25.0,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                side: BorderSide(
+                                                  color: kPrimaryColor,
+                                                  width: 2,
+                                                )
+                                            ),
                                         content: Row(children: [
                                           Icon(Icons.add_box,
                                             color: kPrimaryColor,),

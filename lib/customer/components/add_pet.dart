@@ -404,7 +404,7 @@ class _AddPetState extends State<AddPet> {
                     else if(colore == null || colore.isEmpty){showSnackBar(Icons.warning, "È necessario inserire il colore dell'animale");}
                     else {
                       Pets pet = Pets(
-                          nome: nome,
+                          nome: nome.replaceRange(0, 1, _nameController.text.substring(0,1).toUpperCase()),
                           eta: data_di_nascita,
                           tipoAnimale: tipo!,
                           sesso: sesso!,
@@ -421,7 +421,7 @@ class _AddPetState extends State<AddPet> {
                           visiteAnnuali: Map.from({}));
 
                       setAnimaleToFirestore(user.email!, pet);
-                      showSnackBar(Icons.add_box, nome+" aggiunto con successo!");
+                      showSnackBar(Icons.add_box, nome.replaceRange(0, 1, _nameController.text.substring(0,1).toUpperCase())+" aggiunto con successo!");
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -441,12 +441,14 @@ class _AddPetState extends State<AddPet> {
 
   showSnackBar(IconData icon, String message){
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.white,
         elevation: 25.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            side: BorderSide(
+              color: kPrimaryColor,
+              width: 2,
+            )
         ),
         content: Row(children: [Icon(icon, color: kPrimaryColor,), SizedBox(width: 5,), Text(message, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
         )));
@@ -525,14 +527,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onDismissed: (direction) {
           var mess= ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(
-              behavior: SnackBarBehavior
-                  .floating,
               backgroundColor: Colors.white,
               elevation: 25.0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(20)),
-
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  side: BorderSide(
+                    color: kPrimaryColor,
+                    width: 2,
+                  )
               ),
               content: Row(children: [
                 Icon(Icons.warning,
@@ -590,14 +592,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   } else {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(
-                        behavior: SnackBarBehavior
-                            .floating,
                         backgroundColor: Colors.white,
                         elevation: 25.0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(20)),
-
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            side: BorderSide(
+                              color: kPrimaryColor,
+                              width: 2,
+                            )
                         ),
                         content: Row(children: [
                           Icon(Icons.warning,

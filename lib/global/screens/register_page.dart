@@ -184,6 +184,19 @@ Future signUp(BuildContext context, TextEditingController email, TextEditingCont
 
     setClienteToFirestore(cliente);
 
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.white,
+        elevation: 25.0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            side: BorderSide(
+              color: kPrimaryColor,
+              width: 2,
+            )
+        ),
+        content: Row(children: [Icon(Icons.how_to_reg_sharp, color: kPrimaryColor,), SizedBox(width: 5,), Text("Utente "+name.text.trim()+" registrato con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
+        )));
+
 
     /*final docUser = FirebaseFirestore.instance.collection('Cliente').doc(email.text.trim());
 

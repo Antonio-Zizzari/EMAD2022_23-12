@@ -89,8 +89,17 @@ class _SelectAnimalState extends State<SelectAnimal> {
                     }
                     else{
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Devi scegliere un animale", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                      ));
+                          backgroundColor: Colors.white,
+                          elevation: 25.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              side: BorderSide(
+                                color: kPrimaryColor,
+                                width: 2,
+                              )
+                          ),
+                          content: Row(children: [Icon(Icons.warning, color: kPrimaryColor,), SizedBox(width: 5,), Text("Devi scegliere un animale!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
+                          )));
                     }
                   },
                 ),

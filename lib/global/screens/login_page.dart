@@ -218,7 +218,7 @@ Future signIn(BuildContext context, TextEditingController email, TextEditingCont
     );
 
 
-    Navigator.popAndPushNamed(context, '/chat');
+    Navigator.popAndPushNamed(context, '/chat', arguments: {'login': true});
   } on FirebaseAuthException catch (e){
     print(e.code);
 

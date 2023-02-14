@@ -7,7 +7,8 @@ import 'package:justpet/global/models/padding.dart';
 import '../../utils/search_bar_widget.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  bool? login;
+  Body({Key? key, this.login}) : super(key: key);
 
   @override
   State<Body> createState() => _BodyState();
@@ -15,9 +16,20 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final Function(String query) queryFunction = chatSearchBarQuery;
+
+  @override
+  void initState() {
+    new Future<Null>.delayed(Duration(days: 0, hours: 0, minutes: 0,seconds: 1, milliseconds: 0,microseconds: 0), () {
+      if(widget.login != null && widget.login!)
+        showSnackBar(Icons.emoji_emotions, "Benvenuto in JustPet!");
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Container(
@@ -53,6 +65,20 @@ class _BodyState extends State<Body> {
         )
     ),
     ]);
+  }
+  showSnackBar(IconData icon, String message){
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.white,
+        elevation: 25.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          side: BorderSide(
+            color: kPrimaryColor,
+            width: 2,
+          )
+        ),
+        content: Row(children: [Icon(icon, color: kPrimaryColor,), SizedBox(width: 5,), Text(message, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
+        )));
   }
 }
 

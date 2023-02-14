@@ -207,12 +207,14 @@ class _PetItemState extends State<PetItem> {
         Navigator.of(context).pop();
         removeAnimaleFromFirestore(user.email!, animale);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.white,
             elevation: 25.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                side: BorderSide(
+                  color: kPrimaryColor,
+                  width: 2,
+                )
             ),
             content: Row(children: [Icon(Icons.delete_forever, color: kPrimaryColor,), SizedBox(width: 5,), Text(animale.nome+" rimosso con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
             )));
