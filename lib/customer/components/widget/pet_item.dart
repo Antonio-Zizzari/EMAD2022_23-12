@@ -1,12 +1,15 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:justpet/customer/screens/animal-card.dart';
+import 'package:justpet/global/models/color.dart';
 import 'package:justpet/theme/color.dart';
 import 'package:justpet/customer/models/pet_class.dart';
 import 'package:justpet/customer/components/animal-single-card.dart';
 
-class PetItem extends StatelessWidget {
+class PetItem extends StatefulWidget {
   const PetItem(
       {Key? key,
       required this.data,
@@ -26,26 +29,34 @@ class PetItem extends StatelessWidget {
   final GestureTapCallback? onFavoriteTap;
 
   @override
+  State<PetItem> createState() => _PetItemState();
+}
+
+class _PetItemState extends State<PetItem> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onLongPress: () {
+        showAlertDialog(context, widget.data);
+      },
+      onTap: widget.onTap,
       child: Container(
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(widget.radius),
         ),
         child: Stack(
           children: [
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: red5, width: 2),
-                borderRadius: BorderRadius.circular(radius+5),
+                borderRadius: BorderRadius.circular(widget.radius+5),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: data.pathImage.contains("cache") ? Image.file(fit: BoxFit.fitWidth, File(data.pathImage)) : Image.asset(data.pathImage),
+                borderRadius: BorderRadius.circular(widget.radius),
+                child: widget.data.pathImage.contains("cache") ? Image.file(fit: BoxFit.fitWidth, File(widget.data.pathImage)) : Image.asset(widget.data.pathImage),
               ),
             ),
             Positioned(
@@ -60,7 +71,7 @@ class PetItem extends StatelessWidget {
                   blur: 20,
                   opacity: 0.6,
                   child: Container(
-                    width: width - 4,
+                    width: widget.width - 4,
                     height: 110,
                     padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                     decoration: BoxDecoration(
@@ -82,7 +93,7 @@ class PetItem extends StatelessWidget {
                               Expanded(
                                 flex: 3,
                                 child: Text(
-                                  data.nome,
+                                  widget.data.nome,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -115,7 +126,7 @@ class PetItem extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              AnimalCard(data: data),
+                                              AnimalCard(data: widget.data),
                                         ),
                                       );
                                     }),
@@ -125,7 +136,7 @@ class PetItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 1.0),
                             child: Text(
-                              data.tipoAnimale,
+                              widget.data.tipoAnimale,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style:
@@ -140,11 +151,11 @@ class PetItem extends StatelessWidget {
                             children: [
                               getAttribute(
                                 Icons.transgender,
-                                data.sesso,
+                                widget.data.sesso,
                               ),
                               getAttribute(
                                 Icons.query_builder,
-                                data.eta,
+                                widget.data.eta,
                               ),
                             ],
                           ),
@@ -178,6 +189,55 @@ class PetItem extends StatelessWidget {
               TextStyle(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 13),
         ),
       ],
+    );
+  }
+
+  showAlertDialog(BuildContext context, Pets animale) {
+    final user = FirebaseAuth.instance.currentUser!;
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Annulla"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Rimuovi"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+        removeAnimaleFromFirestore(user.email!, animale);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.white,
+            elevation: 25.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+
+            ),
+            content: Row(children: [Icon(Icons.delete_forever, color: kPrimaryColor,), SizedBox(width: 5,), Text(animale.nome+" rimosso con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
+            )));
+        Navigator.pop(context);
+        Navigator.popAndPushNamed(
+            context,
+            '/scheda_animali'
+        );
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Attenzione!"),
+      content: Text("Sei sicuro di voler rimuovere "+animale.nome+" dalla lista?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

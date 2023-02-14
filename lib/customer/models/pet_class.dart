@@ -188,6 +188,16 @@ Future<Pets> getAnimaleFromFirestore(String email, String nome) async{
   }
 }
 
+Future<bool> removeAnimaleFromFirestore(String email, Pets animale) async{
+  bool t=false;
+  final ref = FirebaseFirestore.instance.collection("Animale").doc(email).collection("Animali").doc(animale.nome).withConverter(
+    fromFirestore: Pets.fromFirestore,
+    toFirestore: (Pets animale, _) => animale.toFirestore(),
+  );
+  await ref.delete().then((value) => t=true).onError((error, stackTrace) => t=false);
+  return t;
+}
+
 
 String descrizione = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 

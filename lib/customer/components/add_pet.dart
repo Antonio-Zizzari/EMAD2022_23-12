@@ -398,37 +398,37 @@ class _AddPetState extends State<AddPet> {
                     }
                     final user = FirebaseAuth.instance.currentUser!;
 
-                    Pets pet= Pets (
-                        nome: nome,
-                        eta: data_di_nascita,
-                        tipoAnimale: tipo!,
-                        sesso: sesso!,
-                        peso: peso,
-                        colore: colore!,
-                        tipiVaccino: vaxs,
-                        intolleranze: intoll,
-                        allergie: aller,
-                        pathImage: photo !=null ? photo!.path : (tipo.contains("Cane") ? "assets/images/pet1.jpg" : "assets/images/cat1.jpg"),
-                        visiteAnnuali: Map.from({})
-                    );
+                    if(nome.length<3){showSnackBar(Icons.warning, "Il nome deve essere lungo almeno 3 caratteri");}
+                    else if(tipo == null || tipo.isEmpty){showSnackBar(Icons.warning, "È necessario inserire il tipo dell'animale");}
+                    else if(sesso == null || sesso.isEmpty){showSnackBar(Icons.warning, "È necessario inserire il sesso dell'animale");}
+                    else if(colore == null || colore.isEmpty){showSnackBar(Icons.warning, "È necessario inserire il colore dell'animale");}
+                    else {
+                      Pets pet = Pets(
+                          nome: nome,
+                          eta: data_di_nascita,
+                          tipoAnimale: tipo!,
+                          sesso: sesso!,
+                          peso: peso,
+                          colore: colore!,
+                          tipiVaccino: vaxs,
+                          intolleranze: intoll,
+                          allergie: aller,
+                          pathImage: photo != null
+                              ? photo!.path
+                              : (tipo.contains("Cane")
+                                  ? "assets/images/pet1.jpg"
+                                  : "assets/images/cat1.jpg"),
+                          visiteAnnuali: Map.from({}));
 
-                    setAnimaleToFirestore(user.email!, pet);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                        backgroundColor: Colors.white,
-                        elevation: 25.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-
+                      setAnimaleToFirestore(user.email!, pet);
+                      showSnackBar(Icons.add_box, nome+" aggiunto con successo!");
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyPets(),
                         ),
-                        content: Row(children: [Icon(Icons.add_box, color: kPrimaryColor,), SizedBox(width: 5,), Text(nome+" aggiunto con successo!", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
-                        )));
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MyPets(),
-                      ),
-                    );
+                      );
+                    }
                   },
                 )
               ],
@@ -437,6 +437,19 @@ class _AddPetState extends State<AddPet> {
         ),
       ),
     );
+  }
+
+  showSnackBar(IconData icon, String message){
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.white,
+        elevation: 25.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+
+        ),
+        content: Row(children: [Icon(icon, color: kPrimaryColor,), SizedBox(width: 5,), Text(message, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)],
+        )));
   }
 
   List<DropdownMenuItem<String>> get dropdownTypePets{
