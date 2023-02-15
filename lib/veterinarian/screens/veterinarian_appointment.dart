@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -256,7 +258,22 @@ class _VeterinarianAppointmentState extends State<VeterinarianAppointment> {
                       },
                       child: Row(
                         children: [
-                          CircleAvatar(foregroundImage: AssetImage(pet!= null ? pet!.pathImage : "assets/images/question_mark.png"), radius: 20,),
+                          pet!= null ?
+                          (pet!.pathImage.contains("cache") ?
+                          CircleAvatar(
+                            radius: 20.0,
+                            backgroundImage:  FileImage(File(pet!.pathImage)),
+                            backgroundColor: Colors.white,
+                          ):
+                          CircleAvatar(
+                            radius: 20.0,
+                            backgroundImage:  AssetImage(pet!.pathImage),
+                            backgroundColor: Colors.white,
+                          )) : CircleAvatar(
+                            radius: 20.0,
+                            backgroundImage:  AssetImage('assets/images/question_mark.png'),
+                            backgroundColor: Colors.white,
+                          ),
                           SizedBox(width: 10,),
                           Text(pet != null ? pet!.nome : "Scegli un animale" ),
                           Spacer(),

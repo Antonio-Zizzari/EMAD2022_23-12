@@ -111,7 +111,7 @@ class _PetItemState extends State<PetItem> {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: glassTextColor,
-                                    fontSize: 13.5,
+                                    fontSize: 12.5,
                                     fontWeight: FontWeight.normal,
                                   ),
                                 ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:intl/intl.dart';
@@ -51,7 +53,7 @@ class VeterinarianDate extends StatelessWidget {
                     width: width, height: height * 0.65,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
-                      child: Image.asset(fit: BoxFit.fitWidth, data.pathImage),
+                      child: data.pathImage.contains("cache") ? Image.file(fit: BoxFit.fitWidth, File(data.pathImage)) : Image.asset(data.pathImage),
                       ),
                     ),
                   Positioned(
